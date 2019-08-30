@@ -26,6 +26,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { RegisterFarmerComponent } from './register-farmer/register-farmer.component';
 import { RegisterConsumerComponent } from './register-consumer/register-consumer.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 
 
@@ -41,7 +42,8 @@ import { RegisterConsumerComponent } from './register-consumer/register-consumer
     LoginPageComponent,
     RegisterPageComponent,
     RegisterFarmerComponent,
-    RegisterConsumerComponent
+    RegisterConsumerComponent,
+    ForgotPasswordComponent
     
   ],
   imports: [
