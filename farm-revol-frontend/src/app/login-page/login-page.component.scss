@@ -42,5 +42,21 @@ mat-card {
 
 .register-links {
     color: #4a6661;
+
+}
+
+.forgot {
+    text-align: center;
+    font-size: 18px;
     
+}
+
+.forgot-text {
+    color: #9e2313;
+    text-decoration: none;
+}
+
+.forgot-text:hover {
+    color: #f02f16;
+    text-decoration: underline;
 }
