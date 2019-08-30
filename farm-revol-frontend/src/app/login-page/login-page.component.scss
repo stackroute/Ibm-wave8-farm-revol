@@ -47,13 +47,14 @@ mat-card {
 
 .forgot {
     text-align: center;
-    font-size: 18px;
-    
+    font-size: 25px;
+    letter-spacing: 0.1ex;
 }
 
 .forgot-text {
     color: #9e2313;
     text-decoration: none;
+    font-family: 'Lobster', cursive;
 }
 
 .forgot-text:hover {
