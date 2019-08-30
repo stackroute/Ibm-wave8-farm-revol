@@ -1,0 +1,41 @@
+#login-page {
+    background-image: url("../../assets/login-back.jpg");
+    height: 800px;
+ /* Center and scale the image nicely */
+     background-position: center;
+     background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+#login-comp {
+    height: 400px;
+    width: 300px;
+    margin: 0 auto;
+    padding-top: 200px;
+ 
+}
+
+
+.login-main {
+    margin-top: 10%;
+    }
+
+mat-card {
+  width: 300px;
+}
+   
+
+.login-text {
+    font-size: 40px;
+    letter-spacing: 0.1ex;
+    margin-left: 65px;
+    font-weight: 600;
+    color: #37872f;
+    
+}
+
+
+.login-content {
+    text-align: center;
+}

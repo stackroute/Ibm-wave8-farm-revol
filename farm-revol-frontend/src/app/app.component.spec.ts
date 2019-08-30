@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'farm-revol-frontend'`, () => {
+  it(`should have as title 'LandingPage'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('farm-revol-frontend');
+    expect(app.title).toEqual('LandingPage');
   });
 
   it('should render title in a h1 tag', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to farm-revol-frontend!');
+    expect(compiled.querySelector('h1').textContent).toContain('Welcome to LandingPage!');
   });
 });

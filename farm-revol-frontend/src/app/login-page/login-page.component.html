@@ -1,0 +1,35 @@
+
+<div id = "login-page">
+    <div id = "login-comp">
+            
+
+            <div fxLayout="row" fxLayoutAlign="center center" class="login-main">
+                    <mat-card >
+                    <mat-card-header >
+                      <mat-card-title class = "login-text">LOGIN</mat-card-title>
+                    </mat-card-header>
+
+                    <div class = "login-content">
+                    <mat-card-content fxLayout="column">
+                      <mat-form-field>
+                        <input matInput placeholder="Email">
+                      </mat-form-field>
+                      <mat-form-field>
+                        <input type="password" matInput placeholder="password">
+                      </mat-form-field>
+                    </mat-card-content>
+                    </div>
+                    <mat-card-actions align="center">
+                      <button mat-raised-button color="primary">Login</button>
+                    </mat-card-actions>
+
+                    <p class = "register-links">New Farmer? <a [routerLink] = "['/register-farmer']">Register Here</a></p>
+                    <p class = "register-links">New Consumer? <a [routerLink] = "['/register-consumer']">Register Here</a></p>
+
+                    </mat-card>
+
+                    
+                    </div>
+
+        </div>
+</div>
