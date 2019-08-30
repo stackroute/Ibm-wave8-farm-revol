@@ -23,7 +23,6 @@ import { SearchComponent } from './search/search.component';
 import { FaqComponent } from './faq/faq.component';
 import { MatExpansionModule} from '@angular/material/expansion';
 import { LoginPageComponent } from './login-page/login-page.component';
-import { RegisterPageComponent } from './register-page/register-page.component';
 import { RegisterFarmerComponent } from './register-farmer/register-farmer.component';
 import { RegisterConsumerComponent } from './register-consumer/register-consumer.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
@@ -40,7 +39,6 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     SearchComponent,
     FaqComponent,
     LoginPageComponent,
-    RegisterPageComponent,
     RegisterFarmerComponent,
     RegisterConsumerComponent,
     ForgotPasswordComponent
