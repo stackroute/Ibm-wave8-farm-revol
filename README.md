@@ -12,4 +12,5 @@ What is needed is a technology-enabled solution to help out Indian farmers and c
 FarmRevol is a farm aggregator platform where farmers can offer part/whole agricultural land to consumers on rent. 
 Farmers cultivate organic food and vegetables.
 
-Consumers can take on rent one or more farms to receive the end products cultivated there.
+Consumers can take on rent one or more farms to receive the end products cultivated there
+
