@@ -7,6 +7,9 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterFarmerComponent } from './register-farmer/register-farmer.component';
 import { RegisterConsumerComponent } from './register-consumer/register-consumer.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { FarmerLandingPageComponent } from './farmer-landing-page/farmer-landing-page.component';
+import { FarmereditprofileComponent } from './farmereditprofile/farmereditprofile.component';
+import { ConsumerLandingPageComponent } from './consumer-landing-page/consumer-landing-page.component';
 
 
 const routes: Routes = [
@@ -17,7 +20,10 @@ const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'register-farmer', component: RegisterFarmerComponent },
   { path: 'register-consumer', component: RegisterConsumerComponent },
-  { path: 'forgot-password', component: ForgotPasswordComponent }
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'farmer-landing-page',component: FarmerLandingPageComponent},
+  { path: 'farmer-edit-profile', component: FarmereditprofileComponent },
+  {path:'consumer-landing-page',component: ConsumerLandingPageComponent}
 ];
 
 @NgModule({

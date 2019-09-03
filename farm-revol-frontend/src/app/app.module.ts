@@ -26,6 +26,12 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterFarmerComponent } from './register-farmer/register-farmer.component';
 import { RegisterConsumerComponent } from './register-consumer/register-consumer.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { FarmerLandingPageComponent } from './farmer-landing-page/farmer-landing-page.component';
+import { UploadfarmComponent } from './uploadfarm/uploadfarm.component';
+import { FarmereditprofileComponent } from './farmereditprofile/farmereditprofile.component';
+import { NavbarFarmerComponent } from './navbar-farmer/navbar-farmer.component';
+import { ConsumerLandingPageComponent } from './consumer-landing-page/consumer-landing-page.component';
+import { NavbarConsumerComponent } from './navbar-consumer/navbar-consumer.component';
 
 
 
@@ -41,7 +47,13 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     LoginPageComponent,
     RegisterFarmerComponent,
     RegisterConsumerComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    FarmerLandingPageComponent,
+    UploadfarmComponent,
+    FarmereditprofileComponent,
+    NavbarFarmerComponent,
+    ConsumerLandingPageComponent,
+    NavbarConsumerComponent
     
   ],
   imports: [

@@ -10,26 +10,22 @@
 
 #login-comp {
     height: 400px;
-    width: 300px;
+    width: 70%;
     margin: 0 auto;
     padding-top: 200px;
  
 }
 
-
-.login-main {
-    margin-top: 10%;
-    }
-
 mat-card {
-  width: 300px;
+  width: 35%;
+  margin: 0 auto;
 }
    
 
 .login-text {
     font-size: 40px;
     letter-spacing: 0.1ex;
-    margin-left: 65px;
+    margin-left: 80%;
     font-weight: 600;
     color: #37872f;
     
@@ -45,6 +41,7 @@ mat-card {
     font-family: 'Merienda', cursive;
     font-size: 19px;
     font-weight: 800;
+    text-align: center;
 
 }
 
