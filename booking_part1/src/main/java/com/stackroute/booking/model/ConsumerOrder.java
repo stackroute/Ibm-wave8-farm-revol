@@ -6,6 +6,8 @@ import java.util.List;
 
 public class ConsumerOrder {
     int orderId;
+    
+    //Id of the specific land of a farmer
     int landId;
     String farmerId;
     String crop;
