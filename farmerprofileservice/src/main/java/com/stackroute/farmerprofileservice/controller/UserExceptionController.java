@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class UserExceptionController {
     @ExceptionHandler(value = UserNotFoundException.class)
     public ResponseEntity<Object> notFoundException(UserNotFoundException exception) {
-        return new ResponseEntity<>("user not found", HttpStatus.CONFLICT);
+        return new ResponseEntity<>("User not found", HttpStatus.CONFLICT);
     }
 }
