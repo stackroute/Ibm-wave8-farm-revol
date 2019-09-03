@@ -17,9 +17,12 @@ public class Land {
  Long farmerId;
     float landSize;
     double landPrice;
+    //Location of the Land
     String location;
     List<String> crops;
     String image;
+
+    //All the orders of the corresponding land
     List<Order> orders;
 
 
