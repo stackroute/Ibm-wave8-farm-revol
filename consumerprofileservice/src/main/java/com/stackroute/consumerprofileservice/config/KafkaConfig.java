@@ -2,9 +2,8 @@ package com.stackroute.consumerprofileservice.config;
 
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ser.std.StringSerializer;
-import com.stackroute.farmrevol.models.Farmer;
-import com.stackroute.farmrevol.models.Login;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
+import com.stackroute.consumerprofileservice.model.Consumer;
+
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.context.annotation.Bean;
@@ -18,7 +17,7 @@ import java.util.Map;
 public class KafkaConfig {
 
     @Bean
-    public ProducerFactory<String, Farmer> producerFactory(){
+    public ProducerFactory<String, Consumer> producerFactory(){
         Map<String, Object> config = new HashMap<>();
 
         config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
@@ -29,27 +28,9 @@ public class KafkaConfig {
     }
 
     @Bean
-    public KafkaTemplate<String, Farmer> kafkaTemplate() {
+    public KafkaTemplate<String, Consumer> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 
-    @Bean
-    public ConsumerFactory<String, Login> userConsumerFactory() {
-        Map<String, Object> config = new HashMap<>();
-
-        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
-        config.put(ConsumerConfig.GROUP_ID_CONFIG, "group_json");
-        config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
-        return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(),
-                new JsonDeserializer<>(Login.class));
-    }
-
-    @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, Login> kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, Login> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(userConsumerFactory());
-        return factory;
-    }
 }
 

@@ -2,11 +2,11 @@ package com.stackroute.consumerprofileservice.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.stackroute.farmrevol.configs.JwtTokenProvider;
-import com.stackroute.farmrevol.exception.UserNotFoundException;
-import com.stackroute.farmrevol.models.*;
-import com.stackroute.farmrevol.repositories.ConsumerRepository;
-import com.stackroute.farmrevol.services.ConsumerDetailsService;
+import com.stackroute.consumerprofileservice.exception.UserNotFoundException;
+import com.stackroute.consumerprofileservice.model.Consumer;
+import com.stackroute.consumerprofileservice.model.ConsumerDTO;
+import com.stackroute.consumerprofileservice.repository.ConsumerRepository;
+import com.stackroute.consumerprofileservice.service.ConsumerDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +27,6 @@ public class ConsumerController {
     @Autowired
     AuthenticationManager authenticationManager;
 
-    @Autowired
-    JwtTokenProvider jwtTokenProvider;
 
     @Autowired
     ConsumerRepository consumers;
@@ -40,23 +38,6 @@ public class ConsumerController {
     private ConsumerDetailsService consumerService;
 
 
-
-//    @SuppressWarnings("rawtypes")
-//    @PostMapping("/login")
-//    public ResponseEntity login(@RequestBody Login data) {
-//        try {
-//            String username = data.getEmail();
-//            System.out.println(data.getPassword());
-//            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, data.getPassword()));
-//            String token = jwtTokenProvider.createToken(username);
-//            Map<Object, Object> model = new HashMap<>();
-//            model.put("username", username);
-//            model.put("token", token);
-//            return ok(model);
-//        } catch (AuthenticationException e) {
-//            throw new BadCredentialsException("Invalid email/password supplied");
-//        }
-//    }
 
     @SuppressWarnings("rawtypes")
     @PostMapping("/register")
