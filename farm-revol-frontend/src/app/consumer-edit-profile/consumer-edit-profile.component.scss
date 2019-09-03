@@ -1,0 +1,55 @@
+.profile-con {
+    margin: auto;
+    width: 35%;
+    //border: 1px dashed #eaf5d0;
+    padding: 10px;
+    background-color:#F6F3F9;
+    height: 450px;
+    
+    
+}
+
+//    .input-items {
+//     width: 100%;
+//     padding: 15px;
+//     margin: 5px 0 22px 0;
+//     border: none;
+//     background: #f1f1f1;
+//    }
+
+.example-container {
+display: flex;
+flex-direction: column;
+}
+
+.input-items {
+   margin-top: 10px;
+}
+
+.edit-button {
+   background-color: cornflowerblue;
+   color: white;
+   width: 150px;
+   margin-left: 30px;
+   margin-top: 25px;
+}
+
+.submit-button {
+   margin-left: 170px;
+}
+
+
+
+.profile-edit-all {
+ background-image: url("../../assets/login-back.jpg");
+ height: 100%;
+/* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+ background-size: cover;
+ 
+}
+
+.container-margin {
+ height: 100px;
+}

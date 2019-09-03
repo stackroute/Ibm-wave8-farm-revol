@@ -32,6 +32,7 @@ import { FarmereditprofileComponent } from './farmereditprofile/farmereditprofil
 import { NavbarFarmerComponent } from './navbar-farmer/navbar-farmer.component';
 import { ConsumerLandingPageComponent } from './consumer-landing-page/consumer-landing-page.component';
 import { NavbarConsumerComponent } from './navbar-consumer/navbar-consumer.component';
+import { ConsumerEditProfileComponent } from './consumer-edit-profile/consumer-edit-profile.component';
 
 
 
@@ -53,7 +54,8 @@ import { NavbarConsumerComponent } from './navbar-consumer/navbar-consumer.compo
     FarmereditprofileComponent,
     NavbarFarmerComponent,
     ConsumerLandingPageComponent,
-    NavbarConsumerComponent
+    NavbarConsumerComponent,
+    ConsumerEditProfileComponent
     
   ],
   imports: [

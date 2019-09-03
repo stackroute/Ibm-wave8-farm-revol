@@ -10,6 +10,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { FarmerLandingPageComponent } from './farmer-landing-page/farmer-landing-page.component';
 import { FarmereditprofileComponent } from './farmereditprofile/farmereditprofile.component';
 import { ConsumerLandingPageComponent } from './consumer-landing-page/consumer-landing-page.component';
+import { ConsumerEditProfileComponent } from './consumer-edit-profile/consumer-edit-profile.component';
 
 
 const routes: Routes = [
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'farmer-landing-page',component: FarmerLandingPageComponent},
   { path: 'farmer-edit-profile', component: FarmereditprofileComponent },
-  {path:'consumer-landing-page',component: ConsumerLandingPageComponent}
+  {path:'consumer-landing-page',component: ConsumerLandingPageComponent},
+  {path: 'consumer-edit-profile', component: ConsumerEditProfileComponent}
 ];
 
 @NgModule({
