@@ -33,8 +33,7 @@ public class FarmerDetailsService {
 
     @Autowired
     private MongoTemplate mongoTemplate;
-   /* @Autowired
-    private KafkaTemplate<String,Farmer> kafkaTemplate;*/
+
 
 
     public Farmer findFarmerByEmail(String email) {
@@ -48,22 +47,14 @@ public class FarmerDetailsService {
     public void saveFarmer(Farmer farmer) {
         farmer.setPassword(bCryptPasswordEncoder.encode(farmer.getPassword()));
         farmer.setEnabled(true);
-        // System.out.println(sequenceGenerator.getNextSequence(Farmer.SEQUENCE_NAME));
-        // farmer.setId(sequenceGenerator.getNextSequence(Farmer.SEQUENCE_NAME));
+
         for (int i = 0; i < farmer.getLand().size(); i++) {
             farmer.getLand().get(i).setId(sequenceGenerator.getNextSequence((Land.SEQUENCE_NAME)));
 
             System.out.println("hello" + farmer.getLand().get(i).getId());
         }
-     /*   farmer.setId(sequenceGenerator.generateSequence(Farmer.SEQUENCE_NAME));
-        System.out.println(farmer.getId());*//*
-        System.out.println(farmer.getId());*/
-//        Role userRole = roleRepository.findByRole("farmer");
-//        farmer.setRoles(new HashSet<>(Arrays.asList(userRole)));
-//        ArrayList<Land> lands=new ArrayList<>();
-//        farmer.setLand(lands);
+
         farmerRepository.save(farmer);
-        //this.kafkaTemplate.send(TOPIC,farmer);
     }
 
     public Farmer deleteFarmer(String email) {
@@ -88,20 +79,7 @@ public class FarmerDetailsService {
 
     //
     public Farmer uploadLandDetails(Land land, String email) {
-       /* System.out.println(Id);
-        System.out.println(land);
-        Optional optional = farmerRepository.findById(Id);
-        Farmer farmer = (Farmer) optional.get();
-        ArrayList<Land> lands = farmer.getLand();
-        for (int i = 0; i < lands.size(); i++) {
-            farmer.getLand().get(i).setId(sequenceGenerator.getNextSequence((Land.SEQUENCE_NAME)));
-            System.out.println(farmer.getLand().get(i).getId());
-            if (lands.get(i).getId() == land.getId()) {
 
-                System.out.println(lands);
-                lands.set(i, land);
-                break;
-            }*/
         Optional optional = farmerRepository.findById(email);
         Farmer farmer = (Farmer) optional.get();
         List<Land> landList = farmer.getLand();
@@ -112,10 +90,6 @@ public class FarmerDetailsService {
         farmerRepository.save(farmer);
         return farmer;
     }
-//        farmer.setLand(lands);
-//        System.out.println(farmer);
-//        return farmerRepository.save(farmer);
-//    }
 
     public List<Land> getAllLandsOfFarmerByEmail(String email) {
         List<Land> lands = new ArrayList<>();
@@ -142,23 +116,6 @@ public class FarmerDetailsService {
         }
         return lands.get(i);
     }
-
-
-//    public List<Land> deleteLandById(Long id, Long Lid) {
-//        Optional optional = farmerRepository.findById(id);
-//        Farmer farmer = (Farmer) optional.get();
-//        ArrayList<Land> lands = farmer.getLand();
-//        int i;
-//        for (i = 0; i < lands.size(); i++) {
-//            if (lands.get(i).getId() == Lid) {
-//                lands.remove(i);
-//            }
-//        }
-//       // farmer.setLand(lands);
-//
-//        return lands;
-//
-//    }
 
     public Farmer deleteSpecificLandByEmail(String email, Long Lid) {
         Optional optional = farmerRepository.findById(email);

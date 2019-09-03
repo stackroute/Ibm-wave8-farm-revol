@@ -10,12 +10,7 @@ import java.util.Set;
 @Document(collection = "farmers")
 public class Farmer {
 
-    /* public static final String SEQUENCE_NAME ="database_sequence" ;
 
-     @Id
-     private Long id;
-
-     @Indexed(unique = true, direction = IndexDirection.DESCENDING, dropDups = true)*/
     @Id
     private String email;
     private String password;

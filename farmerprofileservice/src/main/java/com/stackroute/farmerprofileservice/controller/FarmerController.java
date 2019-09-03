@@ -46,43 +46,10 @@ public class FarmerController {
     private static String TOPIC = "kafka";
 
 
-   /* @PostMapping("/publish")
-    public void getUserId(@RequestBody String farmer) {
-
-        kafkaTemplate.send(TOPIC, farmer);
-    }*/
-
-//    @SuppressWarnings("rawtypes")
-//    @PostMapping("/login")
-//    public ResponseEntity login(@RequestBody Login data) {
-//        try {
-//            String username = data.getEmail();
-//            System.out.println(data.getPassword());
-//            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, data.getPassword()));
-//            String token = jwtTokenProvider.createToken(username);
-//            Map<Object, Object> model = new HashMap<>();
-//            model.put("username", username);
-//            model.put("token", token);
-//            return ok(model);
-//        } catch (AuthenticationException e) {
-//            throw new BadCredentialsException("Invalid email/password supplied");
-//        }
-//    }
-
-//    @KafkaListener(topics = "kafka-producer", groupId="group_id")
-//    public void consume(String message) throws IOException {
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        Farmer farmer = objectMapper.readValue(message, Farmer.class);
-//        logger.info(String.format("$$ -> Consumed Message -> %s",farmer));
-//    }
-
     @SuppressWarnings("rawtypes")
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody Farmer farmer) throws JsonProcessingException {
-//        Farmer farmerExists = farmerService.findFarmerByEmail(farmer.getEmail());
-//        if (farmerExists != null) {
-//            throw new BadCredentialsException("Farmer with username: " + farmer.getEmail() + " already exists");
-//        }
+
         farmerService.saveFarmer(farmer);
         FarmerDTO farmerDTO=new FarmerDTO();
         farmerDTO.setEmail(farmer.getEmail());

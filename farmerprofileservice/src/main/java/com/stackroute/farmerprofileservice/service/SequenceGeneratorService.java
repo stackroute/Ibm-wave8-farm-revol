@@ -1,6 +1,6 @@
-package com.stackroute.farmrevol.services;
+package com.stackroute.farmerprofileservice.service;
 
-import com.stackroute.farmrevol.models.DatabaseSequence;
+import com.stackroute.farmerprofileservice.models.DatabaseSequence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Update;
