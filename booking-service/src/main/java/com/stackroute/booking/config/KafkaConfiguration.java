@@ -72,21 +72,7 @@ public class KafkaConfiguration {
         return new KafkaTemplate<>(producerFactoryConsumer());
     }
 
-//    @Bean
-//    public ConsumerFactory<String, Land> consumerFactoryLand() {
-//        Map<String, Object> config = new HashMap<>();
-//        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-//        config.put(ConsumerConfig.GROUP_ID_CONFIG, "group_land");
-//        config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-//        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
-//        return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(), new JsonDeserializer<>(Land.class));
-//    }
-//    @Bean
-//    public ConcurrentKafkaListenerContainerFactory<String, Land> kafkaListenerFactoryLand() {
-//        ConcurrentKafkaListenerContainerFactory<String, Land> factory = new ConcurrentKafkaListenerContainerFactory<>();
-//        factory.setConsumerFactory(consumerFactoryLand());
-//        return factory;
-//    }
+
 
     @Bean
     public ConsumerFactory<String, Consumer> consumerFactory() {
@@ -100,7 +86,6 @@ public class KafkaConfiguration {
         config.put(ConsumerConfig.GROUP_ID_CONFIG, "group_consumer");
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, deserializer);
-//        config.put(JsonDeserializer.TRUSTED_PACKAGES, "com.stackroute.booking.model");
         return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(),deserializer);
     }
     @Bean
@@ -110,20 +95,5 @@ public class KafkaConfiguration {
         return factory;
     }
 
-//    @Bean
-//    public ConsumerFactory<String, String> consumerFactory() {
-//        Map<String, Object> config = new HashMap<>();
-//        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-//        config.put(ConsumerConfig.GROUP_ID_CONFIG, "group_string");
-//        config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-//        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-//        return new DefaultKafkaConsumerFactory<>(config);
-//    }
-//    @Bean
-//    public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerFactory() {
-//        ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
-//        factory.setConsumerFactory(consumerFactory());
-//        return factory;
-//    }
-//
+
 }
