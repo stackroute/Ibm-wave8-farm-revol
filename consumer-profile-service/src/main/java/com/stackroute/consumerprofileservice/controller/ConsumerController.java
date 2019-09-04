@@ -24,9 +24,6 @@ import static org.springframework.http.ResponseEntity.ok;
 @RestController
 @RequestMapping("/api/consumer")
 public class ConsumerController {
-    @Autowired
-    AuthenticationManager authenticationManager;
-
 
     @Autowired
     ConsumerRepository consumers;
