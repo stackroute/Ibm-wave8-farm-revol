@@ -22,6 +22,7 @@ public class KafkaConsumer {
         System.out.println("Hello Hello");
         System.out.println("Consumed JSON Message: " + user);
         Login userLogin = new ObjectMapper().readValue(user, Login.class);
+       // System.out.println(userLogin);
         loginRepository.save(userLogin);
     }
 }

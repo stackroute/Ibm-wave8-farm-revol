@@ -3,6 +3,7 @@ package com.stackroute.farmrevol.controllers;
 import com.stackroute.farmrevol.configs.JwtTokenProvider;
 import com.stackroute.farmrevol.models.Login;
 import com.stackroute.farmrevol.repositories.LoginRepository;
+import com.stackroute.farmrevol.services.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,12 +29,17 @@ public class LoginController {
 
     LoginRepository loginRepository;
 
+
+
     @SuppressWarnings("rawtypes")
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody Login data) {
         try {
             System.out.println(data);
+
             String username = data.getEmail();
+           /* String role=loginRepository.fingRoleByEmail(username);
+            System.out.println(role);*/
             System.out.println(data.getPassword());
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, data.getPassword()));
             String token = jwtTokenProvider.createToken(username);

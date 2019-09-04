@@ -12,4 +12,6 @@ public interface LoginRepository extends CrudRepository<Login, String> {
     @Query("SELECT l FROM Login l WHERE email = :email")
     Login findByEmail(@Param("email") String email);
 
+    /*@Query("SELECT l.role FROM Login l WHERE l.email= :email")
+    String fingRoleByEmail(@Param("email") String email);*/
 }

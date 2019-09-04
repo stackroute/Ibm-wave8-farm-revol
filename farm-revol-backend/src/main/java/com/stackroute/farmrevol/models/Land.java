@@ -14,7 +14,7 @@ public class Land {
 
     @Id
     private Long id;
- Long farmerId;
+ String farmerId;
     float landSize;
     double landPrice;
     //Location of the Land
@@ -29,8 +29,9 @@ public class Land {
     public Land() {
     }
 
-    public Land(Long id, float landSize, double landPrice, String location, List<String> crops, String image, List<Order> orders) {
+    public Land(Long id, String farmerId, float landSize, double landPrice, String location, List<String> crops, String image, List<Order> orders) {
         this.id = id;
+        this.farmerId = farmerId;
         this.landSize = landSize;
         this.landPrice = landPrice;
         this.location = location;
@@ -39,11 +40,11 @@ public class Land {
         this.orders = orders;
     }
 
-    public Long getFarmerId() {
+    public String getFarmerId() {
         return farmerId;
     }
 
-    public void setFarmerId(Long farmerId) {
+    public void setFarmerId(String farmerId) {
         this.farmerId = farmerId;
     }
 
@@ -108,6 +109,7 @@ public class Land {
     public String toString() {
         return "Land{" +
                 "id=" + id +
+                ", farmerId='" + farmerId + '\'' +
                 ", landSize=" + landSize +
                 ", landPrice=" + landPrice +
                 ", location='" + location + '\'' +

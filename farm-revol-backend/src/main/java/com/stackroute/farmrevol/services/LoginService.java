@@ -33,6 +33,7 @@ public class LoginService implements UserDetailsService {
     }
 
 
+
     private UserDetails buildUserForAuthentication(Login login, List<GrantedAuthority> authorities) {
         return new org.springframework.security.core.userdetails.User(login.getEmail(), login.getPassword(), authorities);
     }
