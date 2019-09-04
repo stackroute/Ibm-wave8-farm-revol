@@ -20,8 +20,6 @@ public class ConsumerDetailsService {
     @Autowired
     private RoleRepository roleRepository;
 
-    @Autowired
-    private PasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     private SequenceGeneratorService sequenceGenerator;
@@ -37,7 +35,7 @@ public class ConsumerDetailsService {
         return consumer;
     }
     public void saveConsumer(Consumer consumer) {
-        consumer.setPassword(bCryptPasswordEncoder.encode(consumer.getPassword()));
+        consumer.setPassword((consumer.getPassword()));
         consumer.setEnabled(true);
        /* Role userRole = roleRepository.findByRole("consumer");
         consumer.setRoles(new HashSet<>(Arrays.asList(userRole)));*/
