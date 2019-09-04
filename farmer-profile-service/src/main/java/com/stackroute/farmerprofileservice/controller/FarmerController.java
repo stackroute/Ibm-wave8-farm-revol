@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -28,8 +27,8 @@ import static org.springframework.http.ResponseEntity.ok;
 @RequestMapping("/api/farmer")
 public class FarmerController {
 
-    @Autowired
-    AuthenticationManager authenticationManager;
+//    @Autowired
+//    AuthenticationManager authenticationManager;
 
 
     @Autowired

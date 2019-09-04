@@ -25,11 +25,11 @@ public class FarmerDetailsService {
     @Autowired
     private RoleRepository roleRepository;
 
-    @Autowired
-    private PasswordEncoder bCryptPasswordEncoder;
+//    @Autowired
+//    private PasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    private com.stackroute.farmrevol.services.SequenceGeneratorService sequenceGenerator;
+    private com.stackroute.farmerprofileservice.service.SequenceGeneratorService sequenceGenerator;
 
     @Autowired
     private MongoTemplate mongoTemplate;
@@ -45,7 +45,7 @@ public class FarmerDetailsService {
     }
 
     public void saveFarmer(Farmer farmer) {
-        farmer.setPassword(bCryptPasswordEncoder.encode(farmer.getPassword()));
+        farmer.setPassword(farmer.getPassword());
         farmer.setEnabled(true);
 
         for (int i = 0; i < farmer.getLand().size(); i++) {
