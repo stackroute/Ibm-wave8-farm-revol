@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +34,11 @@ public class FarmerDetailsService {
 
     @Autowired
     private MongoTemplate mongoTemplate;
+
+    @Autowired
+    private KafkaTemplate<String, Farmer> kafkaTemplateFarmer;
+
+    private static String TOPIC2 = "testing";
 
 
 
@@ -65,7 +71,6 @@ public class FarmerDetailsService {
 
 
     public Farmer getFarmerByEmail(String email) throws UserNotFoundException {
-        System.out.println(email);
         if (!farmerRepository.findById(email).isPresent()) {
             throw new UserNotFoundException();
         }
@@ -165,4 +170,10 @@ public class FarmerDetailsService {
         return farmerRepository.save(farmer);
     }
 
+    public String bookLand(String email){
+        Farmer farmer = getFarmerByEmail(email);
+        kafkaTemplateFarmer.send(TOPIC2, farmer);
+
+        return "published";
+    }
 }

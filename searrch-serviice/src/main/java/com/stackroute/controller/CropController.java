@@ -33,7 +33,6 @@ public class CropController {
         }
         return responseEntity;
     }
-
     @GetMapping("crop")
     public ResponseEntity<?> getAllCrops(){
         ResponseEntity responseEntity;
@@ -57,9 +56,7 @@ public class CropController {
         }
             return responseEntity;
     }
-
     @DeleteMapping("crop/{id}")
-
     public ResponseEntity<?> deleteCrop(@PathVariable("id") int id) throws CropNotFoundException
     {
     ResponseEntity responseEntity;
@@ -70,9 +67,7 @@ public class CropController {
     @PutMapping("crop/{id}")
     public ResponseEntity<Crop> updateCrop(@RequestBody Crop crop){
         ResponseEntity responseEntity;
-
         try {
-
             cropService.updateCrop(crop);
             responseEntity= new ResponseEntity<String>("updated", HttpStatus.OK);
         } catch (Exception e) {
@@ -92,6 +87,4 @@ public class CropController {
         }
         return responseEntity;
     }
-
 }
-
