@@ -1,6 +1,6 @@
 package com.stackroute.authenticationservice.configuration;
 
-import com.stackroute.farmrevol.services.LoginService;
+import com.stackroute.authenticationservice.service.LoginService;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
