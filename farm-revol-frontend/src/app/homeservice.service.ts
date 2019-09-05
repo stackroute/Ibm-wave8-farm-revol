@@ -11,7 +11,7 @@ export class HomeserviceService {
 
   getSearch(val:String)
   {
-    this.url = "http://localhost:8080/api/v1/cropname/"+val ;
+    this.url = "http://localhost:8090/api/v1/cropname/"+val ;
     return this.httpclient.get(this.url);
   }
 }

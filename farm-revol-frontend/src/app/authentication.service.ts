@@ -7,15 +7,17 @@ const apiUrl = 'http://localhost:8080/api/farmer/';
 const apiUrl1 = 'http://localhost:8080/api/consumer/';
 const apiurl2='http://localhost:8080/api/';
 
+
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthenticationService {
 
   isLoggedIn = false;
   redirectUrl: string;
 
   constructor(private http: HttpClient) { }
+
 
   login(data: any): Observable<any> {
     return this.http.post<any>(apiurl2 + 'login', data)
@@ -34,7 +36,6 @@ export class AuthService {
    }
 
   register(data: any): Observable<any> {
-    console.log(data);
     return this.http.post<any>(apiUrl + 'register', data)
       .pipe(
         tap(_ => this.log('login')),
@@ -43,7 +44,7 @@ export class AuthService {
   }
 
   registerConsumer(data: any): Observable<any> {
-    return this.http.post<any>("http://localhost:8080/api/farmer/register", data)
+    return this.http.post<any>(apiUrl1 + 'register', data)
       .pipe(
         tap(_ => this.log('login')),
         catchError(this.handleError('login', []))
@@ -64,3 +65,4 @@ export class AuthService {
     console.log(message);
   }
 }
+

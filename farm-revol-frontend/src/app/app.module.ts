@@ -33,7 +33,7 @@ import { NavbarFarmerComponent } from './navbar-farmer/navbar-farmer.component';
 import { ConsumerLandingPageComponent } from './consumer-landing-page/consumer-landing-page.component';
 import { NavbarConsumerComponent } from './navbar-consumer/navbar-consumer.component';
 import { ConsumerEditProfileComponent } from './consumer-edit-profile/consumer-edit-profile.component';
-
+import {MatRadioModule} from '@angular/material/radio';
 
 
 
@@ -72,7 +72,8 @@ import { ConsumerEditProfileComponent } from './consumer-edit-profile/consumer-e
     MatCardModule,
     MatMenuModule,
     MatSelectModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]
