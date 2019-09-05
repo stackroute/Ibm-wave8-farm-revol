@@ -26,15 +26,18 @@ import static org.springframework.http.ResponseEntity.ok;
 public class ConsumerController {
 
     @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
     ConsumerRepository consumers;
+
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
     private static String TOPIC = "kafka";
+
     @Autowired
     private ConsumerDetailsService consumerService;
-
-
 
     @SuppressWarnings("rawtypes")
     @PostMapping("/register")

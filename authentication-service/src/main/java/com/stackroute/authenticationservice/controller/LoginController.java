@@ -43,7 +43,6 @@ public class LoginController {
             Map<Object, Object> model = new HashMap<>();
             model.put("username", username);
             model.put("token", token);
-            System.out.println(model);
             return ok(model);
         } catch (AuthenticationException e) {
             throw new BadCredentialsException("Invalid email/password supplied");

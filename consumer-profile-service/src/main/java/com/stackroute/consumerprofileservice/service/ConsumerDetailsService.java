@@ -14,15 +14,19 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ConsumerDetailsService {
+
+    @Autowired
+    private PasswordEncoder bCryptPasswordEncoder;
+
     @Autowired
     private ConsumerRepository consumerRepository;
 
     @Autowired
     private RoleRepository roleRepository;
 
-
     @Autowired
     private SequenceGeneratorService sequenceGenerator;
+
     @Autowired
     private MongoTemplate mongoTemplate;
 
@@ -35,7 +39,7 @@ public class ConsumerDetailsService {
         return consumer;
     }
     public void saveConsumer(Consumer consumer) {
-        consumer.setPassword((consumer.getPassword()));
+        consumer.setPassword((bCryptPasswordEncoder.encode(consumer.getPassword())));
         consumer.setEnabled(true);
        /* Role userRole = roleRepository.findByRole("consumer");
         consumer.setRoles(new HashSet<>(Arrays.asList(userRole)));*/

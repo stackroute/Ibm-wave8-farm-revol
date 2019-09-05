@@ -53,6 +53,7 @@ public class FarmerDetailsService {
     public void saveFarmer(Farmer farmer) {
         farmer.setPassword(farmer.getPassword());
         farmer.setEnabled(true);
+        farmer.setLand(new ArrayList<>());
 
         for (int i = 0; i < farmer.getLand().size(); i++) {
             farmer.getLand().get(i).setId(sequenceGenerator.getNextSequence((Land.SEQUENCE_NAME)));
