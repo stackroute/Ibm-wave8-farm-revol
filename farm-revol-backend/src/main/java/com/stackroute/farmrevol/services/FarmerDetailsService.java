@@ -46,11 +46,11 @@ public class FarmerDetailsService {
     public void saveFarmer(Farmer farmer) {
         farmer.setPassword(bCryptPasswordEncoder.encode(farmer.getPassword()));
         farmer.setEnabled(true);
+        farmer.setLand(new ArrayList<>());
        // System.out.println(sequenceGenerator.getNextSequence(Farmer.SEQUENCE_NAME));
        // farmer.setId(sequenceGenerator.getNextSequence(Farmer.SEQUENCE_NAME));
         for (int i = 0; i < farmer.getLand().size(); i++) {
             farmer.getLand().get(i).setId(sequenceGenerator.getNextSequence((Land.SEQUENCE_NAME)));
-
             System.out.println("hello" + farmer.getLand().get(i).getId());
         }
      /*   farmer.setId(sequenceGenerator.generateSequence(Farmer.SEQUENCE_NAME));
@@ -69,7 +69,6 @@ public class FarmerDetailsService {
         farmerRepository.deleteById(email);
         return farmer;
     }
-
 
     public Farmer getFarmerByEmail(String email) throws UserNotFoundException {
         System.out.println(email);

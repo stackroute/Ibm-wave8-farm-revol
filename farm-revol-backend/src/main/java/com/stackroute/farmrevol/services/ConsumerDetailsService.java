@@ -24,6 +24,7 @@ public class ConsumerDetailsService {
 
     @Autowired
     private SequenceGeneratorService sequenceGenerator;
+
     @Autowired
     private MongoTemplate mongoTemplate;
 
