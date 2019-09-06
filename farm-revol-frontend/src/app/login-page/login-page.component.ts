@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { AuthenticationService } from '../authentication.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { ErrorStateMatcher } from '@angular/material/core';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -24,7 +24,7 @@ export class LoginPageComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
   isLoadingResults = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthenticationService) { }
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute , private router: Router, private authService: AuthenticationService) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -40,7 +40,10 @@ export class LoginPageComponent implements OnInit {
           localStorage.setItem('token', res.token);
           console.log("a");
           console.log(this.loginForm.get('email').value);
-          this.router.navigate([this.loginForm.get('email').value + '/lands']);
+
+          this.router.navigateByUrl('/home-page', {skipLocationChange: true}).then(()=>
+            this.router.navigate([this.loginForm.get('email').value + '/lands'])); 
+          //this.router.navigate([this.loginForm.get('email').value + '/lands']);
         }
       }, (err) => {
         console.log(err);
@@ -48,6 +51,10 @@ export class LoginPageComponent implements OnInit {
 
 
   }
+
+
+  
+  
 
   registerFarmer() {
     this.router.navigate(['registerFarmer']);

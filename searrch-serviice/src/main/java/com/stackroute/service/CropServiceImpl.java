@@ -1,5 +1,6 @@
 package com.stackroute.service;
 import com.stackroute.domain.Crop;
+import com.stackroute.domain.Land;
 import com.stackroute.exception.CropAlreadyExistsException;
 import com.stackroute.exception.CropNotFoundException;
 import com.stackroute.repository.CropRepository;
@@ -65,11 +66,27 @@ public class CropServiceImpl implements CropService {
     }
 
     @Override
-    public List<Crop> getCropByName(String name) throws CropNotFoundException {
-        List<Crop> crop = cropRepository.getCropByName(name);
-        if(crop.isEmpty()) {
+    public Crop getCropByName(String name) throws CropNotFoundException {
+        Crop crop = cropRepository.getCropByName(name);
+        if(crop == null) {
             throw new CropNotFoundException("Crop not found");
         }
         return crop;
     }
+
+    @Override
+   public Crop saveLandByCropName(String name, Land land) throws CropNotFoundException {
+        Crop crop = getCropByName(name);
+        if(crop == null) {
+            throw new CropNotFoundException("Crop not found");
+        }
+
+        System.out.println("In setrvice" + crop);
+        crop.getLands().add(land);
+        System.out.println("In service" + crop);
+
+        Crop savedCrop = cropRepository.save(crop);
+        return savedCrop;
+    }
+
 }
