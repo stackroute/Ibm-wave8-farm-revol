@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
 
-@Document(collection = "crops")
+@Document
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -18,6 +18,6 @@ public class CropDTO {
     @Id
     int id;
     String cropName;
-    Land land;
+    Land farms;
 }
 

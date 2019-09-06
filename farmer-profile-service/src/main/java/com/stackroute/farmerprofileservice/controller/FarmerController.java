@@ -124,8 +124,7 @@ public class FarmerController {
     public String bookLand(@PathVariable("email") String email, @PathVariable Long landId ,@PathVariable("crop") String crop) {
         CropDTO cropDTO = new CropDTO();
         cropDTO.setCropName(crop);
-        cropDTO.setLand(farmerService.getSpecificLandOfFarmerByEmail(email, landId));
-
+        cropDTO.setFarms(farmerService.getSpecificLandOfFarmerByEmail(email, landId));
         kafkaTemplateCropDTO.send(TOPIC, cropDTO);
 
         return ("Uncles");
