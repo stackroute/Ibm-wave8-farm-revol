@@ -17,14 +17,22 @@
                
                
                 <mat-form-field>
-                        <input matInput type="fullName" placeholder="Full Name" formControlName="fullName"
+                        <input matInput type="fullname" placeholder="Full Name" formControlName="fullname"
                         [errorStateMatcher]="matcher">
                 <mat-error>
-                  <span *ngIf="!registerForm.get('fullName').valid && registerForm.get('fullName').touched">Please enter your Full Name</span>
+                  <span *ngIf="!registerForm.get('fullname').valid && registerForm.get('fullname').touched">Please enter your Full Name</span>
                 </mat-error>
               </mat-form-field>
             
-              <p></p>
+            
+
+              <mat-form-field>
+                <input matInput type="phoneNumber" placeholder="Phone Number" formControlName="phoneNumber"
+                [errorStateMatcher]="matcher">
+              <mat-error>
+          <span *ngIf="!registerForm.get('phoneNumber').valid && registerForm.get('phoneNumber').touched">Please enter your Phone Number</span>
+        </mat-error>
+      </mat-form-field>
                 
                 <mat-form-field>
                         <input matInput type="email" placeholder="Email" formControlName="email"
@@ -34,7 +42,7 @@
                  </mat-error>
                 </mat-form-field>
 
-                <p></p>
+                
              
                 <mat-form-field>
                         <input matInput type="password" placeholder="Password" formControlName="password"
@@ -45,6 +53,7 @@
                 </mat-form-field>
                 
                 <p></p>
+              
                 <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" formControlName="typeOfUser">
                         <mat-radio-button class="example-radio-button" value="farmer">Farmer</mat-radio-button>
                         <mat-radio-button class="example-radio-button" value="consumer">Consumer</mat-radio-button>
