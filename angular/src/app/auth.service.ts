@@ -34,6 +34,7 @@ export class AuthService {
    }
 
   register(data: any): Observable<any> {
+    console.log(data);
     return this.http.post<any>(apiUrl + 'register', data)
       .pipe(
         tap(_ => this.log('login')),
@@ -42,7 +43,7 @@ export class AuthService {
   }
 
   registerConsumer(data: any): Observable<any> {
-    return this.http.post<any>(apiUrl1 + 'register', data)
+    return this.http.post<any>("http://localhost:8080/api/farmer/register", data)
       .pipe(
         tap(_ => this.log('login')),
         catchError(this.handleError('login', []))

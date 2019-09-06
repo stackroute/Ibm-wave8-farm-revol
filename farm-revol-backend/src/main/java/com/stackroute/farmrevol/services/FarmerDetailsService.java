@@ -157,21 +157,20 @@ public class FarmerDetailsService {
 //
 //    }
 
-    public Farmer deleteSpecificLandByEmail(String email, Long Lid) {
+    public Farmer deleteSpecificLandByEmail(String email, Long landId) {
         Optional optional = farmerRepository.findById(email);
         Farmer farmer = (Farmer) optional.get();
         ArrayList<Land> lands = farmer.getLand();
-        int i;
-        for (i = 0; i < lands.size(); i++) {
-            if (lands.get(i).getId() == Lid) {
+        for (int i = 0; i < lands.size(); i++) {
+            if (lands.get(i).getId().equals(landId)) {
                 lands.remove(i);
             }
         }
+        System.out.println(lands);
         farmer.setLand(lands);
-
+        System.out.println(farmer);
         farmerRepository.save(farmer);
         return farmer;
-
     }
 
     public List<Land> getAllLandDetailsOfAllFarmers() {
