@@ -41,7 +41,9 @@ public class LoginController {
            /* String role=loginRepository.fingRoleByEmail(username);
             System.out.println(role);*/
             System.out.println(data.getPassword());
+            System.out.println(new UsernamePasswordAuthenticationToken(username, data.getPassword()));
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, data.getPassword()));
+            System.out.println(authenticationManager);
             String token = jwtTokenProvider.createToken(username);
             System.out.println(token);
             Map<Object, Object> model = new HashMap<>();
