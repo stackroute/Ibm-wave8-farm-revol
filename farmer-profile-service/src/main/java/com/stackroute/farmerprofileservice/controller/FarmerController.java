@@ -116,8 +116,8 @@ public class FarmerController {
         return new ResponseEntity<Farmer>(farmerService.updateLandDetailsByFarmerId(land,email,lid),HttpStatus.OK);
     }
 
-    @GetMapping("/search/{email}")
-    public void bookLand(@PathVariable("email") String email) {
-        farmerService.bookLand(email);
+    @GetMapping("/search/{email}/{crop}")
+    public void bookLand(@PathVariable("email") String email, @PathVariable("crop") String crop) {
+
     }
 }

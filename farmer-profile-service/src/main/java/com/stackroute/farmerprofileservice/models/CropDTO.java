@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Crop {
+public class CropDTO {
 
     @Id
     int id;
