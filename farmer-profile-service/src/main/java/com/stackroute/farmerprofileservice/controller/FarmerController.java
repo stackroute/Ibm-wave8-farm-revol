@@ -4,6 +4,7 @@ package com.stackroute.farmerprofileservice.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stackroute.farmerprofileservice.exception.UserNotFoundException;
+import com.stackroute.farmerprofileservice.models.CropDTO;
 import com.stackroute.farmerprofileservice.models.Farmer;
 import com.stackroute.farmerprofileservice.models.FarmerDTO;
 import com.stackroute.farmerprofileservice.models.Land;
@@ -41,6 +42,9 @@ public class FarmerController {
 
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
+
+    @Autowired
+    private KafkaTemplate<String , CropDTO> kafkaTemplateCropDTO;
 
     private static String TOPIC = "kafka";
 
@@ -116,8 +120,13 @@ public class FarmerController {
         return new ResponseEntity<Farmer>(farmerService.updateLandDetailsByFarmerId(land,email,lid),HttpStatus.OK);
     }
 
-    @GetMapping("/search/{email}/{crop}")
-    public void bookLand(@PathVariable("email") String email, @PathVariable("crop") String crop) {
+    @GetMapping("/search/{email}/{landId}/{crop}")
+    public String bookLand(@PathVariable("email") String email, @PathVariable Long landId ,@PathVariable("crop") String crop) {
+        CropDTO cropDTO = new CropDTO();
+        cropDTO.setCropName(crop);
+        cropDTO.setFarms(farmerService.getSpecificLandOfFarmerByEmail(email, landId));
+        kafkaTemplateCropDTO.send(TOPIC, cropDTO);
 
+        return ("Uncles");
     }
 }

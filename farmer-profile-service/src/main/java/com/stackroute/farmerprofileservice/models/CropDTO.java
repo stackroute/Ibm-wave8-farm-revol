@@ -6,9 +6,10 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Id;
+import java.util.ArrayList;
 import java.util.List;
 
-@Document(collection = "crops")
+@Document
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -17,7 +18,6 @@ public class CropDTO {
     @Id
     int id;
     String cropName;
-    List<Land> farms;
-
+    Land farms;
 }
 
