@@ -17,9 +17,7 @@ import java.util.ArrayList;
 @Service
 public class ConsumerDetailsService {
 
-   /* @Autowired
-    private PasswordEncoder bCryptPasswordEncoder;
-*/
+
     @Autowired
     private ConsumerRepository consumerRepository;
 
@@ -37,11 +35,13 @@ public class ConsumerDetailsService {
         Query query=new Query();
         query.addCriteria(Criteria.where("email").is(email));
         Consumer consumer= (Consumer) mongoTemplate.findOne(query,Consumer.class);
-
         return consumer;
     }
     public void saveConsumer(Consumer consumer) {
+
         consumer.setPassword(consumer.getPassword());
+
+        consumer.setPassword((consumer.getPassword()));
         consumer.setEnabled(true);
         consumer.setOrders(new ArrayList<>());
        /* Role userRole = roleRepository.findByRole("consumer");
@@ -68,8 +68,6 @@ public class ConsumerDetailsService {
         }
         return consumerRepository.findById(email).get();
     }
-
-
     public Consumer updateConsumer(Consumer consumer) {
         return consumerRepository.save(consumer);
     }
