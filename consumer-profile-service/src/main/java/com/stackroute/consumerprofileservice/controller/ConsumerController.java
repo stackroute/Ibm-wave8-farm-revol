@@ -25,9 +25,9 @@ import static org.springframework.http.ResponseEntity.ok;
 @RequestMapping("/api/consumer")
 public class ConsumerController {
 
-    @Autowired
+   /* @Autowired
     private AuthenticationManager authenticationManager;
-
+*/
     @Autowired
     ConsumerRepository consumers;
 

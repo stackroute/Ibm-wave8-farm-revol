@@ -78,8 +78,8 @@ public class JwtUserDetailsService implements UserDetailsService{
         return new ArrayList<>(roles);
     }
 
-    public DAOUser getUserData(String username) {
-        DAOUser daoUser = userDao.findByUsername(username);
+    public DAOUser getUserData(String email) {
+        DAOUser daoUser = userDao.findByUsername(email);
         return daoUser;
     }
 
