@@ -35,7 +35,6 @@ public class ConsumerDetailsService {
         Query query=new Query();
         query.addCriteria(Criteria.where("email").is(email));
         Consumer consumer= (Consumer) mongoTemplate.findOne(query,Consumer.class);
-
         return consumer;
     }
     public void saveConsumer(Consumer consumer) {
@@ -65,8 +64,6 @@ public class ConsumerDetailsService {
         }
         return consumerRepository.findById(email).get();
     }
-
-
     public Consumer updateConsumer(Consumer consumer) {
         return consumerRepository.save(consumer);
     }
