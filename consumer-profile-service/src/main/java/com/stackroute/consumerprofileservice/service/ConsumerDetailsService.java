@@ -17,9 +17,9 @@ import java.util.ArrayList;
 @Service
 public class ConsumerDetailsService {
 
-    @Autowired
+   /* @Autowired
     private PasswordEncoder bCryptPasswordEncoder;
-
+*/
     @Autowired
     private ConsumerRepository consumerRepository;
 
@@ -41,7 +41,7 @@ public class ConsumerDetailsService {
         return consumer;
     }
     public void saveConsumer(Consumer consumer) {
-        consumer.setPassword((bCryptPasswordEncoder.encode(consumer.getPassword())));
+        consumer.setPassword(consumer.getPassword());
         consumer.setEnabled(true);
         consumer.setOrders(new ArrayList<>());
        /* Role userRole = roleRepository.findByRole("consumer");
