@@ -11,6 +11,7 @@ import { FarmerLandingPageComponent } from './farmer-landing-page/farmer-landing
 import { FarmereditprofileComponent } from './farmereditprofile/farmereditprofile.component';
 import { ConsumerLandingPageComponent } from './consumer-landing-page/consumer-landing-page.component';
 import { ConsumerEditProfileComponent } from './consumer-edit-profile/consumer-edit-profile.component';
+import { UploadfarmComponent } from './uploadfarm/uploadfarm.component';
 
 
 const routes: Routes = [
@@ -19,13 +20,21 @@ const routes: Routes = [
   {  path: 'result/:value', component: SearchComponent },
   { path: "faq", component: FaqComponent },
   { path: 'login', component: LoginPageComponent },
-  { path: 'register-farmer', component: RegisterFarmerComponent },
+  { path: 'register-farmer', component: RegisterFarmerComponent},
   { path: 'register-consumer', component: RegisterConsumerComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'farmer-landing-page',component: FarmerLandingPageComponent},
+  { path: ':email/lands',
+    component: FarmerLandingPageComponent,
+    //canActivate: [AuthGuard],
+    data: {
+      title: 'List of Lands'
+    }
+  },
   { path: 'farmer-edit-profile', component: FarmereditprofileComponent },
   {path:'consumer-landing-page',component: ConsumerLandingPageComponent},
-  {path: 'consumer-edit-profile', component: ConsumerEditProfileComponent}
+  {path: 'consumer-edit-profile', component: ConsumerEditProfileComponent},
+  {path:'upload-farm/:id',component:UploadfarmComponent, data: { title: 'List of uploaded lands' }}
+  
 ];
 
 @NgModule({

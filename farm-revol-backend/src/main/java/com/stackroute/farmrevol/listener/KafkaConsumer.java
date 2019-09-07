@@ -17,7 +17,7 @@ public class KafkaConsumer {
         this.loginRepository = loginRepository;
     }
 
-    @KafkaListener(topics = "kafkalogin", groupId = "group_json", containerFactory = "kafkaListenerContainerFactory")
+    @KafkaListener(topics = "kafka", groupId = "group_json", containerFactory = "kafkaListenerContainerFactory")
     public void consumeJson(String user) throws IOException {
         System.out.println("Hello Hello");
         System.out.println("Consumed JSON Message: " + user);

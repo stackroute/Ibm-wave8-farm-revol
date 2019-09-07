@@ -30,7 +30,8 @@ export class RegisterFarmerComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      'fullName' : [null, Validators.required],
+      'fullname' : [null, Validators.required],
+      'phoneNumber' : [null, Validators.required],
       'email' : [null, Validators.required],
       'password' : [null, Validators.required],
       'typeOfUser' : [null, Validators.required]
@@ -46,7 +47,7 @@ export class RegisterFarmerComponent implements OnInit {
         alert(err.error);
       });
 
-      this.router.navigate(["/farmer-landing-page"]);
+      this.router.navigate(["/login"]);
   }
 
 }

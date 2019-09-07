@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
+import { LandService } from '../land.service';
+import { Land } from "../../Land";
 
 @Component({
   selector: 'app-navbar-farmer',
@@ -8,13 +10,42 @@ import { Router } from "@angular/router";
 })
 export class NavbarFarmerComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  farmerId: string;
+  lands:Land;
+  up_size: number;
+  up_price: number;
+  up_crops: any;
+
+
+
+  constructor(private router: Router, private route: ActivatedRoute, private data: LandService ) { }
 
   ngOnInit() {
+
+    this.route.paramMap.subscribe(data => {
+      this.farmerId=data.get('email');
+    })
+    this.getLands()
   }
 
   viewProfile() {
     this.router.navigate(['/farmer-edit-profile']);
   }
+
+  getLands(){
+    console.log(this.farmerId);
+    this.data.getLands(this.farmerId).subscribe(data=> {
+      console.log(data);
+      this.lands=data;
+    });
+    
+  }
+
+  uploadLands() {
+    console.log(this.farmerId);
+    localStorage.setItem('farmerId',JSON.stringify(this.farmerId));
+    this.router.navigate(['/upload-farm', this.farmerId]);
+  }
+
 
 }

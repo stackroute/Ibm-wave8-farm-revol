@@ -80,11 +80,13 @@ public class CropController {
     public ResponseEntity<?> getCropByName(@PathVariable String name) {
         ResponseEntity responseEntity;
         try {
-            List<Crop> crop = cropService.getCropByName(name);
-            responseEntity = new ResponseEntity<List<Crop>>(crop, HttpStatus.OK);
+            Crop crop = cropService.getCropByName(name);
+            responseEntity = new ResponseEntity<Crop>(crop, HttpStatus.OK);
         } catch (CropNotFoundException ex) {
             responseEntity = new ResponseEntity<String>(ex.getMessage(), HttpStatus.NOT_FOUND);
         }
         return responseEntity;
     }
+
+
 }

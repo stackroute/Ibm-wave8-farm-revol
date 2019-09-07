@@ -170,11 +170,4 @@ public class FarmerDetailsService {
         System.out.println(farmer);
         return farmerRepository.save(farmer);
     }
-
-    public String bookLand(String email){
-        Farmer farmer = getFarmerByEmail(email);
-        kafkaTemplateFarmer.send(TOPIC2, farmer);
-
-        return "published";
-    }
 }

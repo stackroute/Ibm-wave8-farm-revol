@@ -17,7 +17,7 @@ public class Land {
     double landPrice;
     //Location of the Land
     String location;
-    ArrayList<Crop> crops;
+    ArrayList<String> crops;
     String image;
 
     //All the orders of the corresponding land
@@ -27,7 +27,7 @@ public class Land {
     public Land() {
     }
 
-    public Land(Long id, float landSize, double landPrice, String location, ArrayList<Crop> crops, String image, List<Order> orders) {
+    public Land(Long id, float landSize, double landPrice, String location, ArrayList<String> crops, String image, List<Order> orders) {
         this.id = id;
         this.landSize = landSize;
         this.landPrice = landPrice;
@@ -77,11 +77,11 @@ public class Land {
         this.location = location;
     }
 
-    public ArrayList<Crop> getCrops() {
+    public ArrayList<String> getCrops() {
         return crops;
     }
 
-    public void setCrops(ArrayList<Crop> crops) {
+    public void setCrops(ArrayList<String> crops) {
         this.crops = crops;
     }
 

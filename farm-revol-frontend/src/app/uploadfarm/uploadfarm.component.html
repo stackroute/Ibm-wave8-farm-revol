@@ -1,1 +1,36 @@
-<p>uploadfarm works!</p>
+
+<app-navbar-farmer></app-navbar-farmer>
+
+<div class = "profile-edit-all">
+<div class = "container-margin"></div>
+<div class = "profile-con">
+        
+        <div class="example-container">
+            <form>
+            <mat-form-field>
+                <input matInput placeholder="landSize"  class="form-control"  name="landSize" [(ngModel)]="land.landSize">
+              </mat-form-field>
+                
+              <mat-form-field>
+                <input matInput placeholder="landPrice" class="form-control"  name="landPrice" [(ngModel)]="land.landPrice">
+              </mat-form-field>
+                
+              <mat-form-field>
+                <input matInput placeholder="landLocation" class="form-control"  name="landLocation" [(ngModel)]="land.landLocation">
+              </mat-form-field>
+                
+              <mat-form-field>
+                <mat-label>Crops</mat-label>
+                <mat-select placeholder="Crops" multiple name="crops" [(ngModel)]="land.crops">
+                  <mat-option *ngFor="let crops of cropList" name="crops" value="{{crops}}">{{crops}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <button mat-raised-button (click)="uploadLandDetails()" color="primary">Upload Land Details</button>
+              </form>
+               </div>
+
+              
+     </div>
+               
+</div>
+
