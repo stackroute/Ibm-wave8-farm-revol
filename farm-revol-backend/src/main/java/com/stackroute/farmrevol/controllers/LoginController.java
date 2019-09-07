@@ -5,6 +5,7 @@ import com.stackroute.farmrevol.models.Login;
 import com.stackroute.farmrevol.repositories.LoginRepository;
 import com.stackroute.farmrevol.services.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -28,6 +29,8 @@ public class LoginController {
     JwtTokenProvider jwtTokenProvider;
 
     LoginRepository loginRepository;
+    @Autowired
+    LoginService loginService;
 
 
 
@@ -54,5 +57,14 @@ public class LoginController {
         } catch (AuthenticationException e) {
             throw new BadCredentialsException("Invalid email/password supplied");
         }
+    }
+    @GetMapping("/get/{email}")
+    public ResponseEntity getLoginDetails(@PathVariable String email){
+        System.out.println(email);
+        ResponseEntity responseEntity;
+        responseEntity = new ResponseEntity<>(loginService.getLoginByEmail(email), HttpStatus.CREATED);
+        return responseEntity;
+
+
     }
 }

@@ -12,6 +12,8 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @Service
 public class ConsumerDetailsService {
 
@@ -40,13 +42,14 @@ public class ConsumerDetailsService {
     public void saveConsumer(Consumer consumer) {
         consumer.setPassword((bCryptPasswordEncoder.encode(consumer.getPassword())));
         consumer.setEnabled(true);
+        consumer.setOrders(new ArrayList<>());
        /* Role userRole = roleRepository.findByRole("consumer");
         consumer.setRoles(new HashSet<>(Arrays.asList(userRole)));*/
 
         //consumer.setId(sequenceGenerator.getNextSequence(Consumer.SEQUENCE_NAME));
-        for(int i=0;i<consumer.getOrders().size(); i++) {
-            consumer.getOrders().get(i).setOrderId(sequenceGenerator.getNextSequence((Order.SEQUENCE_NAME)));
-        }
+//        for(int i=0;i<consumer.getOrders().size(); i++) {
+//            consumer.getOrders().get(i).setOrderId(sequenceGenerator.getNextSequence((Order.SEQUENCE_NAME)));
+//        }
         consumerRepository.save(consumer);
     }
 

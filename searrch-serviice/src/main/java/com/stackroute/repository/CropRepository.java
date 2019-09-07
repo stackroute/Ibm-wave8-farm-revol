@@ -13,5 +13,5 @@ import java.util.List;
 @Repository
 public interface CropRepository extends MongoRepository<Crop,Integer> {
     @Query("{cropName:'?0'}")
-    List<Crop> getCropByName(String name);
+    Crop getCropByName(String name);
 }

@@ -11,6 +11,7 @@ import { FarmerLandingPageComponent } from './farmer-landing-page/farmer-landing
 import { FarmereditprofileComponent } from './farmereditprofile/farmereditprofile.component';
 import { ConsumerLandingPageComponent } from './consumer-landing-page/consumer-landing-page.component';
 import { ConsumerEditProfileComponent } from './consumer-edit-profile/consumer-edit-profile.component';
+import { UploadfarmComponent } from './uploadfarm/uploadfarm.component';
 
 
 const routes: Routes = [
@@ -31,7 +32,9 @@ const routes: Routes = [
   },
   { path: 'farmer-edit-profile', component: FarmereditprofileComponent },
   {path:'consumer-landing-page',component: ConsumerLandingPageComponent},
-  {path: 'consumer-edit-profile', component: ConsumerEditProfileComponent}
+  {path: 'consumer-edit-profile', component: ConsumerEditProfileComponent},
+  {path:'upload-farm/:id',component:UploadfarmComponent, data: { title: 'List of uploaded lands' }}
+  
 ];
 
 @NgModule({
