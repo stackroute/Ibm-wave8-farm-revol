@@ -15,7 +15,7 @@ public class Land {
 
     @Id
     private Long id;
-    Long farmerId;
+    String farmerId;
     float landSize;
     double landPrice;
     //Location of the Land
@@ -40,11 +40,11 @@ public class Land {
         this.orders = orders;
     }
 
-    public Long getFarmerId() {
+    public String getFarmerId() {
         return farmerId;
     }
 
-    public void setFarmerId(Long farmerId) {
+    public void setFarmerId(String farmerId) {
         this.farmerId = farmerId;
     }
 
