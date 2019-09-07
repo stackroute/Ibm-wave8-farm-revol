@@ -43,7 +43,7 @@ public class FarmerController {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
-    private static String TOPIC = "kafkalogin";
+    private static String TOPIC = "kafka";
 
 
    /* @PostMapping("/publish")
