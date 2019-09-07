@@ -12,7 +12,7 @@
                     <div class = "login-content">
                     <mat-card-content fxLayout="column">
 
-                        <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit(loginForm.value)">
+                        <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit(loginForm.value)" class = "form-all">
 
                       <mat-form-field>
                                 <input matInput type="email" placeholder="Email" formControlName="email"
@@ -34,9 +34,9 @@
                       </mat-form-field>
 
                     
-                     
+                      <div class = "button-row">
                                 <button type="submit" [disabled]="!loginForm.valid" mat-raised-button color="primary">Login</button>
-        
+                      </div>
                             
                     </form>
                     </mat-card-content>
