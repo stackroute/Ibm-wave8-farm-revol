@@ -23,6 +23,7 @@ export class LoginPageComponent implements OnInit {
   password = '';
   matcher = new MyErrorStateMatcher();
   isLoadingResults = false;
+ 
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute , private router: Router, private authService: AuthenticationService) { }
 
@@ -36,8 +37,11 @@ export class LoginPageComponent implements OnInit {
   onFormSubmit(form: NgForm) {
     this.authService.login(form)
       .subscribe(res => {
-        if (res.token) {
+        console.log(res);
+        console.log(res.role);
+        if (res.token&&res.role=='farmer') {
           localStorage.setItem('token', res.token);
+          console.log(res);
           console.log("a");
           console.log(this.loginForm.get('email').value);
 
@@ -45,7 +49,17 @@ export class LoginPageComponent implements OnInit {
             this.router.navigate([this.loginForm.get('email').value + '/lands'])); 
           //this.router.navigate([this.loginForm.get('email').value + '/lands']);
         }
-      }, (err) => {
+        else if(res.token&&res.role=='consumer'){
+          localStorage.setItem('token', res.token);
+          console.log(res);
+          console.log("a");
+          console.log(this.loginForm.get('email').value);
+
+          
+            this.router.navigate(['/consumer-landing-page']);
+
+        }
+      } ,(err) => {
         console.log(err);
       });
 
