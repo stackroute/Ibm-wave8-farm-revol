@@ -13,6 +13,7 @@ import { ConsumerLandingPageComponent } from './consumer-landing-page/consumer-l
 import { ConsumerEditProfileComponent } from './consumer-edit-profile/consumer-edit-profile.component';
 import { UploadfarmComponent } from './uploadfarm/uploadfarm.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { UpdateLandComponent } from './update-land/update-land.component';
 
 
 const routes: Routes = [
@@ -35,7 +36,13 @@ const routes: Routes = [
   { path: 'farmer-edit-profile', component: FarmereditprofileComponent },
   {path:'consumer-landing-page',component: ConsumerLandingPageComponent},
   {path: 'consumer-edit-profile', component: ConsumerEditProfileComponent},
-  {path:'upload-farm/:id',component:UploadfarmComponent, data: { title: 'List of uploaded lands' }}
+  {path:'upload-farm/:id',component:UploadfarmComponent, data: { title: 'List of uploaded lands' }},
+
+  {
+    path: 'updateLand/:email/:id',
+    component: UpdateLandComponent,
+    data: { title: 'List of uploaded lands' }
+  }
   
 ];
 

@@ -1,8 +1,6 @@
 package com.stackroute.booking.model;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ConsumerOrder {
     int orderId;
