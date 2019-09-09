@@ -3,9 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
+<<<<<<< HEAD
 const apiUrl = 'http://localhost:8080/api/farmer/';
 const apiUrl1 = 'http://localhost:8080/api/consumer/';
 const apiurl2='http://localhost:8091/authenticate';
+=======
+const apiUrl = 'http://localhost:8090/api/farmer/';
+const apiUrl1 = 'http://localhost:8091/api/consumer/';
+const apiurl2='http://localhost:7090/authenticate';
+>>>>>>> 38deab7075b152fe1c0bbdde79c501d999097aa2
 
 
 @Injectable({
