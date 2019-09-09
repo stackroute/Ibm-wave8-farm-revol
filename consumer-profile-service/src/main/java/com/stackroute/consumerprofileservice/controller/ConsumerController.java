@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,9 +24,9 @@ import static org.springframework.http.ResponseEntity.ok;
 @RequestMapping("/api/consumer")
 public class ConsumerController {
 
-    @Autowired
+   /* @Autowired
     private AuthenticationManager authenticationManager;
-
+*/
     @Autowired
     ConsumerRepository consumers;
 
@@ -58,8 +57,6 @@ public class ConsumerController {
         return ok(model);
     }
 
-
-
     @GetMapping("/register")
     public ResponseEntity<?> getConsumerById(@RequestParam("email") String email) throws UserNotFoundException {
         System.out.println(email);
@@ -80,6 +77,9 @@ public class ConsumerController {
         return new ResponseEntity<Consumer>(consumer, HttpStatus.OK);
     }
 
-
+    @GetMapping("/booking/{email}")
+    public void bookLand(@PathVariable("email") String email) {
+        consumerService.bookLand(email);
+    }
 
 }

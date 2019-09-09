@@ -1,5 +1,6 @@
 package com.stackroute.farmrevol.services;
 
+import com.stackroute.farmrevol.exception.UserNotFoundException;
 import com.stackroute.farmrevol.models.Login;
 import com.stackroute.farmrevol.repositories.LoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,13 @@ public class LoginService implements UserDetailsService {
 
         return new ArrayList<>(roles);
     }
+    public Login getLoginByEmail(String email) throws UserNotFoundException {
+        System.out.println(email);
+        if (!loginRepository.findById(email).isPresent()) {
+            throw new UserNotFoundException();
+        }
+        return loginRepository.findById(email).get();
+    }
+
 
 }

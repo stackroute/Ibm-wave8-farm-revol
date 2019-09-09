@@ -4,6 +4,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Id;
 import javax.persistence.Transient;
+import java.util.ArrayList;
 import java.util.List;
 
 @Document
@@ -23,13 +24,13 @@ public class Land {
     String image;
 
     //All the orders of the corresponding land
-    List<Order> orders;
+    ArrayList<Order> orders = new ArrayList<Order>();
 
 
     public Land() {
     }
 
-    public Land(Long id, String farmerId, float landSize, double landPrice, String location, List<String> crops, String image, List<Order> orders) {
+    public Land(Long id, String farmerId, float landSize, double landPrice, String location, List<String> crops, String image, ArrayList<Order> orders) {
         this.id = id;
         this.farmerId = farmerId;
         this.landSize = landSize;
@@ -97,11 +98,11 @@ public class Land {
     }
 
 
-    public List<Order> getOrders() {
+    public ArrayList<Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(List<Order> orders) {
+    public void setOrders(ArrayList<Order> orders) {
         this.orders = orders;
     }
 

@@ -1,38 +1,36 @@
 package com.stackroute.booking.model;
 
+
 import java.util.ArrayList;
 import java.util.Set;
 
 
 public class Consumer {
-
-    private String id;
+  /*  public static final String SEQUENCE_NAME = "database_sequence";
+    @Id
+    private Long id;
+    @Indexed(unique = true, direction = IndexDirection.DESCENDING, dropDups = true)*/
     private String email;
     private String password;
     private String fullname;
     private boolean enabled;
+    private Long phoneNumber;
+    private String aadhar;
     private Set<Role> roles;
-    ArrayList<ConsumerOrder> consumerOrders;
+    ArrayList<Order> orders;
 
     public Consumer() {
     }
 
-    public Consumer(String id, String email, String password, String fullname, boolean enabled, Set<Role> roles, ArrayList<ConsumerOrder> consumerOrders) {
-        this.id = id;
+    public Consumer(String email, String password, String fullname, boolean enabled, Long phoneNumber, String aadhar, Set<Role> roles, ArrayList<Order> orders) {
         this.email = email;
         this.password = password;
         this.fullname = fullname;
         this.enabled = enabled;
+        this.phoneNumber = phoneNumber;
+        this.aadhar = aadhar;
         this.roles = roles;
-        this.consumerOrders = consumerOrders;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+        this.orders = orders;
     }
 
     public String getEmail() {
@@ -67,6 +65,22 @@ public class Consumer {
         this.enabled = enabled;
     }
 
+    public Long getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(Long phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getAadhar() {
+        return aadhar;
+    }
+
+    public void setAadhar(String aadhar) {
+        this.aadhar = aadhar;
+    }
+
     public Set<Role> getRoles() {
         return roles;
     }
@@ -75,24 +89,25 @@ public class Consumer {
         this.roles = roles;
     }
 
-    public ArrayList<ConsumerOrder> getConsumerOrders() {
-        return consumerOrders;
+    public ArrayList<Order> getOrders() {
+        return orders;
     }
 
-    public void setConsumerOrders(ArrayList<ConsumerOrder> consumerOrders) {
-        this.consumerOrders = consumerOrders;
+    public void setOrders(ArrayList<Order> orders) {
+        this.orders = orders;
     }
 
     @Override
     public String toString() {
         return "Consumer{" +
-                "id='" + id + '\'' +
-                ", email='" + email + '\'' +
+                "email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", fullname='" + fullname + '\'' +
                 ", enabled=" + enabled +
+                ", phoneNumber=" + phoneNumber +
+                ", aadhar='" + aadhar + '\'' +
                 ", roles=" + roles +
-                ", orders=" + consumerOrders +
+                ", orders=" + orders +
                 '}';
     }
 }
