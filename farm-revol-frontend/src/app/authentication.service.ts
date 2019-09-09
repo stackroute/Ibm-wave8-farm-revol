@@ -2,16 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { DAOUser } from 'src/DAOUser';
+import { LoginUser } from 'src/Login';
 
-<<<<<<< HEAD
-const apiUrl = 'http://localhost:8080/api/farmer/';
-const apiUrl1 = 'http://localhost:8080/api/consumer/';
-const apiurl2='http://localhost:8091/authenticate';
-=======
+
 const apiUrl = 'http://localhost:8090/api/farmer/';
-const apiUrl1 = 'http://localhost:8091/api/consumer/';
-const apiurl2='http://localhost:7090/authenticate';
->>>>>>> 38deab7075b152fe1c0bbdde79c501d999097aa2
+const apiUrl1 = 'http://localhost:8092/api/consumer/';
+const apiurl2='http://172.23.238.164:8091/authenticate';
 
 
 @Injectable({
@@ -69,6 +67,15 @@ export class AuthenticationService {
 
   private log(message: string) {
     console.log(message);
+  }
+  private apiUrl3="http://172.23.238.164:8091/forgot-password"
+  ForgotPasswordComponent(data:DAOUser):Observable<any>{
+    return this.http.post<any>(this.apiUrl3,data);
+  }
+  private apiUrl4="http://172.23.238.164:8091/reset-password"
+  resetPasswordComponent(data:LoginUser):Observable<any>{
+    console.log("hello");
+    return this.http.put<any>(this.apiUrl4,data);
   }
 }
 

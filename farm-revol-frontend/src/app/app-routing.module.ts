@@ -12,6 +12,7 @@ import { FarmereditprofileComponent } from './farmereditprofile/farmereditprofil
 import { ConsumerLandingPageComponent } from './consumer-landing-page/consumer-landing-page.component';
 import { ConsumerEditProfileComponent } from './consumer-edit-profile/consumer-edit-profile.component';
 import { UploadfarmComponent } from './uploadfarm/uploadfarm.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'register-farmer', component: RegisterFarmerComponent},
   { path: 'register-consumer', component: RegisterConsumerComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
+  {path:'resetPassword',component:ResetPasswordComponent},
   { path: ':email/lands',
     component: FarmerLandingPageComponent,
     //canActivate: [AuthGuard],

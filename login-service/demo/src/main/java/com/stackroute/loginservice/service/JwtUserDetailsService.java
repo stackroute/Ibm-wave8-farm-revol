@@ -7,7 +7,10 @@ import java.util.Set;
 
 import com.stackroute.loginservice.dao.UserDao;
 import com.stackroute.loginservice.model.DAOUser;
+import com.stackroute.loginservice.model.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +18,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService{
@@ -24,6 +30,11 @@ public class JwtUserDetailsService implements UserDetailsService{
 
     @Autowired
     private PasswordEncoder bcryptEncoder;
+
+    @Autowired
+    private JavaMailSender javaMailSender;
+
+    private UserDTO userDTO;
 
     /*  public JwtUserDetailsService(UserDao userDao) {this.userDao=userDao;}*/
 
@@ -91,4 +102,35 @@ public class JwtUserDetailsService implements UserDetailsService{
         System.out.println(newUser);
         return userDao.save(newUser);
     }
+    public String forgotPassword(String username) throws MessagingException {
+        String status = "Failed";
+        System.out.println(username);
+        System.out.println(userDao.findByUsername(username));
+        System.out.println("abcd");
+        if (userDao.findByUsername(username) != null) {
+            System.out.println(username);
+            System.out.println("efgh");
+            MimeMessage message=javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            helper.setTo(username);
+            helper.setSubject("Link for Reset your Password");
+            helper.setText("http://172.23.238.164:4200/resetPassword");
+            javaMailSender.send(message);
+            System.out.println("hello");
+            status = "Sent";
+        }
+        else {
+
+        }
+        return status;
+    }
+    public DAOUser update(UserDTO userDTO) throws Exception {
+        DAOUser user = userDao.findByUsername(userDTO.getEmail());
+        if (user != null) {
+            user.setPassword(bcryptEncoder.encode(userDTO.getPassword()));
+        }
+        System.out.println(user);
+        return userDao.save(user);
+    }
+
 }
