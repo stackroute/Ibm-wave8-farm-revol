@@ -34,6 +34,7 @@ import { ConsumerLandingPageComponent } from './consumer-landing-page/consumer-l
 import { NavbarConsumerComponent } from './navbar-consumer/navbar-consumer.component';
 import { ConsumerEditProfileComponent } from './consumer-edit-profile/consumer-edit-profile.component';
 import {MatRadioModule} from '@angular/material/radio';
+import { UpdateLandComponent } from './update-land/update-land.component';
 
 
 
@@ -55,7 +56,8 @@ import {MatRadioModule} from '@angular/material/radio';
     NavbarFarmerComponent,
     ConsumerLandingPageComponent,
     NavbarConsumerComponent,
-    ConsumerEditProfileComponent
+    ConsumerEditProfileComponent,
+    UpdateLandComponent
     
   ],
   imports: [

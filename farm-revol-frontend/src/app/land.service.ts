@@ -29,4 +29,9 @@ export class LandService {
   updateLand(farmerId,landId,land){
     return this.http.put<Land>(apiUrl+'/land/update/'+farmerId+'/'+landId,land);
   }
+
+  getParticularLand(farmerId, landId) {
+    return this.http.get<Land>(apiUrl + '/land/farmer/'+farmerId+'/'+landId);
+
+  }
 }
