@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,10 @@ public class ConsumerDetailsService {
     @Autowired
     private MongoTemplate mongoTemplate;
 
+    @Autowired
+    private KafkaTemplate<String, Consumer> kafkaTemplateConsumer;
+
+    private static String TOPIC2 = "testing";
 
     public Consumer findConsumerByEmail(String email) {
         Query query=new Query();
@@ -70,5 +75,12 @@ public class ConsumerDetailsService {
     }
     public Consumer updateConsumer(Consumer consumer) {
         return consumerRepository.save(consumer);
+    }
+
+    public String bookLand(String email){
+        Consumer consumer = getConsumerByEmail(email);
+        kafkaTemplateConsumer.send(TOPIC2, consumer);
+
+        return "published";
     }
 }

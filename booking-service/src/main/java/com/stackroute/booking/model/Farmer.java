@@ -4,33 +4,29 @@ package com.stackroute.booking.model;
 import java.util.ArrayList;
 import java.util.Set;
 
-
-public class Consumer {
-  /*  public static final String SEQUENCE_NAME = "database_sequence";
-    @Id
-    private Long id;
-    @Indexed(unique = true, direction = IndexDirection.DESCENDING, dropDups = true)*/
+public class Farmer {
     private String email;
     private String password;
     private String fullname;
     private boolean enabled;
     private Long phoneNumber;
     private String aadhar;
-    private Set<Role> roles;
-    ArrayList<Order> orders;
+    private ArrayList<Land> land;
 
-    public Consumer() {
+    private Set<Role> roles;
+
+    public Farmer() {
     }
 
-    public Consumer(String email, String password, String fullname, boolean enabled, Long phoneNumber, String aadhar, Set<Role> roles, ArrayList<Order> orders) {
+    public Farmer(String email, String password, String fullname, boolean enabled, Long phoneNumber, String aadhar, ArrayList<Land> land, Set<Role> roles) {
         this.email = email;
         this.password = password;
         this.fullname = fullname;
         this.enabled = enabled;
         this.phoneNumber = phoneNumber;
         this.aadhar = aadhar;
+        this.land = land;
         this.roles = roles;
-        this.orders = orders;
     }
 
     public String getEmail() {
@@ -81,6 +77,14 @@ public class Consumer {
         this.aadhar = aadhar;
     }
 
+    public ArrayList<Land> getLand() {
+        return land;
+    }
+
+    public void setLand(ArrayList<Land> land) {
+        this.land = land;
+    }
+
     public Set<Role> getRoles() {
         return roles;
     }
@@ -89,25 +93,18 @@ public class Consumer {
         this.roles = roles;
     }
 
-    public ArrayList<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(ArrayList<Order> orders) {
-        this.orders = orders;
-    }
-
     @Override
     public String toString() {
-        return "Consumer{" +
+        return "Farmer{" +
                 "email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", fullname='" + fullname + '\'' +
                 ", enabled=" + enabled +
                 ", phoneNumber=" + phoneNumber +
                 ", aadhar='" + aadhar + '\'' +
+                ", land=" + land +
                 ", roles=" + roles +
-                ", orders=" + orders +
                 '}';
     }
 }
+

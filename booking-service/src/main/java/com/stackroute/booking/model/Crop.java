@@ -1,4 +1,4 @@
-package com.stackroute.consumerprofileservice.model;
+package com.stackroute.booking.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,8 +15,7 @@ public class Crop {
     @Id
     int id;
     String cropName;
-    //Land farms;
+    Land farms;
     ArrayList<Land> lands = new ArrayList<Land>();
-
 }
 
