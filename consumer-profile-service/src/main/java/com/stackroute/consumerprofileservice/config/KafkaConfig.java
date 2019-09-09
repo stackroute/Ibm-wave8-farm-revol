@@ -1,7 +1,8 @@
 package com.stackroute.consumerprofileservice.config;
 
 import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.ser.std.StringSerializer;
+//import com.fasterxml.jackson.databind.ser.std.StringSerializer;
+import org.apache.kafka.common.serialization.StringSerializer;
 import com.stackroute.consumerprofileservice.model.Consumer;
 
 import com.stackroute.consumerprofileservice.model.Crop;

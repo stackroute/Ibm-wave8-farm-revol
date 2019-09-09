@@ -3,9 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
-const apiUrl = 'http://localhost:8080/api/farmer/';
-const apiUrl1 = 'http://localhost:8080/api/consumer/';
-const apiurl2='http://localhost:8080/api/';
+const apiUrl = 'http://localhost:8090/api/farmer/';
+const apiUrl1 = 'http://localhost:8091/api/consumer/';
+const apiurl2='http://localhost:7090/authenticate';
 
 
 @Injectable({
@@ -20,7 +20,7 @@ export class AuthenticationService {
 
 
   login(data: any): Observable<any> {
-    return this.http.post<any>(apiurl2 + 'login', data)
+    return this.http.post<any>(apiurl2 , data)
       .pipe(
         tap(_ => this.isLoggedIn = true),
         catchError(this.handleError('login', []))
