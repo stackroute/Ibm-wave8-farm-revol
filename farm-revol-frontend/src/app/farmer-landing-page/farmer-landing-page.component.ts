@@ -15,7 +15,7 @@ export class FarmerLandingPageComponent implements OnInit {
   up_size: number;
   up_price: number;
   up_crops: any;
-
+  errorMsg = '';
 
   constructor(private data:LandService,private router:Router, private route: ActivatedRoute) { }
 
@@ -51,9 +51,26 @@ export class FarmerLandingPageComponent implements OnInit {
         var farmerValue=this.farmerId;
         console.log(landValue);
         console.log(farmerValue);
-        this.data.removeLand(landValue,farmerValue).subscribe();
-             //this.ngOnInit();
-       // this.router.navigate(['/remove',farmerValue,landValue]);
+        this.data.removeLand(landValue,farmerValue).subscribe(
+          
+          response => {
+                  console.log('deletd', response);
+                    this.router.navigateByUrl('/home-page', {skipLocationChange: true}).then(()=>
+                    this.router.navigate(['/'+this.farmerId+'/lands']));
+             
+               },
+         error => this.errorMsg = error.statusText
+        
+        
+        );
+
+
+      
   }
+
+
+
+
+
 
 }
