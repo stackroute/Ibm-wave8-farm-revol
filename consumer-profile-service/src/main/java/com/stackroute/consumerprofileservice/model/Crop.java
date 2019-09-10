@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Crop {
 
     @Id
-    int id;
+    String id;
     String cropName;
     //Land farms;
     ArrayList<Land> lands = new ArrayList<Land>();

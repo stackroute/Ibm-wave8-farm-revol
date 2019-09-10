@@ -37,21 +37,22 @@ public class KafkaConfig {
     public KafkaTemplate<String, Consumer> kafkaTemplateConsumer() {
         return new KafkaTemplate<>(producerFactoryConsumer());
     }
-    @Bean
-    public ProducerFactory<String, Crop> producerFactoryCrop()
-    {
-        Map<String, Object> config = new HashMap<>();
-        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
-        config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
 
-        return new DefaultKafkaProducerFactory<>(config);
-    }
-    @Bean
-    public KafkaTemplate<String, Crop> kafkaTemplateCrop()
-    {
-        return new KafkaTemplate<>(producerFactoryCrop());
-    }
+//    @Bean
+//    public ProducerFactory<String, Crop> producerFactoryCrop()
+//    {
+//        Map<String, Object> config = new HashMap<>();
+//        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
+//        config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+//        config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+//
+//        return new DefaultKafkaProducerFactory<>(config);
+//    }
+//    @Bean
+//    public KafkaTemplate<String, Crop> kafkaTemplateCrop()
+//    {
+//        return new KafkaTemplate<>(producerFactoryCrop());
+//    }
 
     @Bean
     public ProducerFactory<String, String> producerFactory(){
@@ -81,7 +82,6 @@ public class KafkaConfig {
         config.put(ConsumerConfig.GROUP_ID_CONFIG, "group_crop");
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, deserializer);
-//        config.put(JsonDeserializer.TRUSTED_PACKAGES, "com.stackroute.booking.model");
         return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(),deserializer);
     }
     @Bean
