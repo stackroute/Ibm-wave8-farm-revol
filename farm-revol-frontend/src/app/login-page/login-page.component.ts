@@ -56,7 +56,8 @@ export class LoginPageComponent implements OnInit {
           console.log(this.loginForm.get('email').value);
 
           
-            this.router.navigate(['/consumer-landing-page']);
+          this.router.navigateByUrl('/home-page', {skipLocationChange: true}).then(()=>
+          this.router.navigate([this.loginForm.get('email').value + '/consumer'])); 
 
         }
       } ,(err) => {
