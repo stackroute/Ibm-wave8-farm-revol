@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-navbar-consumer',
@@ -8,12 +8,16 @@ import { Router } from "@angular/router";
 })
 export class NavbarConsumerComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  consumerId: string
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.paramMap.subscribe(data => {
+      this.consumerId=data.get('email');
+    })
   }
 
   viewProfile() {
-    this.router.navigate(['/consumer-edit-profile']);
+    this.router.navigate(['/'+this.consumerId+'/updateConsumerProfile']);
   }
 }
