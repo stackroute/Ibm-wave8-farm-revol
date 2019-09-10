@@ -1,7 +1,10 @@
 package com.stackroute.loginservice.controller;
 
 import com.stackroute.loginservice.model.DAOUser;
+import com.stackroute.loginservice.model.UserDTO;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -44,6 +47,21 @@ public class JwtAuthenticationController {
         model.put("role",daoUser1.getRole());
         model.put("token",token);
         return ok(model);
+    }
+
+
+    @RequestMapping(value = "/forgot-password", method = RequestMethod.POST)
+    public ResponseEntity<?> getEmail(@RequestBody String email) throws Exception {
+        System.out.println(email);
+        JSONObject jsonObject = new JSONObject(email);
+        email = jsonObject.getString("email");
+        final String userDetails = userDetailsService.forgotPassword(email);
+        return ok(userDetails);
+
+    }
+    @RequestMapping(value = "/reset-password", method = RequestMethod.PUT)
+    public ResponseEntity<?> getNewPassword(@RequestBody UserDTO userDTO) throws Exception {
+        return new ResponseEntity<>(userDetailsService.update(userDTO), HttpStatus.OK);
     }
     private void authenticate(String email, String password) throws Exception {
         try {

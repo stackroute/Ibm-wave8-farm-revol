@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LandService } from '../land.service';
 import { Land } from '../../Land';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm, FormControl } from '@angular/forms';
 
 @Component({
@@ -17,15 +17,15 @@ export class UploadfarmComponent implements OnInit {
   crops: FormControl;
   cropList: string[] = ['Paddy', 'Rice', 'Wheat', 'Mirchi', 'Potato','Cotton','tomato','Maize','SugarCane'];
 
-  constructor(private service:LandService,private route:ActivatedRoute) { 
+  constructor(private service:LandService,private route:ActivatedRoute, private router: Router) { 
     this.crops = new FormControl();
     this.farmerId=this.route.snapshot.params.id;
     console.log(this.farmerId);
   }
 
   ngOnInit() {
-    this.uploadLandDetails();
-    console.log(this.farmerId);
+   // this.uploadLandDetails();
+    console.log("Farmer " + this.farmerId);
   }
   uploadLandDetails() {
     this.submitted=true;
@@ -33,9 +33,19 @@ export class UploadfarmComponent implements OnInit {
     console.log(this.land)
     console.log(this.land.crops);
     this.service.uploadLand(this.farmerId,this.land).subscribe(
+    
+      
       response =>console.log('success',response),
       error=>this.errorMsg=error.statusText
-    ); 
-  }
+  
+    );
+
+    //this.router.navigateByUrl('/home-page', {skipLocationChange: true}).then(()=>
+    //this.router.navigate(['/'+this.farmerId+'/lands'])); 
+    this.router.navigate(['/'+this.farmerId+'/lands']);
+  
+    
+    }
 
 }
+//this.loginForm.get('email').value + '/lands'

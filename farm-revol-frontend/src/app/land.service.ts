@@ -3,7 +3,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Land } from '../Land';
 import { Observable } from 'rxjs';
 
-const apiUrl = 'http://localhost:8080/api/farmer';
+const apiUrl = 'http://localhost:8090/api/farmer';
 
 
 @Injectable({
@@ -17,16 +17,35 @@ export class LandService {
     return this.http.get<Land>(apiUrl+'/register/land?email=' + farmerId);
   }
   removeLand(id,farmerId) {
-  return this.http.delete<Land>(apiUrl+'/land/delete/'+farmerId+'/'+id);
+  return this.http.delete<Land>(apiUrl+`/land/delete/`+farmerId+`/`+id);
+  //return this.getLands(farmerId);
   }
  
   uploadLand(farmerId,land): Observable<Land> {
     console.log(farmerId);
     console.log(land);
-    return this.http.put<Land>(apiUrl+'/land-details/'+farmerId,land);
+    return this.http.put<Land>(apiUrl+`/land-details/`+farmerId,land);
+   // return this.http.get<Land>(apiUrl+'/register/land?email=' + farmerId);
+   //return this.getLands(farmerId);
  
   }
   updateLand(farmerId,landId,land){
-    return this.http.put<Land>(apiUrl+'/land/update/'+farmerId+'/'+landId,land);
+    return this.http.put<Land>(apiUrl+`/land/update/`+farmerId+`/`+landId,land);
+    //this.http.get<Land>(apiUrl+'/register/land?email=' + farmerId);
   }
+
+  getParticularLand(farmerId, landId) {
+    return this.http.get<Land>(apiUrl + '/land/farmer/'+farmerId+'/'+landId);
+    
+  }
+
+  getFarmerDetails(farmerId) {
+    return this.http.get(apiUrl + '/register/' + farmerId);
+  }
+
+  updateProfile(details) {
+    return this.http.put(apiUrl + '/update', details);
+
+  }
+  
 }
