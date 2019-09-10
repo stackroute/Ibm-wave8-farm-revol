@@ -9,7 +9,7 @@ import { LoginUser } from 'src/Login';
 
 const apiUrl = 'http://localhost:8090/api/farmer/';
 const apiUrl1 = 'http://localhost:8092/api/consumer/';
-const apiurl2='http://172.23.238.164:8091/authenticate';
+const apiurl2='http://172.23.238.208:8091/authenticate';
 
 
 @Injectable({
@@ -68,11 +68,11 @@ export class AuthenticationService {
   private log(message: string) {
     console.log(message);
   }
-  private apiUrl3="http://172.23.238.164:8091/forgot-password"
+  private apiUrl3="http://172.23.238.208:8091/forgot-password"
   ForgotPasswordComponent(data:DAOUser):Observable<any>{
     return this.http.post<any>(this.apiUrl3,data);
   }
-  private apiUrl4="http://172.23.238.164:8091/reset-password"
+  private apiUrl4="http://172.23.238.208:8091/reset-password"
   resetPasswordComponent(data:LoginUser):Observable<any>{
     console.log("hello");
     return this.http.put<any>(this.apiUrl4,data);
