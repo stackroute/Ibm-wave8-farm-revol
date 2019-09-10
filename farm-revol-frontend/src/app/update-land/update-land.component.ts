@@ -49,7 +49,10 @@ export class UpdateLandComponent implements OnInit {
     error=>this.errorMsg=error.statusText
   );
 
-  this.router.navigate(['/'+this.farmerId+'/lands']);
+
+  //this.router.navigateByUrl('/home-page', {skipLocationChange: true}).then(()=>
+ // this.router.navigate(['/'+this.farmerId+'/lands']));
+ this.router.navigate(['/'+this.farmerId+'/lands']);
 
  }
 

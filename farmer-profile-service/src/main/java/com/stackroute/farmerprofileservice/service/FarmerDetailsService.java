@@ -113,15 +113,28 @@ public class FarmerDetailsService {
         Optional optional = farmerRepository.findById(email);
         Farmer farmer = (Farmer) optional.get();
         ArrayList<Land> lands = farmer.getLand();
-        int i;
-        for (i = 0; i < lands.size(); i++) {
-            if (lands.get(i).getId() == lid) {
-                System.out.println(lands.get(i));
-                break;
+        final Land[] requiredLand = new Land[1];
+        int i=0;
+
+        lands.forEach(land ->
+        {
+            System.out.println("Land is " + land.getId());
+            System.out.println("Lid is " + lid);
+            if (land.getId().equals(lid)) {
+                System.out.println("Lid is " + lid);
+                // System.out.println("Land is " + lands.get(i));
+                requiredLand[0] = land;
+                // return;
             }
-        }
-        return lands.get(i);
+
+        });
+
+
+        return requiredLand[0];
+
     }
+
+
 
     public Farmer deleteSpecificLandByEmail(String email, Long Lid) {
         Optional optional = farmerRepository.findById(email);
@@ -129,7 +142,7 @@ public class FarmerDetailsService {
         ArrayList<Land> lands = farmer.getLand();
         int i;
         for (i = 0; i < lands.size(); i++) {
-            if (lands.get(i).getId() == Lid) {
+            if (lands.get(i).getId().equals(Lid)) {
                 lands.remove(i);
             }
         }
@@ -160,7 +173,7 @@ public class FarmerDetailsService {
         ArrayList<Land> lands = farmer.getLand();
         int i;
         for (i = 0; i < lands.size(); i++) {
-            if (lands.get(i).getId() == lid) {
+            if (lands.get(i).getId().equals(lid)) {
                 lands.set(i, land);
                 System.out.println(lands.get(i).getId());
                 break;

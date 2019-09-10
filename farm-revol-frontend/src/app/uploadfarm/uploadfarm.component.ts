@@ -34,12 +34,18 @@ export class UploadfarmComponent implements OnInit {
     console.log(this.land.crops);
     this.service.uploadLand(this.farmerId,this.land).subscribe(
     
+      
       response =>console.log('success',response),
       error=>this.errorMsg=error.statusText
+  
     );
+
+    //this.router.navigateByUrl('/home-page', {skipLocationChange: true}).then(()=>
+    //this.router.navigate(['/'+this.farmerId+'/lands'])); 
+    this.router.navigate(['/'+this.farmerId+'/lands']);
+  
     
-   this.router.navigate(['/'+this.farmerId+'/lands']);
-  }
+    }
 
 }
 //this.loginForm.get('email').value + '/lands'

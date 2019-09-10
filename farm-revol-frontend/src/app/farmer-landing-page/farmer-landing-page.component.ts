@@ -45,4 +45,15 @@ export class FarmerLandingPageComponent implements OnInit {
     this.router.navigate(['/updateLand',farmerValue,landValue]);
   }
 
+  removeLand(land):any
+  {
+        var landValue=land.id;
+        var farmerValue=this.farmerId;
+        console.log(landValue);
+        console.log(farmerValue);
+        this.data.removeLand(landValue,farmerValue).subscribe();
+             //this.ngOnInit();
+       // this.router.navigate(['/remove',farmerValue,landValue]);
+  }
+
 }
