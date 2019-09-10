@@ -17,8 +17,6 @@ import java.util.ArrayList;
 
 @Service
 public class ConsumerDetailsService {
-
-
     @Autowired
     private ConsumerRepository consumerRepository;
 
@@ -34,7 +32,14 @@ public class ConsumerDetailsService {
     @Autowired
     private KafkaTemplate<String, Consumer> kafkaTemplateConsumer;
 
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
+
     private static String TOPIC2 = "testing";
+
+    private static String TOPIC3 = "land";
+
+    private static String TOPIC4 = "crop";
 
     public Consumer findConsumerByEmail(String email) {
         Query query=new Query();
@@ -77,9 +82,11 @@ public class ConsumerDetailsService {
         return consumerRepository.save(consumer);
     }
 
-    public String bookLand(String email){
+    public String bookLand(String email, String landId, String cropName){
         Consumer consumer = getConsumerByEmail(email);
         kafkaTemplateConsumer.send(TOPIC2, consumer);
+        kafkaTemplate.send(TOPIC3, landId);
+        kafkaTemplate.send(TOPIC4, cropName);
 
         return "published";
     }

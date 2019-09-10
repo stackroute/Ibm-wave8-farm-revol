@@ -35,7 +35,8 @@ import { NavbarConsumerComponent } from './navbar-consumer/navbar-consumer.compo
 import { ConsumerEditProfileComponent } from './consumer-edit-profile/consumer-edit-profile.component';
 import {MatRadioModule} from '@angular/material/radio';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { UpdateLandComponent } from './update-land/update-land.component';
+import{UpdateLandComponent} from './update-land/update-land.component';
+
 
 
 

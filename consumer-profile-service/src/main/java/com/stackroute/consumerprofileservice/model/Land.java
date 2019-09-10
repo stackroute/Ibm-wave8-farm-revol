@@ -11,7 +11,7 @@ public class Land {
 //    @Transient
 //    public static final String SEQUENCE_NAME="users_sequence";
 
-    private Long id;
+    private String id;
     Long farmerId;
     float landSize;
     double landPrice;
@@ -27,7 +27,7 @@ public class Land {
     public Land() {
     }
 
-    public Land(Long id, float landSize, double landPrice, String location, ArrayList<String> crops, String image, List<Order> orders) {
+    public Land(String id, float landSize, double landPrice, String location, ArrayList<String> crops, String image, List<Order> orders) {
         this.id = id;
         this.landSize = landSize;
         this.landPrice = landPrice;
@@ -45,11 +45,11 @@ public class Land {
         this.farmerId = farmerId;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
