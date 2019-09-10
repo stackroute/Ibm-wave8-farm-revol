@@ -1,16 +1,11 @@
 package com.stackroute.booking.model;
 
-//import org.springframework.data.annotation.Id;
-//import org.springframework.data.mongodb.core.mapping.Document;
-//
-//import javax.persistence.Transient;
+import javax.persistence.Transient;
 import java.time.LocalDateTime;
 
-
 public class Order {
-//    @Transient
-//    public static final String SEQUENCE_NAME="users_sequence";
-
+    @Transient
+    public static final String SEQUENCE_NAME="users_sequence";
 
     Long orderId;
     LocalDateTime time;

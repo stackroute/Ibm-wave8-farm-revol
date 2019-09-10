@@ -33,7 +33,7 @@ const routes: Routes = [
       title: 'List of Lands'
     }
   },
-  { path: 'farmer-edit-profile', component: FarmereditprofileComponent },
+  { path: ':email/updateProfile', component: FarmereditprofileComponent },
   {path:'consumer-landing-page',component: ConsumerLandingPageComponent},
   {path: 'consumer-edit-profile', component: ConsumerEditProfileComponent},
   {path:'upload-farm/:id',component:UploadfarmComponent, data: { title: 'List of uploaded lands' }},

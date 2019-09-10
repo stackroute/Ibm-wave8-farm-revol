@@ -1,18 +1,14 @@
 package com.stackroute.booking.model;
 
-import lombok.Data;
-
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
 public class Land {
 
-//    @Transient
-//    public static final String SEQUENCE_NAME="users_sequence";
+    public static final String SEQUENCE_NAME="users_sequence";
 
-    private Long id;
-    Long farmerId;
+    private String id;
+    String farmerId;
     float landSize;
     double landPrice;
     //Location of the Land
@@ -27,7 +23,7 @@ public class Land {
     public Land() {
     }
 
-    public Land(Long id, float landSize, double landPrice, String location, ArrayList<String> crops, String image, List<Order> orders) {
+    public Land(String id, float landSize, double landPrice, String location, ArrayList<String> crops, String image, List<Order> orders) {
         this.id = id;
         this.landSize = landSize;
         this.landPrice = landPrice;
@@ -37,19 +33,19 @@ public class Land {
         this.orders = orders;
     }
 
-    public Long getFarmerId() {
+    public String getFarmerId() {
         return farmerId;
     }
 
-    public void setFarmerId(Long farmerId) {
+    public void setFarmerId(String farmerId) {
         this.farmerId = farmerId;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -92,6 +88,7 @@ public class Land {
     public void setImage(String image) {
         this.image = image;
     }
+
 
     public List<Order> getOrders() {
         return orders;

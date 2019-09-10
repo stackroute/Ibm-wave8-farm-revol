@@ -29,7 +29,7 @@ export class NavbarFarmerComponent implements OnInit {
   }
 
   viewProfile() {
-    this.router.navigate(['/farmer-edit-profile']);
+    this.router.navigate(['/'+this.farmerId+'/updateProfile']);
   }
 
   getLands(){

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SearchListener {
 
-    @KafkaListener(topics = "crop", groupId = "group_crop", containerFactory = "kafkaListenerContainerFactory")
+    @KafkaListener(topics = "search", groupId = "group_crop", containerFactory = "kafkaListenerContainerFactory")
     public void consumerJson(Crop crop) {
         System.out.println("Consumed JSON Message: " + crop);
     }

@@ -38,5 +38,13 @@ export class LandService {
     
   }
 
+  getFarmerDetails(farmerId) {
+    return this.http.get(apiUrl + '/register/' + farmerId);
+  }
+
+  updateProfile(details) {
+    return this.http.put(apiUrl + '/update', details);
+
+  }
   
 }

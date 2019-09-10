@@ -79,9 +79,6 @@ public class FarmerDetailsService {
     }
 
 
-    public Farmer updateFarmer(Farmer farmer) {
-        return farmerRepository.save(farmer);
-    }
 
     //
     public Farmer uploadLandDetails(Land land, String email) {
@@ -181,6 +178,14 @@ public class FarmerDetailsService {
         }
         farmer.setLand(lands);
         System.out.println(farmer);
+        return farmerRepository.save(farmer);
+    }
+
+
+
+
+    public Farmer updateFarmer(Farmer farmer) {
+
         return farmerRepository.save(farmer);
     }
 }

@@ -77,9 +77,8 @@ public class ConsumerController {
         return new ResponseEntity<Consumer>(consumer, HttpStatus.OK);
     }
 
-    @GetMapping("/booking/{email}")
-    public void bookLand(@PathVariable("email") String email) {
-        consumerService.bookLand(email);
+    @GetMapping("/booking/{email}/{landId}/{cropName}")
+    public void bookLand(@PathVariable("email") String email, @PathVariable("landId") String landId,@PathVariable("cropName") String cropName) {
+        consumerService.bookLand(email, landId, cropName);
     }
-
 }
