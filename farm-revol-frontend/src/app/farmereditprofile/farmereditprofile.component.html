@@ -6,22 +6,17 @@
         <div class="example-container">
                 <mat-form-field>
                  Name: 
-                    <input matInput class = "input-items"  value="Monika Shrabasti" disabled>
+                    <input matInput class = "input-items"  [(ngModel)]="details.fullname" disabled>
                 </mat-form-field>
                 
                 <mat-form-field>
                     Phone Number
-                  <input matInput class = "input-items" value = "123456789" disabled>
-                </mat-form-field>
-                
-                <mat-form-field>
-                        Email
-                        <input matInput class = "input-items" value = "ex@ex.com" disabled>
+                  <input matInput class = "input-items" [(ngModel)]="details.phoneNumber" disabled>
                 </mat-form-field>
                 
                <mat-form-field>
                         Aadhar
-                        <input matInput class = "input-items" value = "1234" disabled>
+                        <input matInput class = "input-items" [(ngModel)]="details.aadhar" disabled>
                 </mat-form-field>
                 
                </div>
@@ -29,7 +24,7 @@
                <div class="example-button-row ">
                     
                     <button class = "edit-button" mat-button color="primary" (click)="enable_disable()">Edit Profile</button>
-                    <button class = "edit-button submit-button" mat-button color="primary" > Submit</button>
+                    <button class = "edit-button submit-button" mat-button color="primary" (click)="updateProfileDetails()" > Submit</button>
                   </div>        
                
 </div>
