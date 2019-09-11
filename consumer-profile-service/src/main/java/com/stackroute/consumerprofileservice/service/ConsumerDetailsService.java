@@ -2,6 +2,7 @@ package com.stackroute.consumerprofileservice.service;
 
 import com.stackroute.consumerprofileservice.exception.UserNotFoundException;
 import com.stackroute.consumerprofileservice.model.Consumer;
+import com.stackroute.consumerprofileservice.model.Land;
 import com.stackroute.consumerprofileservice.model.Order;
 import com.stackroute.consumerprofileservice.repository.ConsumerRepository;
 import com.stackroute.consumerprofileservice.repository.RoleRepository;
@@ -35,6 +36,9 @@ public class ConsumerDetailsService {
 
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
+    @Autowired
+    private KafkaTemplate<String, Land> kafkaTemplateLand;
+
 
     private static String TOPIC2 = "consumertopic";
 
@@ -86,11 +90,13 @@ public class ConsumerDetailsService {
         return consumerRepository.save(consumer);
     }
 
-    public String bookLand(String email, String landId, String cropName){
+    public String bookLand(String email, Land land, String cropName){
         Consumer consumer = getConsumerByEmail(email);
+
         kafkaTemplateConsumer.send(TOPIC2, consumer);
-        kafkaTemplate.send(TOPIC3, landId);
+        kafkaTemplateLand.send(TOPIC3,land );
         kafkaTemplate.send(TOPIC4, cropName);
+
 
         return "published";
     }

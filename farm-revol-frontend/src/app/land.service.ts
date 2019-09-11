@@ -18,15 +18,14 @@ export class LandService {
   }
   removeLand(id,farmerId) {
   return this.http.delete<Land>(apiUrl+`/land/delete/`+farmerId+`/`+id);
-  //return this.getLands(farmerId);
+
   }
  
   uploadLand(farmerId,land): Observable<Land> {
     console.log(farmerId);
     console.log(land);
     return this.http.put<Land>(apiUrl+`/land-details/`+farmerId,land);
-   // return this.http.get<Land>(apiUrl+'/register/land?email=' + farmerId);
-   //return this.getLands(farmerId);
+
  
   }
   updateLand(farmerId,landId,land){

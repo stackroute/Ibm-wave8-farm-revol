@@ -53,13 +53,13 @@ public class FarmerDetailsService {
     public void saveFarmer(Farmer farmer) {
         farmer.setPassword(farmer.getPassword());
         farmer.setEnabled(true);
-        farmer.setLand(new ArrayList<>());
+        //farmer.setLand(new ArrayList<>());
 
-        for (int i = 0; i < farmer.getLand().size(); i++) {
-            farmer.getLand().get(i).setId(sequenceGenerator.getNextSequence((Land.SEQUENCE_NAME)));
-
-            System.out.println("hello" + farmer.getLand().get(i).getId());
-        }
+//        for (int i = 0; i < farmer.getLand().size(); i++) {
+//            farmer.getLand().get(i).setId(sequenceGenerator.getNextSequence((Land.SEQUENCE_NAME)));
+//
+//            System.out.println("hello" + farmer.getLand().get(i).getId());
+//        }
 
         farmerRepository.save(farmer);
     }
@@ -87,9 +87,9 @@ public class FarmerDetailsService {
         Farmer farmer = (Farmer) optional.get();
         List<Land> landList = farmer.getLand();
         landList.add(land);
-        for(int i=0;i<landList.size();i++) {
-            farmer.getLand().get(i).setId(sequenceGenerator.getNextSequence(Land.SEQUENCE_NAME));
-        }
+//        for(int i=0;i<landList.size();i++) {
+//            farmer.getLand().get(i).setId(sequenceGenerator.getNextSequence(Land.SEQUENCE_NAME));
+//        }
         farmerRepository.save(farmer);
         return farmer;
     }

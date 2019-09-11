@@ -1,10 +1,12 @@
 package com.stackroute.consumerprofileservice.listener;
 
 import com.stackroute.consumerprofileservice.model.Consumer;
+import com.stackroute.consumerprofileservice.model.Crop;
 import com.stackroute.consumerprofileservice.repository.ConsumerRepository;
 import com.stackroute.consumerprofileservice.service.ConsumerDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,9 +25,6 @@ public class ConsumerListener
         this.consumerDetailsService = consumerDetailsService;
     }
 
-
-    @Autowired
-    private ConsumerDetailsService consumerService;
     @KafkaListener(topics = "consumer", groupId = "group_consumer_booking", containerFactory = "kafkaListenerContainerFactoryConsumer")
     public void consumerJsonConsumer(Consumer consumer) {
         System.out.println("Consumed JSON Message from booking:  " + consumer);

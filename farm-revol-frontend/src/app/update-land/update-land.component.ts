@@ -45,16 +45,23 @@ export class UpdateLandComponent implements OnInit {
 
  updateLandDetails() {
   this.service.updateLand(this.farmerId,this.landId,this.lands).subscribe(
-    response =>console.log('success',response),
+    response => {
+      console.log('success',response);
+      this.router.navigate(['/'+this.farmerId+'/lands']);
+    },
     error=>this.errorMsg=error.statusText
   );
 
 
   //this.router.navigateByUrl('/home-page', {skipLocationChange: true}).then(()=>
  // this.router.navigate(['/'+this.farmerId+'/lands']));
- this.router.navigate(['/'+this.farmerId+'/lands']);
+ //this.router.navigate(['/'+this.farmerId+'/lands']);
 
  }
+
+
+
+
 
 
 

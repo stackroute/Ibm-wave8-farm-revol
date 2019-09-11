@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stackroute.consumerprofileservice.exception.UserNotFoundException;
 import com.stackroute.consumerprofileservice.model.Consumer;
 import com.stackroute.consumerprofileservice.model.ConsumerDTO;
+import com.stackroute.consumerprofileservice.model.Land;
 import com.stackroute.consumerprofileservice.repository.ConsumerRepository;
 import com.stackroute.consumerprofileservice.service.ConsumerDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,8 +58,8 @@ public class ConsumerController {
         return ok(model);
     }
 
-    @GetMapping("/register")
-    public ResponseEntity<?> getConsumerById(@RequestParam("email") String email) throws UserNotFoundException {
+    @GetMapping("/register/{email}")
+    public ResponseEntity<?> getConsumerById(@PathVariable String email) throws UserNotFoundException {
         System.out.println(email);
         ResponseEntity responseEntity;
         responseEntity = new ResponseEntity<>(consumerService.getConsumerByEmail(email), HttpStatus.CREATED);
@@ -77,9 +78,9 @@ public class ConsumerController {
         return new ResponseEntity<Consumer>(consumer, HttpStatus.OK);
     }
 
-    @GetMapping("/booking/{email}/{landId}/{cropName}")
-    public void bookLand(@PathVariable("email") String email, @PathVariable("landId") String landId,@PathVariable("cropName") String cropName) {
-        consumerService.bookLand(email, landId, cropName);
+    @GetMapping("/booking/{email}/{cropName}")
+    public void bookLand(@PathVariable("email") String email, @RequestBody Land land, @PathVariable("cropName") String cropName) {
+        consumerService.bookLand(email, land, cropName);
     }
 
 }

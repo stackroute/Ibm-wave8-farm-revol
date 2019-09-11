@@ -1,65 +1,58 @@
-
 <app-navbar-farmer></app-navbar-farmer>
 
 
-<div class = "upload-farm-details">
+<div class="upload-farm-details">
 
   <div fxLayout="row" fxLayoutAlign="center center">
-          <mat-card class = "entire-container">
-                  
+    <mat-card class="entire-container">
 
-          <mat-card-header>
-            <mat-card-title class = "upload-land-text">Upload Land Details</mat-card-title>
-          </mat-card-header>
+      <mat-card-header>
+          <mat-card-title class="upload-land-text">Upload Land Details</mat-card-title>
+      </mat-card-header>
 
-          <div class = "upload-lands-content">
-          <mat-card-content fxLayout="column" >
-                  <form class = "form-all"> 
-         
-                    <mat-form-field>
-                      <input matInput placeholder="Enter Land Size in sq feet"  class="form-control"  name="landSize" [(ngModel)]="land.landSize">
-                    </mat-form-field>
-      
-      
-                    <mat-form-field>
-                      <input matInput placeholder="Enter the price of your land" class="form-control"  name="landPrice" [(ngModel)]="land.landPrice">
-                    </mat-form-field>
-                      
-                    
-          
-                    <mat-form-field>
-                      <input matInput placeholder="Enter the place your land is located" class="form-control"  name="location" [(ngModel)]="land.location">
-                    </mat-form-field>
-       
+      <div class="upload-lands-content">
+        <mat-card-content fxLayout="column">
+          <form class="form-all">
 
-                    <mat-form-field>
-                      <mat-label>Crops</mat-label>
-                      <mat-select placeholder="Enter the crops that can be grown" multiple name="crops" [(ngModel)]="land.crops">
-                        <mat-option *ngFor="let crops of cropList" name="crops" value="{{crops}}">{{crops}}</mat-option>
-                      </mat-select>
-                    </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Enter Land Size in sq feet" class="form-control" name="landSize"
+                [(ngModel)]="land.landSize">
+            </mat-form-field>
 
-                      <!-- <mat-label>Upload Image</mat-label>
+            <mat-form-field>
+              <input matInput placeholder="Enter the price of your land" class="form-control" name="landPrice"
+                [(ngModel)]="land.landPrice">
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput placeholder="Enter the place your land is located" class="form-control" name="location"
+                [(ngModel)]="land.location">
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Crops</mat-label>
+              <mat-select placeholder="Enter the crops that can be grown" multiple name="crops"
+                [(ngModel)]="land.crops">
+                <mat-option *ngFor="let crops of cropList" name="crops" value="{{crops}}">{{crops}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <!-- <mat-label>Upload Image</mat-label>
                       <p></p>
                       <input placeholder="Upload your image" type="file" name="image"  /> -->
-              
-              <p></p>
-          
-          <div class="button-row">
-            <button mat-raised-button (click)="uploadLandDetails()" color="primary">Upload Land Details</button>
 
-          </div>
-              </form>
-          
-          </mat-card-content>
+            <p></p>
+            <div class="button-row">
+              <button mat-raised-button (click)="uploadLandDetails()" color="primary">Upload Land Details</button>
+            </div>
+          </form>
+        </mat-card-content>
       </div>
 
-      </mat-card>
-          
-  </div> 
+    </mat-card>
+
+  </div>
 
 
 
 </div>
-
-
