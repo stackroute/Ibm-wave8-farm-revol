@@ -60,6 +60,10 @@ local.properties
 /log/
 target/
 ./*/target/
+./*/.mvn/
+./*/*.iml
+./*/mvn*
+
 ######################
 # Gradle
 ######################
