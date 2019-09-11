@@ -20,9 +20,8 @@
 		<java.version>11</java.version>
 	</properties>
 
-	<dependencies>
+	<dependencies></dependencies>
 	
-	</dependencies>
 	<modules>
 		<module>booking-service</module>
 		<module>consumer-profile-service</module>
