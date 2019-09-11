@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Service
 public class BookingController {
     String cropName;
-    String landId;
+    Long landId;
 
     @Autowired
     private KafkaTemplate<String, Consumer> kafkaTemplateConsumer;
@@ -28,11 +28,11 @@ public class BookingController {
     private static String TOPIC2 = "landOrder";
 
 
-    @KafkaListener(topics = "land", groupId = "group_string", containerFactory = "kafkaListenerContainerFactory")
-    public void consumerJsonLandId(String landId) {
-        System.out.println("Consumed landid: " + landId);
-        this.landId = landId;
-    }
+    // @KafkaListener(topics = "land", groupId = "group_string", containerFactory = "kafkaListenerContainerFactory")
+    // public void consumerJsonLandId(String landId) {
+    //     System.out.println("Consumed landid: " + landId);
+    //     this.landId = landId;
+    // }
 
     @KafkaListener(topics = "crop" , groupId = "group_string", containerFactory = "kafkaListenerContainerFactory")
     public void consumerJsonCrop(String cropName) {
@@ -51,20 +51,20 @@ public class BookingController {
 
         LandOrder landOrder = new LandOrder(1, consumer.getEmail(),cropName,2500,null);
         System.out.println(landOrder);
-        kafkaTemplate.send(TOPIC1,landId);
+        // kafkaTemplate.send(TOPIC1,landId);
         kafkaTemplateLandOrder.send(TOPIC2,landOrder);
     }
 
 
-    @KafkaListener(topics = "consumertopic", groupId = "group_consumer", containerFactory = "kafkaListenerContainerFactoryConsumer")
-    public void consumerJsonConsumer(Consumer consumer) {
-        System.out.println("Consumed JSON Message of conmsumer: " + consumer);
-        ConsumerOrder consumerOrder = new ConsumerOrder(1,landId,"2",cropName,2500, null);
-        consumer.getConsumerOrders().add(consumerOrder);
-        System.out.println(consumer);
-        kafkaTemplateConsumer.send(TOPIC,consumer);
+    // @KafkaListener(topics = "consumertopic", groupId = "group_consumer", containerFactory = "kafkaListenerContainerFactoryConsumer")
+    // public void consumerJsonConsumer(Consumer consumer) {
+    //     System.out.println("Consumed JSON Message of conmsumer: " + consumer);
+    //     ConsumerOrder consumerOrder = new ConsumerOrder(1,landId,"2",cropName,2500, null);
+    //     consumer.getConsumerOrders().add(consumerOrder);
+    //     System.out.println(consumer);
+    //     kafkaTemplateConsumerLong.send(TOPIC,consumer);
 
-    }
+    // }
 
 
 }
