@@ -24,7 +24,7 @@ public class BookingListener {
     Land land;
 
     @KafkaListener(topics = "landId", groupId = "group_strings", containerFactory = "kafkaListenerContainerFactory")
-    public void consumerJsonLandId(String landId) {
+    public void consumerJsonLandId(Long landId) {
         System.out.println("Consumed landid: " + landId);
         this.land.setId(landId);
     }

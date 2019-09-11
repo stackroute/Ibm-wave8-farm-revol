@@ -13,7 +13,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
-
+import { IgxCarouselModule } from 'igniteui-angular';
 import {MatMenuModule} from '@angular/material/menu';
 
 import {MatSelectModule} from '@angular/material/select';
@@ -60,7 +60,8 @@ import{UpdateLandComponent} from './update-land/update-land.component';
     NavbarConsumerComponent,
     ConsumerEditProfileComponent,
     ResetPasswordComponent,
-    UpdateLandComponent
+    UpdateLandComponent,
+    IgxCarouselModule
     
   ],
   imports: [

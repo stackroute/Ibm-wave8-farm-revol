@@ -10,6 +10,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLOutput;
+import java.util.List;
 
 @Service
 public class FarmerListener {
@@ -24,10 +25,10 @@ public class FarmerListener {
     }
 
 
-    @KafkaListener(topics = "kafka", groupId = "group_crop", containerFactory = "kafkaListenerContainerFactory")
+    @KafkaListener(topics = "test-101", groupId = "group-1", containerFactory = "kafkaListenerContainerFactory")
     public void consumerJson(Crop crop) {
         System.out.println("Consumed JSON Message: " + crop);
-        //crop.getLands().add(crop.getFarms());
+        crop.getLands().add(crop.getFarms());
         System.out.println();
         String cropName = crop.getCropName();
         Land farms = crop.getFarms();
