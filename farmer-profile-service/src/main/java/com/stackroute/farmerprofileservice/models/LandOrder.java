@@ -1,4 +1,4 @@
-package com.stackroute.booking.model;
+package com.stackroute.farmerprofileservice.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @Builder
 public class LandOrder {
     private int orderId;
+    private Long landId;
     private String consumerId;
     private String crop;
     private int price;

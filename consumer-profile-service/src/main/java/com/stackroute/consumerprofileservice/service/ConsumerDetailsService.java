@@ -2,6 +2,7 @@ package com.stackroute.consumerprofileservice.service;
 
 import com.stackroute.consumerprofileservice.exception.UserNotFoundException;
 import com.stackroute.consumerprofileservice.model.Consumer;
+import com.stackroute.consumerprofileservice.model.Land;
 import com.stackroute.consumerprofileservice.model.Order;
 import com.stackroute.consumerprofileservice.repository.ConsumerRepository;
 import com.stackroute.consumerprofileservice.repository.RoleRepository;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -34,8 +36,12 @@ public class ConsumerDetailsService {
 
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
+    @Autowired
+    private KafkaTemplate<String, Land> kafkaTemplateLand;
 
-    private static String TOPIC2 = "testing";
+
+
+    private static String TOPIC2 = "consumertopic";
 
     private static String TOPIC3 = "land";
 
@@ -53,7 +59,7 @@ public class ConsumerDetailsService {
 
         consumer.setPassword((consumer.getPassword()));
         consumer.setEnabled(true);
-        consumer.setOrders(new ArrayList<>());
+        //consumer.setConsumerOrders(new ArrayList<>());
        /* Role userRole = roleRepository.findByRole("consumer");
         consumer.setRoles(new HashSet<>(Arrays.asList(userRole)));*/
 
@@ -61,6 +67,9 @@ public class ConsumerDetailsService {
 //        for(int i=0;i<consumer.getOrders().size(); i++) {
 //            consumer.getOrders().get(i).setOrderId(sequenceGenerator.getNextSequence((Order.SEQUENCE_NAME)));
 //        }
+
+        //Consumer oldConsumer = consumerRepository.findById(consumer.getEmail());
+       // consumerRepository.delete(consumer);
         consumerRepository.save(consumer);
     }
 
@@ -82,12 +91,15 @@ public class ConsumerDetailsService {
         return consumerRepository.save(consumer);
     }
 
-    public String bookLand(String email, String landId, String cropName){
+    public String bookLand(String email, Land land, String cropName){
         Consumer consumer = getConsumerByEmail(email);
+
         kafkaTemplateConsumer.send(TOPIC2, consumer);
-        kafkaTemplate.send(TOPIC3, landId);
+        kafkaTemplateLand.send(TOPIC3,land );
         kafkaTemplate.send(TOPIC4, cropName);
+
 
         return "published";
     }
+
 }
