@@ -62,7 +62,8 @@ target/
 ./*/target/
 ./*/.mvn/
 ./*/*.iml
-./*/mvn*
+./*/mvnw
+./*/mvnw.cmd
 
 ######################
 # Gradle
