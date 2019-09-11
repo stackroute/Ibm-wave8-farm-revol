@@ -58,8 +58,8 @@ public class ConsumerController {
         return ok(model);
     }
 
-    @GetMapping("/register")
-    public ResponseEntity<?> getConsumerById(@RequestParam("email") String email) throws UserNotFoundException {
+    @GetMapping("/register/{email}")
+    public ResponseEntity<?> getConsumerById(@PathVariable String email) throws UserNotFoundException {
         System.out.println(email);
         ResponseEntity responseEntity;
         responseEntity = new ResponseEntity<>(consumerService.getConsumerByEmail(email), HttpStatus.CREATED);

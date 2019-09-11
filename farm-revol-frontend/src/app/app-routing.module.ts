@@ -33,9 +33,14 @@ const routes: Routes = [
       title: 'List of Lands'
     }
   },
+  {
+    path: ':email/consumer',
+    component: ConsumerLandingPageComponent
+  },
   { path: ':email/updateProfile', component: FarmereditprofileComponent },
-  {path:'consumer-landing-page',component: ConsumerLandingPageComponent},
-  {path: 'consumer-edit-profile', component: ConsumerEditProfileComponent},
+  { path: ':email/updateConsumerProfile', component: ConsumerEditProfileComponent},
+ // {path:'consumer-landing-page',component: ConsumerLandingPageComponent},
+ // {path: 'email/updateProfile', component: ConsumerEditProfileComponent},
   {path:'upload-farm/:id',component:UploadfarmComponent, data: { title: 'List of uploaded lands' }},
 
   {
