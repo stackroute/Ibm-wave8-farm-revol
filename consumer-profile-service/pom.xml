@@ -3,17 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.7.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<groupId>com.stackroute</groupId>
+		<artifactId>farm-revol</artifactId>
+		<version>1.0.0</version>
 	</parent>
-	<groupId>com.stackroute</groupId>
-	<artifactId>consumerprofileservice</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>consumer-profile-service</artifactId>
 	<name>consumer-profile-service</name>
-	<description>Consumer Profile microservice</description>
-
+	
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -108,12 +104,6 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-				<plugin>
-					<groupId>org.sonarsource.scanner.maven</groupId>
-					<artifactId>sonar-maven-plugin</artifactId>
-					<version>3.6.0.1398</version>
-				</plugin>
-
 		</plugins>
 	</build>
 

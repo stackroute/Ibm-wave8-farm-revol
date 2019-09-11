@@ -25,6 +25,9 @@
 	</dependencies>
 	<modules>
 		<module>booking-service</module>
+		<module>consumer-profile-service</module>
+		<module>farmer-profile-service</module>
+		<module>search-service</module>
 	</modules>
 
 	<build>
