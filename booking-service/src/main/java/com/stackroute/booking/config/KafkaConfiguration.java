@@ -1,6 +1,7 @@
 package com.stackroute.booking.config;
 
 import com.stackroute.booking.model.Consumer;
+import com.stackroute.booking.model.ConsumerOrder;
 import com.stackroute.booking.model.Farmer;
 import com.stackroute.booking.model.Land;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -51,6 +52,8 @@ public class KafkaConfiguration {
     {
         return new KafkaTemplate<>(producerFactoryConsumer());
     }
+
+
 
     @Bean
     public ConsumerFactory<String, Consumer> consumerFactoryConsumer() {

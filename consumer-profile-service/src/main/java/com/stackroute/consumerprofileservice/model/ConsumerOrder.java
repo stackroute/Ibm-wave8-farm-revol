@@ -1,4 +1,4 @@
-package com.stackroute.booking.model;
+package com.stackroute.consumerprofileservice.model;
 
 import java.time.LocalDateTime;
 

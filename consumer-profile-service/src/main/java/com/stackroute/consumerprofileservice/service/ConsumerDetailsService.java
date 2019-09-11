@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,7 @@ public class ConsumerDetailsService {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
-    private static String TOPIC2 = "testing";
+    private static String TOPIC2 = "consumertopic";
 
     private static String TOPIC3 = "land";
 
@@ -53,7 +54,7 @@ public class ConsumerDetailsService {
 
         consumer.setPassword((consumer.getPassword()));
         consumer.setEnabled(true);
-        consumer.setOrders(new ArrayList<>());
+        //consumer.setConsumerOrders(new ArrayList<>());
        /* Role userRole = roleRepository.findByRole("consumer");
         consumer.setRoles(new HashSet<>(Arrays.asList(userRole)));*/
 
@@ -61,6 +62,9 @@ public class ConsumerDetailsService {
 //        for(int i=0;i<consumer.getOrders().size(); i++) {
 //            consumer.getOrders().get(i).setOrderId(sequenceGenerator.getNextSequence((Order.SEQUENCE_NAME)));
 //        }
+
+        //Consumer oldConsumer = consumerRepository.findById(consumer.getEmail());
+       // consumerRepository.delete(consumer);
         consumerRepository.save(consumer);
     }
 
@@ -90,4 +94,5 @@ public class ConsumerDetailsService {
 
         return "published";
     }
+
 }

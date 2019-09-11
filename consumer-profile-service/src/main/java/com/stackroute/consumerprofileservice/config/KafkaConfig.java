@@ -1,7 +1,6 @@
 package com.stackroute.consumerprofileservice.config;
 
 import com.stackroute.consumerprofileservice.model.Consumer;
-
 import com.stackroute.consumerprofileservice.model.Crop;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -90,6 +89,27 @@ public class KafkaConfig {
         factory.setConsumerFactory(cropFactory());
         return factory;
     }
+    @Bean
+    public ConsumerFactory<String, Consumer> cropFactoryConsumer() {
+        Map<String, Object> config = new HashMap<>();
+        JsonDeserializer<Consumer> deserializer = new JsonDeserializer<>(Consumer.class);
+        deserializer.setRemoveTypeHeaders(false);
+        deserializer.addTrustedPackages("*");
+        deserializer.setUseTypeMapperForKey(true);
+
+        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        config.put(ConsumerConfig.GROUP_ID_CONFIG, "group_consumer_booking");
+        config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, deserializer);
+        return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(),deserializer);
+    }
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, Consumer> kafkaListenerContainerFactoryConsumer() {
+        ConcurrentKafkaListenerContainerFactory<String, Consumer> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(cropFactoryConsumer());
+        return factory;
+    }
+
 
 }
 
