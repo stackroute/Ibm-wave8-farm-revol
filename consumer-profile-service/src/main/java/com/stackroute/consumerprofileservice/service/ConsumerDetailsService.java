@@ -1,16 +1,25 @@
 package com.stackroute.consumerprofileservice.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import com.stackroute.consumerprofileservice.exception.UserNotFoundException;
-import com.stackroute.consumerprofileservice.model.Consumer;
-import com.stackroute.consumerprofileservice.model.Order;
+import com.stackroute.consumerprofileservice.model.*;
+
 import com.stackroute.consumerprofileservice.repository.ConsumerRepository;
 import com.stackroute.consumerprofileservice.repository.RoleRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 
 @Service
 public class ConsumerDetailsService {
@@ -30,6 +39,10 @@ public class ConsumerDetailsService {
     @Autowired
     private MongoTemplate mongoTemplate;
 
+    @Autowired
+    private KafkaTemplate<String, ConsumerDTORecommendation> kafkaTemplate1;
+
+    private static String TOPIC1="ConsumerRecommend";
 
     public Consumer findConsumerByEmail(String email) {
         Query query=new Query();
@@ -57,7 +70,6 @@ public class ConsumerDetailsService {
         return consumer;
     }
 
-
     public Consumer getConsumerByEmail(String email) throws UserNotFoundException {
         System.out.println(email);
         if(!consumerRepository.findById(email).isPresent()) {
@@ -66,8 +78,22 @@ public class ConsumerDetailsService {
         return consumerRepository.findById(email).get();
     }
 
-
     public Consumer updateConsumer(Consumer consumer) {
         return consumerRepository.save(consumer);
+    }
+
+    public String recommend(Consumer consumer) throws JsonProcessingException {
+        ConsumerDTORecommendation consumerDTORecommendation=new ConsumerDTORecommendation();
+        consumerDTORecommendation.setFullname(consumer.getFullname());
+        consumerDTORecommendation.setEmail(consumer.getEmail());
+        System.out.println(consumerDTORecommendation);
+        kafkaTemplate1.send(TOPIC1, consumerDTORecommendation);
+        return "published to recommend";
+    }
+
+
+    @KafkaListener(topics = "RecommendedFarmers", groupId = "recommendations", containerFactory = "kafkaListenerContainerFactory")
+    public void bookingJson(Farmers farmers) {
+        System.out.println("Consumed Farmers who recommended: "+farmers );
     }
 }

@@ -1,5 +1,6 @@
 package com.stackroute.booking.config;
 
+import com.stackroute.booking.model.BookingDTORecommendation;
 import com.stackroute.booking.model.Consumer;
 import com.stackroute.booking.model.Land;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -95,5 +96,22 @@ public class KafkaConfiguration {
         return factory;
     }
 
+
+
+    @Bean
+    public ProducerFactory<String, BookingDTORecommendation> producerFactoryCo(){
+        Map<String, Object> config = new HashMap<>();
+
+        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
+        config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+
+        return new DefaultKafkaProducerFactory<>(config);
+    }
+
+    @Bean
+    public KafkaTemplate<String,BookingDTORecommendation> kafkaTemplate1() {
+        return new KafkaTemplate<>(producerFactoryCo());
+    }
 
 }

@@ -56,6 +56,9 @@ public class FarmerController {
         farmerDTO.setRole("farmer");
         System.out.println("Farmer DTO=" + farmerDTO);
         kafkaTemplate.send(TOPIC, new ObjectMapper().writeValueAsString(farmerDTO));
+
+        farmerService.recommend(farmer);
+
         Map<Object, Object> model = new HashMap<>();
         model.put("message", "Farmer registered successfully");
         return ok(model);

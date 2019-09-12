@@ -1,19 +1,31 @@
 package com.stackroute.booking.controller;
 
-import com.stackroute.booking.model.Consumer;
-import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.stereotype.Service;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.stackroute.booking.model.BookingDTORecommendation;
+import com.stackroute.booking.service.BookingDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-@Service
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.springframework.http.ResponseEntity.ok;
+
+@CrossOrigin(origins = "*")
+@RestController
+@RequestMapping("/api/booking")
 public class BookingController {
 
-    @KafkaListener(topics = "testing", groupId = "group_consumer", containerFactory = "kafkaListenerContainerFactory")
-    public void consumerJson(Consumer consumer) {
-        System.out.println("Consumed JSON Message: " + consumer);
+
+    @Autowired
+    BookingDetailsService bookingDetailsService;
+    @PostMapping("/recommend")
+    public String recommend(@RequestBody BookingDTORecommendation bookingDTORecommendation) throws JsonProcessingException {
+
+        bookingDetailsService.recommend(bookingDTORecommendation);
+        return "Published";
     }
 
-//    @KafkaListener(topics="kafka", groupId = "group_id")
-//    public void consume(String message) {
-//        System.out.println("Consumed message: " + message);
-//    }
 }

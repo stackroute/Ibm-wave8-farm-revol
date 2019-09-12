@@ -1,7 +1,9 @@
 package com.stackroute.farmerprofileservice.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.stackroute.farmerprofileservice.exception.UserNotFoundException;
 import com.stackroute.farmerprofileservice.models.Farmer;
+import com.stackroute.farmerprofileservice.models.FarmerDTORecommendation;
 import com.stackroute.farmerprofileservice.models.Land;
 import com.stackroute.farmerprofileservice.repository.FarmerRepository;
 import com.stackroute.farmerprofileservice.repository.RoleRepository;
@@ -40,7 +42,10 @@ public class FarmerDetailsService {
 
     private static String TOPIC2 = "testing";
 
+    @Autowired
+    private KafkaTemplate<String,FarmerDTORecommendation>kafkaTemplate1;
 
+    private static String TOPIC1= "FarmerRecommend";
 
     public Farmer findFarmerByEmail(String email) {
         Query query=new Query();
@@ -176,5 +181,14 @@ public class FarmerDetailsService {
         kafkaTemplateFarmer.send(TOPIC2, farmer);
 
         return "published";
+    }
+
+    public String recommend(Farmer farmer) throws JsonProcessingException {
+        FarmerDTORecommendation farmerDTORecommendation=new FarmerDTORecommendation();
+        farmerDTORecommendation.setFullname(farmer.getFullname());
+        farmerDTORecommendation.setEmail(farmer.getEmail());
+        System.out.println(farmerDTORecommendation);
+        kafkaTemplate1.send(TOPIC1, farmerDTORecommendation);
+        return "published to recommend";
     }
 }
