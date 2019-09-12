@@ -18,7 +18,7 @@ public class Farmer {
     private boolean enabled;
     private Long phoneNumber;
     private String aadhar;
-    private ArrayList<Land> land;
+    private ArrayList<Land> land ;;
     @DBRef
     private Set<Role> roles;
 

@@ -60,8 +60,7 @@ import{UpdateLandComponent} from './update-land/update-land.component';
     NavbarConsumerComponent,
     ConsumerEditProfileComponent,
     ResetPasswordComponent,
-    UpdateLandComponent,
-  
+    UpdateLandComponent
     
   ],
   imports: [

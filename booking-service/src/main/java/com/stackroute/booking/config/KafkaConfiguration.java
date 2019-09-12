@@ -18,24 +18,24 @@ import java.util.Map;
 @Configuration
 public class KafkaConfiguration {
 
-    @Bean
-    public ProducerFactory<String, String> producerFactory()
-    {
-        Map<String,Object> config = new HashMap<>();
-        config.put(JsonSerializer.ADD_TYPE_INFO_HEADERS, false);
-        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"localhost:9092");
-        config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        return new DefaultKafkaProducerFactory<>(config);
-    }
-    @Bean
-    public KafkaTemplate<String, String> kafkaTemplate()
-    {
-        return new KafkaTemplate<>(producerFactory());
-    }
+//    @Bean
+//    public ProducerFactory<String, String> producerFactory()
+//    {
+//        Map<String,Object> config = new HashMap<>();
+//        config.put(JsonSerializer.ADD_TYPE_INFO_HEADERS, false);
+//        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"localhost:9092");
+//        config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+//        config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+//        return new DefaultKafkaProducerFactory<>(config);
+//    }
+//    @Bean
+//    public KafkaTemplate<String, String> kafkaTemplate()
+//    {
+//        return new KafkaTemplate<>(producerFactory());
+//    }
 
     @Bean
-    public ProducerFactory<String, LandOrder> producerFactoryLandOrder()
+    public ProducerFactory<String, Land> producerFactoryLand()
     {
         Map<String,Object> config = new HashMap<>();
         config.put(JsonSerializer.ADD_TYPE_INFO_HEADERS, false);
@@ -45,9 +45,9 @@ public class KafkaConfiguration {
         return new DefaultKafkaProducerFactory<>(config);
     }
     @Bean
-    public KafkaTemplate<String, LandOrder> kafkaTemplateLandOrder()
+    public KafkaTemplate<String, Land> kafkaTemplateLand()
     {
-        return new KafkaTemplate<>(producerFactoryLandOrder());
+        return new KafkaTemplate<>(producerFactoryLand());
     }
 
     @Bean
@@ -65,6 +65,24 @@ public class KafkaConfiguration {
     {
         return new KafkaTemplate<>(producerFactoryConsumer());
     }
+
+//    @Bean
+//    public ProducerFactory<String, Farmer> producerFactoryFarmer()
+//    {
+//        Map<String,Object> config = new HashMap<>();
+//        config.put(JsonSerializer.ADD_TYPE_INFO_HEADERS, false);
+//        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"localhost:9092");
+//        config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+//        config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+//        return new DefaultKafkaProducerFactory<>(config);
+//    }
+//    @Bean
+//    public KafkaTemplate<String, Farmer> kafkaTemplateFarmer()
+//    {
+//        return new KafkaTemplate<>(producerFactoryFarmer());
+//    }
+
+
 
 
 
@@ -89,27 +107,27 @@ public class KafkaConfiguration {
         return factory;
     }
 
-//    @Bean
-//    public ConsumerFactory<String, Farmer> consumerFactoryFarmer() {
-//        Map<String, Object> config = new HashMap<>();
-//        JsonDeserializer<Farmer> deserializer = new JsonDeserializer<>(Farmer.class);
-//        deserializer.setRemoveTypeHeaders(false);
-//        deserializer.addTrustedPackages("*");
-//        deserializer.setUseTypeMapperForKey(true);
-//
-//        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-//        config.put(ConsumerConfig.GROUP_ID_CONFIG, "group_farmer");
-//        config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-//        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, deserializer);
-//        return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(),deserializer);
-//    }
-//
-//    @Bean
-//    public ConcurrentKafkaListenerContainerFactory<String, Farmer> kafkaListenerContainerFactoryFarmer() {
-//        ConcurrentKafkaListenerContainerFactory<String, Farmer> factory = new ConcurrentKafkaListenerContainerFactory<>();
-//        factory.setConsumerFactory(consumerFactoryFarmer());
-//        return factory;
-//    }
+    @Bean
+    public ConsumerFactory<String, Land> consumerFactoryLand() {
+        Map<String, Object> config = new HashMap<>();
+        JsonDeserializer<Land> deserializer = new JsonDeserializer<>(Land.class);
+        deserializer.setRemoveTypeHeaders(false);
+        deserializer.addTrustedPackages("*");
+        deserializer.setUseTypeMapperForKey(true);
+
+        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        config.put(ConsumerConfig.GROUP_ID_CONFIG, "group_land");
+        config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, deserializer);
+        return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(),deserializer);
+    }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, Land> kafkaListenerContainerFactoryLand() {
+        ConcurrentKafkaListenerContainerFactory<String, Land> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(consumerFactoryLand());
+        return factory;
+    }
 
     @Bean
     public ConsumerFactory<String, String> consumerFactory() {

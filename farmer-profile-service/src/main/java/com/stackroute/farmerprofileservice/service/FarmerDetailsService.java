@@ -1,10 +1,9 @@
 package com.stackroute.farmerprofileservice.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.stackroute.farmerprofileservice.exception.UserNotFoundException;
 import com.stackroute.farmerprofileservice.models.Farmer;
-import com.stackroute.farmerprofileservice.models.FarmerDTORecommendation;
 import com.stackroute.farmerprofileservice.models.Land;
+import com.stackroute.farmerprofileservice.models.LandOrder;
 import com.stackroute.farmerprofileservice.repository.FarmerRepository;
 import com.stackroute.farmerprofileservice.repository.RoleRepository;
 
@@ -13,7 +12,6 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -42,10 +40,7 @@ public class FarmerDetailsService {
 
     private static String TOPIC2 = "testing";
 
-    @Autowired
-    private KafkaTemplate<String,FarmerDTORecommendation>kafkaTemplate1;
 
-    private static String TOPIC1= "FarmerRecommend";
 
     public Farmer findFarmerByEmail(String email) {
         Query query=new Query();
@@ -60,11 +55,11 @@ public class FarmerDetailsService {
         farmer.setEnabled(true);
         farmer.setLand(new ArrayList<>());
 
-//        for (int i = 0; i < farmer.getLand().size(); i++) {
-//            farmer.getLand().get(i).setId(sequenceGenerator.getNextSequence((Land.SEQUENCE_NAME)));
-//
-//            System.out.println("hello" + farmer.getLand().get(i).getId());
-//        }
+        for (int i = 0; i < farmer.getLand().size(); i++) {
+            farmer.getLand().get(i).setId(sequenceGenerator.getNextSequence((Land.SEQUENCE_NAME)));
+
+            System.out.println("hello" + farmer.getLand().get(i).getId());
+        }
 
         farmerRepository.save(farmer);
     }
@@ -89,7 +84,7 @@ public class FarmerDetailsService {
         System.out.println("land"+land);
         Optional optional = farmerRepository.findById(email);
         Farmer farmer = (Farmer) optional.get();
-        System.out.println(farmer);
+     //   System.out.println(farmer);
         ArrayList<Land> landList = farmer.getLand();
         try {
             land.setId(sequenceGenerator.getNextSequence(Land.SEQUENCE_NAME));
@@ -122,23 +117,35 @@ public class FarmerDetailsService {
         ArrayList<Land> lands = farmer.getLand();
         final Land[] requiredLand = new Land[1];
         int i=0;
-
         lands.forEach(land ->
         {
             System.out.println("Land is " + land.getId());
             System.out.println("Lid is " + lid);
             if (land.getId().equals(lid)) {
                 System.out.println("Lid is " + lid);
-                // System.out.println("Land is " + lands.get(i));
                 requiredLand[0] = land;
-                // return;
             }
-
         });
-
-
         return requiredLand[0];
+    }
+    public ArrayList<LandOrder> getAllLandOrdersOfFarmerByEmail(String email, Long lid) {
+        System.out.println("hiigreeeeeeeeeeerrrrrrfdgdfgvgdfgvr");
+        Optional optional = farmerRepository.findById(email);
+        Farmer farmer = (Farmer) optional.get();
+        System.out.println("farmer is"+farmer);
+        ArrayList<Land> lands = farmer.getLand();
+        System.out.println("land is "+lands);
+                   ArrayList<LandOrder> landOrders = new ArrayList<LandOrder>();
 
+        for (int i=0;i<lands.size();i++)
+        {
+            if(lands.get(i).getId().equals(lid))
+            {
+               landOrders = lands.get(i).getLandOrders();
+            }
+        }
+        System.out.println(landOrders);
+        return landOrders;
     }
 
 
@@ -170,6 +177,9 @@ public class FarmerDetailsService {
         return lands;
     }
 
+
+
+
     public List<Farmer> getAllFarmers() {
         return farmerRepository.findAll();
     }
@@ -184,6 +194,7 @@ public class FarmerDetailsService {
             if (lands.get(i).getId().equals(lid)) {
                 land.setId(lands.get(i).getId());
                 land.setFarmerId(email);
+//                land.getLandOrders().add(landOrder);
                 lands.set(i, land);
                 break;
             }
@@ -193,20 +204,8 @@ public class FarmerDetailsService {
         return farmerRepository.save(farmer);
     }
 
-
-
-
     public Farmer updateFarmer(Farmer farmer) {
 
         return farmerRepository.save(farmer);
-    }
-
-    public String recommend(Farmer farmer) throws JsonProcessingException {
-        FarmerDTORecommendation farmerDTORecommendation=new FarmerDTORecommendation();
-        farmerDTORecommendation.setFullname(farmer.getFullname());
-        farmerDTORecommendation.setEmail(farmer.getEmail());
-        System.out.println(farmerDTORecommendation);
-        kafkaTemplate1.send(TOPIC1, farmerDTORecommendation);
-        return "published to recommend";
     }
 }

@@ -1,27 +1,20 @@
 package com.stackroute.consumerprofileservice.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 import com.stackroute.consumerprofileservice.exception.UserNotFoundException;
-import com.stackroute.consumerprofileservice.model.*;
-
 import com.stackroute.consumerprofileservice.model.Consumer;
+import com.stackroute.consumerprofileservice.model.ConsumerOrder;
 import com.stackroute.consumerprofileservice.model.Land;
 import com.stackroute.consumerprofileservice.model.Order;
 import com.stackroute.consumerprofileservice.repository.ConsumerRepository;
 import com.stackroute.consumerprofileservice.repository.RoleRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 import java.util.ArrayList;
 
@@ -40,11 +33,7 @@ public class ConsumerDetailsService {
     private MongoTemplate mongoTemplate;
 
     @Autowired
-    private KafkaTemplate<String, ConsumerDTORecommendation> kafkaTemplate1;
-
-    private static String TOPIC1="ConsumerRecommend";
     private KafkaTemplate<String, Consumer> kafkaTemplateConsumer;
-
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
     @Autowired
@@ -56,6 +45,7 @@ public class ConsumerDetailsService {
     private static String TOPIC3 = "land";
 
     private static String TOPIC4 = "crop";
+
 
     public Consumer findConsumerByEmail(String email) {
         Query query=new Query();
@@ -89,6 +79,7 @@ public class ConsumerDetailsService {
         return consumer;
     }
 
+
     public Consumer getConsumerByEmail(String email) throws UserNotFoundException {
         System.out.println(email);
         if(!consumerRepository.findById(email).isPresent()) {
@@ -96,32 +87,27 @@ public class ConsumerDetailsService {
         }
         return consumerRepository.findById(email).get();
     }
-
+    public ArrayList<ConsumerOrder> getConsumerOrders(String email) throws UserNotFoundException {
+        System.out.println(email);
+        if(!consumerRepository.findById(email).isPresent()) {
+            throw new UserNotFoundException();
+        }
+        Consumer consumer = consumerRepository.findById(email).get();
+        ArrayList<ConsumerOrder> consumerOrders = consumer.getConsumerOrders();
+        System.out.println("consumer orders :"+consumerOrders);
+        return consumerOrders;
+    }
     public Consumer updateConsumer(Consumer consumer) {
         return consumerRepository.save(consumer);
     }
 
-    public String recommend(Consumer consumer) throws JsonProcessingException {
-        ConsumerDTORecommendation consumerDTORecommendation=new ConsumerDTORecommendation();
-        consumerDTORecommendation.setFullname(consumer.getFullname());
-        consumerDTORecommendation.setEmail(consumer.getEmail());
-        System.out.println(consumerDTORecommendation);
-        kafkaTemplate1.send(TOPIC1, consumerDTORecommendation);
-        return "published to recommend";
-    }
+    public String bookLand(String email, String cropName, Land land){
 
-
-    @KafkaListener(topics = "RecommendedFarmers", groupId = "recommendations", containerFactory = "kafkaListenerContainerFactory")
-    public void bookingJson(Farmers farmers) {
-        System.out.println("Consumed Farmers who recommended: "+farmers );
-    }
-    public String bookLand(String email, Land land, String cropName){
         Consumer consumer = getConsumerByEmail(email);
 
         kafkaTemplateConsumer.send(TOPIC2, consumer);
-        kafkaTemplateLand.send(TOPIC3,land );
         kafkaTemplate.send(TOPIC4, cropName);
-
+        kafkaTemplateLand.send(TOPIC3, land);
 
         return "published";
     }

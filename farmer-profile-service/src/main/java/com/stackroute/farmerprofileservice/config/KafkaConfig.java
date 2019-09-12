@@ -4,6 +4,7 @@ import com.stackroute.farmerprofileservice.models.CropDTO;
 import com.stackroute.farmerprofileservice.models.Farmer;
 
 
+import com.stackroute.farmerprofileservice.models.Land;
 import com.stackroute.farmerprofileservice.models.LandOrder;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -73,24 +74,24 @@ public class KafkaConfig {
     }
 
     @Bean
-    public ConsumerFactory<String, LandOrder> consumerFactoryLandOrder() {
+    public ConsumerFactory<String, Land> consumerFactoryLand() {
         Map<String, Object> config = new HashMap<>();
-        JsonDeserializer<LandOrder> deserializer = new JsonDeserializer<>(LandOrder.class);
+        JsonDeserializer<Land> deserializer = new JsonDeserializer<>(Land.class);
         deserializer.setRemoveTypeHeaders(false);
         deserializer.addTrustedPackages("*");
         deserializer.setUseTypeMapperForKey(true);
 
         config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-        config.put(ConsumerConfig.GROUP_ID_CONFIG, "group_landorders");
+        config.put(ConsumerConfig.GROUP_ID_CONFIG, "group_land");
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, deserializer);
         return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(),deserializer);
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, LandOrder> kafkaListenerContainerFactoryLandOrder() {
-        ConcurrentKafkaListenerContainerFactory<String, LandOrder> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(consumerFactoryLandOrder());
+    public ConcurrentKafkaListenerContainerFactory<String, Land> kafkaListenerContainerFactoryLand() {
+        ConcurrentKafkaListenerContainerFactory<String, Land> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(consumerFactoryLand());
         return factory;
     }
 

@@ -15,23 +15,25 @@ public class BookingListener {
     FarmerRepository farmerRepository;
 
     FarmerDetailsService farmerDetailsService;
+   // String farmerId;
 
     @Autowired
     public BookingListener(FarmerDetailsService farmerDetailsService){
         this.farmerDetailsService = farmerDetailsService;
     }
 
-    Land land;
+    Land land=new Land();
+    Long landid;
 
-    @KafkaListener(topics = "landId", groupId = "group_strings", containerFactory = "kafkaListenerContainerFactory")
-    public void consumerJsonLandId(Long landId) {
-        System.out.println("Consumed landid: " + landId);
-        this.land.setId(landId);
-    }
+    @KafkaListener(topics = "bookedland", groupId = "group_land", containerFactory = "kafkaListenerContainerFactoryLand")
+    public void consumerJsonConsumer(Land land) {
 
-    @KafkaListener(topics = "landOrder", groupId = "group_landOrders", containerFactory = "kafkaListenerContainerFactoryLandOrder")
-    public void consumerJsonConsumer(LandOrder landOrder) {
-        System.out.println(landOrder);
-        this.land.getLandOrders().add(landOrder);
+      //  System.out.println(land);
+        farmerDetailsService.updateLandDetailsByFarmerId(land,land.getFarmerId(),land.getId());
+        System.out.println("updated :"+land);
+
+
+        farmerDetailsService.getAllLandsOfFarmerByEmail(land.getFarmerId());
+        System.out.println("done");
     }
 }

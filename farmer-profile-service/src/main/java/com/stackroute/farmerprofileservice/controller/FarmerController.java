@@ -4,10 +4,7 @@ package com.stackroute.farmerprofileservice.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stackroute.farmerprofileservice.exception.UserNotFoundException;
-import com.stackroute.farmerprofileservice.models.CropDTO;
-import com.stackroute.farmerprofileservice.models.Farmer;
-import com.stackroute.farmerprofileservice.models.FarmerDTO;
-import com.stackroute.farmerprofileservice.models.Land;
+import com.stackroute.farmerprofileservice.models.*;
 import com.stackroute.farmerprofileservice.repository.FarmerRepository;
 import com.stackroute.farmerprofileservice.service.FarmerDetailsService;
 import org.slf4j.Logger;
@@ -60,9 +57,6 @@ public class FarmerController {
         farmerDTO.setRole("farmer");
         System.out.println("Farmer DTO=" + farmerDTO);
         kafkaTemplate.send(TOPIC, new ObjectMapper().writeValueAsString(farmerDTO));
-
-        farmerService.recommend(farmer);
-
         Map<Object, Object> model = new HashMap<>();
         model.put("message", "Farmer registered successfully");
         return ok(model);
@@ -116,9 +110,13 @@ public class FarmerController {
     public  ResponseEntity<?>  getLandByIdOfLand(@PathVariable String email,@PathVariable long lid){
         return new ResponseEntity<>(farmerService.getSpecificLandOfFarmerByEmail(email,lid),HttpStatus.OK);
     }
+    @GetMapping("/land/orders/{email}/{lid}")
+    public  void getAllLandOrdersOfAFarmer(@PathVariable String email,@PathVariable long lid){
+        farmerService.getAllLandOrdersOfFarmerByEmail(email,lid);
+    }
 
     @PutMapping("land/update/{email}/{lid}")
-    public ResponseEntity<Farmer> updateLandById(@RequestBody Land land,@PathVariable String email,@PathVariable long lid){
+    public ResponseEntity<Farmer> updateLandById(@RequestBody Land land, @PathVariable String email, @PathVariable long lid){
         return new ResponseEntity<Farmer>(farmerService.updateLandDetailsByFarmerId(land,email,lid),HttpStatus.OK);
     }
 
@@ -131,4 +129,5 @@ public class FarmerController {
 
         return ("Uncles");
     }
+
 }

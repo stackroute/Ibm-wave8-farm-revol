@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -37,11 +38,6 @@ public class ConsumerController {
     private static String TOPIC = "kafka";
 
     @Autowired
-    private  KafkaTemplate<String, String> kafkaTemplateConsumer;
-
-    private static String TOPIC11="EmailRecommend";
-
-    @Autowired
     private ConsumerDetailsService consumerService;
 
     @SuppressWarnings("rawtypes")
@@ -58,18 +54,6 @@ public class ConsumerController {
         consumerDTO.setRole("consumer");
         System.out.println("Consumer DTO=" + consumerDTO);
         kafkaTemplate.send(TOPIC, new ObjectMapper().writeValueAsString(consumerDTO));
-//        ConsumerDTORecommendation consumerDTORecommendation=new ConsumerDTORecommendation();
-//        consumerDTORecommendation.setEmail(consumer.getEmail());
-//        consumerDTORecommendation.setFullname(consumer.getFullname());
-//        System.out.println("consumerDTORecommendatios" +consumerDTORecommendation);
-//        kafkaTemplate1.send(TOPIC1, new ObjectMapper().writeValueAsString(consumerDTORecommendation));
-//
-//       ConsumerDTORecommendation consumerDTORecommendation = new ConsumerDTORecommendation();
-//        consumerDTORecommendation.setEmail(consumer.getEmail());
-//       consumerDTORecommendation.setFullname(consumer.getFullname());
-//        kafkaTemplate1.send(TOPIC1, consumerDTORecommendation);
-        consumerService.recommend(consumer);
-
         Map<Object, Object> model = new HashMap<>();
         model.put("message", "Consumer registered successfully");
         return ok(model);
@@ -80,6 +64,13 @@ public class ConsumerController {
         System.out.println(email);
         ResponseEntity responseEntity;
         responseEntity = new ResponseEntity<>(consumerService.getConsumerByEmail(email), HttpStatus.CREATED);
+        return responseEntity;
+    }
+    @GetMapping("/orders/{email}")
+    public ResponseEntity<?> getConsumerOrders(@PathVariable String email) throws UserNotFoundException {
+        System.out.println(email);
+        ResponseEntity responseEntity;
+        responseEntity = new ResponseEntity<>(consumerService.getConsumerOrders(email), HttpStatus.CREATED);
         return responseEntity;
     }
 
@@ -95,14 +86,15 @@ public class ConsumerController {
         return new ResponseEntity<Consumer>(consumer, HttpStatus.OK);
     }
 
-    @GetMapping("recommend/{email}")
-    public void getFarmersRecommend(@PathVariable String email){
-        kafkaTemplateConsumer.send(TOPIC11,email);
-    }
+//    @PostMapping("/booking/{email}/{cropName}")
+//    public void landDetails(@RequestBody Land land)
+//    {
+//
+//    }
 
     @GetMapping("/booking/{email}/{cropName}")
-    public void bookLand(@PathVariable("email") String email, @RequestBody Land land, @PathVariable("cropName") String cropName) {
-        consumerService.bookLand(email, land, cropName);
+    public void bookLand(@PathVariable("email") String email, @PathVariable("cropName") String cropName, @RequestBody Land land) {
+        consumerService.bookLand(email,cropName,land);
     }
 
 }

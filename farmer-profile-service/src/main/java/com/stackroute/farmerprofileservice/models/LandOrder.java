@@ -12,10 +12,10 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 public class LandOrder {
-    private int orderId;
-    private Long landId;
+
+    private long orderId;
     private String consumerId;
     private String crop;
-    private int price;
+    private double price;
     private LocalDateTime time;
 }

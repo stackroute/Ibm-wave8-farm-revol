@@ -1,38 +1,37 @@
 package com.stackroute.booking.controller;
 
 import com.stackroute.booking.model.*;
+import com.stackroute.booking.service.SequenceGeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-
 @Service
 public class BookingController {
     String cropName;
-    Long landId;
+    Land land = new Land();
+
+    @Autowired
+    private SequenceGeneratorService sequenceGenerator;
+
 
     @Autowired
     private KafkaTemplate<String, Consumer> kafkaTemplateConsumer;
-    private static String TOPIC = "consumer";
+    private static String TOPIC = "bookedconsumer";
 
     @Autowired
-    private KafkaTemplate<String, LandOrder> kafkaTemplateLandOrder;
-
-    @Autowired
-    private KafkaTemplate<String, String > kafkaTemplate;
+    private KafkaTemplate<String , Land> kafkaTemplateLand;
+    private static String TOPIC1 = "bookedland";
 
 
-    private static String TOPIC1 = "landId";
-    private static String TOPIC2 = "landOrder";
 
 
-    // @KafkaListener(topics = "land", groupId = "group_string", containerFactory = "kafkaListenerContainerFactory")
-    // public void consumerJsonLandId(String landId) {
-    //     System.out.println("Consumed landid: " + landId);
-    //     this.landId = landId;
-    // }
+         @KafkaListener(topics = "land", groupId = "group_land", containerFactory = "kafkaListenerContainerFactoryLand")
+     public void consumerJsonLandId(Land land) {
+         System.out.println("Consumed land is: " + land);
+         this.land = land;
+     }
 
     @KafkaListener(topics = "crop" , groupId = "group_string", containerFactory = "kafkaListenerContainerFactory")
     public void consumerJsonCrop(String cropName) {
@@ -41,30 +40,23 @@ public class BookingController {
     }
 
 
+
     @KafkaListener(topics = "consumertopic", groupId = "group_consumer", containerFactory = "kafkaListenerContainerFactoryConsumer")
     public void consumerJsonConsumer(Consumer consumer) {
         System.out.println("Consumed JSON Message of conmsumer: " + consumer);
-        ConsumerOrder consumerOrder = new ConsumerOrder(1,landId,"2",cropName,2500, null);
+        ConsumerOrder consumerOrder = new ConsumerOrder(sequenceGenerator.getNextSequence(ConsumerOrder.SEQUENCE_NAME),land.getId(),land.getFarmerId(),cropName,land.getLandPrice(), null);
         consumer.getConsumerOrders().add(consumerOrder);
         System.out.println(consumer);
+
         kafkaTemplateConsumer.send(TOPIC, consumer);
 
-        LandOrder landOrder = new LandOrder(1, consumer.getEmail(),cropName,2500,null);
-        System.out.println(landOrder);
-        // kafkaTemplate.send(TOPIC1,landId);
-        kafkaTemplateLandOrder.send(TOPIC2,landOrder);
+//        LandOrder landOrder1 = new LandOrder();
+//        landOrder1.setOrderId(sequenceGenerator.getNextSequence(LandOrder.SEQUENCE_NAME));
+
+        LandOrder landOrder = new LandOrder(sequenceGenerator.getNextSequence(LandOrder.SEQUENCE_NAME), consumer.getEmail(),cropName,land.getLandPrice(),null);
+        this.land.getLandOrders().add(landOrder);
+        System.out.println("New land"+land);
+        kafkaTemplateLand.send(TOPIC1,land);
     }
-
-
-    // @KafkaListener(topics = "consumertopic", groupId = "group_consumer", containerFactory = "kafkaListenerContainerFactoryConsumer")
-    // public void consumerJsonConsumer(Consumer consumer) {
-    //     System.out.println("Consumed JSON Message of conmsumer: " + consumer);
-    //     ConsumerOrder consumerOrder = new ConsumerOrder(1,landId,"2",cropName,2500, null);
-    //     consumer.getConsumerOrders().add(consumerOrder);
-    //     System.out.println(consumer);
-    //     kafkaTemplateConsumerLong.send(TOPIC,consumer);
-
-    // }
-
 
 }

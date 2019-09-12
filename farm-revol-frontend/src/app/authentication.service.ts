@@ -9,7 +9,7 @@ import { LoginUser } from 'src/Login';
 
 const apiUrl = 'http://localhost:8089/api/farmer/';
 const apiUrl1 = 'http://localhost:8092/api/consumer/';
-const apiurl2='http://localhost:8091/authenticate';
+const apiurl2='http://172.23.238.208:8091/authenticate';
 
 
 @Injectable({

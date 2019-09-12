@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 import java.util.ArrayList;
-import java.util.List;
 
 @Document
 
@@ -31,6 +30,7 @@ public class Land {
     String location;
     ArrayList<String> crops;
     String image;
+    boolean available = true;
 
     //All the orders of the corresponding land
     ArrayList<LandOrder> landOrders = new ArrayList<LandOrder>();

@@ -13,11 +13,11 @@ import java.time.LocalDateTime;
 @Builder
 public class ConsumerOrder
 {
-    private int orderId;
+    private Long orderId;
     private Long landId;
     private String farmerId;
     private String crop;
-    private int price;
+    private double price;
     private LocalDateTime time;
 }
 

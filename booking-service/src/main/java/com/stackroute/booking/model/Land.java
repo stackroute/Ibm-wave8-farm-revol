@@ -25,6 +25,7 @@ public class Land {
     String location;
     ArrayList<String> crops;
     String image;
+    boolean available = false;
 
     //All the orders of the corresponding land
     ArrayList<LandOrder> landOrders = new ArrayList<LandOrder>();
