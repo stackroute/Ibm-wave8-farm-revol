@@ -9,7 +9,7 @@ import { Location } from '@angular/common';
 })
 export class SearchComponent implements OnInit {
 
-  cropList:any = [];
+  cropList:any;
 
   constructor(private homeService: HomeserviceService, private route: ActivatedRoute, private location: Location,
     private router:Router ) { }
@@ -21,7 +21,7 @@ export class SearchComponent implements OnInit {
         let searchString = params.get('value');
         this.homeService.getSearch(searchString).subscribe((data)=> {
           this.cropList = data;
-          console.log(this.cropList[0].id);
+          console.log("Crop is" + this.cropList.id);
         }
 
         );

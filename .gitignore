@@ -58,7 +58,13 @@ local.properties
 # Maven
 ######################
 /log/
-/target/
+target/
+./*/target/
+./*/.mvn/
+./*/*.iml
+./*/mvnw
+./*/mvnw.cmd
+
 ######################
 # Gradle
 ######################

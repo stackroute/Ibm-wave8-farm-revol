@@ -5,14 +5,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stackroute.consumerprofileservice.exception.UserNotFoundException;
 import com.stackroute.consumerprofileservice.model.Consumer;
 import com.stackroute.consumerprofileservice.model.ConsumerDTO;
+<<<<<<< HEAD
 import com.stackroute.consumerprofileservice.model.ConsumerDTORecommendation;
+=======
+import com.stackroute.consumerprofileservice.model.Land;
+>>>>>>> 1f72c3604b0f1dba68d5d94b00b4830c03a51fc9
 import com.stackroute.consumerprofileservice.repository.ConsumerRepository;
 import com.stackroute.consumerprofileservice.service.ConsumerDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,9 +29,9 @@ import static org.springframework.http.ResponseEntity.ok;
 @RequestMapping("/api/consumer")
 public class ConsumerController {
 
-    @Autowired
+   /* @Autowired
     private AuthenticationManager authenticationManager;
-
+*/
     @Autowired
     ConsumerRepository consumers;
 
@@ -76,10 +79,8 @@ public class ConsumerController {
         return ok(model);
     }
 
-
-
-    @GetMapping("/register")
-    public ResponseEntity<?> getConsumerById(@RequestParam("email") String email) throws UserNotFoundException {
+    @GetMapping("/register/{email}")
+    public ResponseEntity<?> getConsumerById(@PathVariable String email) throws UserNotFoundException {
         System.out.println(email);
         ResponseEntity responseEntity;
         responseEntity = new ResponseEntity<>(consumerService.getConsumerByEmail(email), HttpStatus.CREATED);
@@ -98,10 +99,17 @@ public class ConsumerController {
         return new ResponseEntity<Consumer>(consumer, HttpStatus.OK);
     }
 
+<<<<<<< HEAD
     @GetMapping("recommend/{email}")
     public void getFarmersRecommend(@PathVariable String email){
         kafkaTemplateConsumer.send(TOPIC11,email);
     }
 
+=======
+    @GetMapping("/booking/{email}/{cropName}")
+    public void bookLand(@PathVariable("email") String email, @RequestBody Land land, @PathVariable("cropName") String cropName) {
+        consumerService.bookLand(email, land, cropName);
+    }
+>>>>>>> 1f72c3604b0f1dba68d5d94b00b4830c03a51fc9
 
 }

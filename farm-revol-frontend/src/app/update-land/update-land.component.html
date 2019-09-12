@@ -1,0 +1,55 @@
+<app-navbar-farmer></app-navbar-farmer>
+
+ <div class = "profile-edit-all">
+    <div class = "container-margin"></div>
+    
+    <div class = "profile-con">
+            
+            <div class="example-container">
+                
+                    <mat-form-field>
+                     Land Size : 
+                        <input matInput class = "input-items"  [(ngModel)] = "lands.landSize" disabled>
+                    </mat-form-field>
+                    
+                    <mat-form-field>
+                        Land Location : 
+                      <input matInput class = "input-items" [(ngModel)] = "lands.location" disabled>
+                    </mat-form-field>
+                    
+                    <mat-form-field>
+                            Land Price : 
+                            <input matInput class = "input-items" [(ngModel)] = "lands.landPrice" disabled>
+                    </mat-form-field>
+                    
+                   
+                    <mat-form-field > 
+                        Enter the crops : 
+                        
+                        <mat-select class = "input-items" multiple name="crops" [(ngModel)]="lands.crops">
+                          <mat-option *ngFor="let crops of cropList" name="crops" value="{{crops}}">{{crops}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    
+                   </div>
+    
+                   <div class="example-button-row ">
+                        
+                        <button class = "edit-button" mat-button color="primary" (click)="enable_disable()">Edit Land</button>
+                        <button class = "edit-button submit-button" mat-button color="primary" (click)="updateLandDetails()" > Submit</button>
+                      </div>        
+                   
+    </div>
+
+
+    </div>
+    
+    
+
+
+ 
+
+
+  
+  
+  

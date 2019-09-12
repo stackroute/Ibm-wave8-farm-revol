@@ -1,17 +1,20 @@
 package com.stackroute.farmerprofileservice.config;
 
+import com.stackroute.farmerprofileservice.models.CropDTO;
 import com.stackroute.farmerprofileservice.models.Farmer;
 
 
+<<<<<<< HEAD
 import com.stackroute.farmerprofileservice.models.FarmerDTORecommendation;
+=======
+import com.stackroute.farmerprofileservice.models.LandOrder;
+>>>>>>> 1f72c3604b0f1dba68d5d94b00b4830c03a51fc9
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.common.security.auth.Login;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.*;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
@@ -56,8 +59,14 @@ public class KafkaConfig {
         return new KafkaTemplate<>(producerFactoryFarmer());
     }
 
+<<<<<<< HEAD
     @Bean
     public ProducerFactory<String, FarmerDTORecommendation> producerFactoryCo(){
+=======
+
+    @Bean
+    public ProducerFactory<String, CropDTO> producerFactoryCropDTO(){
+>>>>>>> 1f72c3604b0f1dba68d5d94b00b4830c03a51fc9
         Map<String, Object> config = new HashMap<>();
 
         config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
@@ -68,8 +77,53 @@ public class KafkaConfig {
     }
 
     @Bean
+<<<<<<< HEAD
     public KafkaTemplate<String,FarmerDTORecommendation> kafkaTemplate1() {
         return new KafkaTemplate<>(producerFactoryCo());
     }
 
+=======
+    public KafkaTemplate<String, CropDTO> kafkaTemplateCropDTO() {
+        return new KafkaTemplate<>(producerFactoryCropDTO());
+    }
+
+    @Bean
+    public ConsumerFactory<String, LandOrder> consumerFactoryLandOrder() {
+        Map<String, Object> config = new HashMap<>();
+        JsonDeserializer<LandOrder> deserializer = new JsonDeserializer<>(LandOrder.class);
+        deserializer.setRemoveTypeHeaders(false);
+        deserializer.addTrustedPackages("*");
+        deserializer.setUseTypeMapperForKey(true);
+
+        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        config.put(ConsumerConfig.GROUP_ID_CONFIG, "group_landorders");
+        config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, deserializer);
+        return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(),deserializer);
+    }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, LandOrder> kafkaListenerContainerFactoryLandOrder() {
+        ConcurrentKafkaListenerContainerFactory<String, LandOrder> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(consumerFactoryLandOrder());
+        return factory;
+    }
+
+    @Bean
+    public ConsumerFactory<String, String> consumerFactory() {
+        Map<String, Object> config = new HashMap<>();
+        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        config.put(ConsumerConfig.GROUP_ID_CONFIG, "group_strings");
+        config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        return new DefaultKafkaConsumerFactory<>(config);
+    }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(consumerFactory());
+        return factory;
+    }
+>>>>>>> 1f72c3604b0f1dba68d5d94b00b4830c03a51fc9
 }
