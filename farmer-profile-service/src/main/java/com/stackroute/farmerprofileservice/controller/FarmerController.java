@@ -94,7 +94,6 @@ public class FarmerController {
 
     @PutMapping("land-details/{email}")
     public ResponseEntity<Farmer> uploadLandDetails(@RequestBody Land land, @PathVariable String email){
-        System.out.println(land);
         return new ResponseEntity<Farmer>(farmerService.uploadLandDetails(land,email),HttpStatus.OK);
     }
 

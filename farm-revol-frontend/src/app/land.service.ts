@@ -3,7 +3,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Land } from '../Land';
 import { Observable } from 'rxjs';
 
-const apiUrl = 'http://localhost:8090/api/farmer';
+const apiUrl = 'http://localhost:8089/api/farmer';
 
 
 @Injectable({
