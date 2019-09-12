@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
@@ -12,9 +14,13 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 public class LandOrder {
-    private int orderId;
+    @Transient
+    public static final String SEQUENCE_NAME="users_sequence";
+
+    @Id
+    private Long orderId;
     private String consumerId;
     private String crop;
-    private int price;
+    private double price;
     private LocalDateTime time;
 }

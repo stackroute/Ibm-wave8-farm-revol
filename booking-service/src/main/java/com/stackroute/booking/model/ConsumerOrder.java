@@ -15,11 +15,12 @@ import java.time.LocalDateTime;
 @Builder
 public class ConsumerOrder
 {
-    private int orderId;
+    public static final String SEQUENCE_NAME="users_sequence";
+    private Long orderId;
     private Long landId;
     private String farmerId;
     private String crop;
-    private int price;
+    private double price;
     private LocalDateTime time;
 
 }

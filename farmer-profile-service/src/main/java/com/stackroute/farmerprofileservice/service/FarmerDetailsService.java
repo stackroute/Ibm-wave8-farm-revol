@@ -3,6 +3,7 @@ package com.stackroute.farmerprofileservice.service;
 import com.stackroute.farmerprofileservice.exception.UserNotFoundException;
 import com.stackroute.farmerprofileservice.models.Farmer;
 import com.stackroute.farmerprofileservice.models.Land;
+import com.stackroute.farmerprofileservice.models.LandOrder;
 import com.stackroute.farmerprofileservice.repository.FarmerRepository;
 import com.stackroute.farmerprofileservice.repository.RoleRepository;
 
@@ -53,13 +54,13 @@ public class FarmerDetailsService {
     public void saveFarmer(Farmer farmer) {
         farmer.setPassword(farmer.getPassword());
         farmer.setEnabled(true);
-        //farmer.setLand(new ArrayList<>());
+        farmer.setLand(new ArrayList<>());
 
-//        for (int i = 0; i < farmer.getLand().size(); i++) {
-//            farmer.getLand().get(i).setId(sequenceGenerator.getNextSequence((Land.SEQUENCE_NAME)));
-//
-//            System.out.println("hello" + farmer.getLand().get(i).getId());
-//        }
+        for (int i = 0; i < farmer.getLand().size(); i++) {
+            farmer.getLand().get(i).setId(sequenceGenerator.getNextSequence((Land.SEQUENCE_NAME)));
+
+            System.out.println("hello" + farmer.getLand().get(i).getId());
+        }
 
         farmerRepository.save(farmer);
     }
@@ -78,18 +79,23 @@ public class FarmerDetailsService {
         return farmerRepository.findById(email).get();
     }
 
-
-
     //
     public Farmer uploadLandDetails(Land land, String email) {
-
+        System.out.println(email);
+        System.out.println("land"+land);
         Optional optional = farmerRepository.findById(email);
         Farmer farmer = (Farmer) optional.get();
-        List<Land> landList = farmer.getLand();
-        landList.add(land);
-//        for(int i=0;i<landList.size();i++) {
-//            farmer.getLand().get(i).setId(sequenceGenerator.getNextSequence(Land.SEQUENCE_NAME));
-//        }
+     //   System.out.println(farmer);
+        ArrayList<Land> landList = farmer.getLand();
+        try {
+            land.setId(sequenceGenerator.getNextSequence(Land.SEQUENCE_NAME));
+            land.setFarmerId(email);
+            landList.add(land);
+            farmer.setLand(landList);
+        }
+        catch (Exception exception){
+            exception.printStackTrace();
+        }
         farmerRepository.save(farmer);
         return farmer;
     }
@@ -169,12 +175,16 @@ public class FarmerDetailsService {
         Farmer farmer = (Farmer) optional.get();
         ArrayList<Land> lands = farmer.getLand();
         int i;
+        System.out.println(lands);
         for (i = 0; i < lands.size(); i++) {
             if (lands.get(i).getId().equals(lid)) {
+                land.setId(lands.get(i).getId());
+                land.setFarmerId(email);
+//                land.getLandOrders().add(landOrder);
                 lands.set(i, land);
-                System.out.println(lands.get(i).getId());
                 break;
             }
+
         }
         farmer.setLand(lands);
         System.out.println(farmer);

@@ -25,7 +25,7 @@ public class ConsumerListener
         this.consumerDetailsService = consumerDetailsService;
     }
 
-    @KafkaListener(topics = "consumer", groupId = "group_consumer_booking", containerFactory = "kafkaListenerContainerFactoryConsumer")
+    @KafkaListener(topics = "bookedconsumer", groupId = "group_consumer_booking", containerFactory = "kafkaListenerContainerFactoryConsumer")
     public void consumerJsonConsumer(Consumer consumer) {
         System.out.println("Consumed JSON Message from booking:  " + consumer);
       //  consumers.delete(consumer);

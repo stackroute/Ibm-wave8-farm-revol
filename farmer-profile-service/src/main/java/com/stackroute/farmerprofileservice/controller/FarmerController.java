@@ -4,10 +4,7 @@ package com.stackroute.farmerprofileservice.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stackroute.farmerprofileservice.exception.UserNotFoundException;
-import com.stackroute.farmerprofileservice.models.CropDTO;
-import com.stackroute.farmerprofileservice.models.Farmer;
-import com.stackroute.farmerprofileservice.models.FarmerDTO;
-import com.stackroute.farmerprofileservice.models.Land;
+import com.stackroute.farmerprofileservice.models.*;
 import com.stackroute.farmerprofileservice.repository.FarmerRepository;
 import com.stackroute.farmerprofileservice.service.FarmerDetailsService;
 import org.slf4j.Logger;
@@ -94,7 +91,6 @@ public class FarmerController {
 
     @PutMapping("land-details/{email}")
     public ResponseEntity<Farmer> uploadLandDetails(@RequestBody Land land, @PathVariable String email){
-        System.out.println(land);
         return new ResponseEntity<Farmer>(farmerService.uploadLandDetails(land,email),HttpStatus.OK);
     }
 
@@ -116,7 +112,7 @@ public class FarmerController {
     }
 
     @PutMapping("land/update/{email}/{lid}")
-    public ResponseEntity<Farmer> updateLandById(@RequestBody Land land,@PathVariable String email,@PathVariable long lid){
+    public ResponseEntity<Farmer> updateLandById(@RequestBody Land land, @PathVariable String email, @PathVariable long lid){
         return new ResponseEntity<Farmer>(farmerService.updateLandDetailsByFarmerId(land,email,lid),HttpStatus.OK);
     }
 

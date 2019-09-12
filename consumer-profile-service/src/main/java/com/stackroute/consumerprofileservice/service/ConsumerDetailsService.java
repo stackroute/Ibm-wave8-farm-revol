@@ -33,7 +33,6 @@ public class ConsumerDetailsService {
 
     @Autowired
     private KafkaTemplate<String, Consumer> kafkaTemplateConsumer;
-
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
     @Autowired
@@ -45,6 +44,7 @@ public class ConsumerDetailsService {
     private static String TOPIC3 = "land";
 
     private static String TOPIC4 = "crop";
+
 
     public Consumer findConsumerByEmail(String email) {
         Query query=new Query();
@@ -90,13 +90,13 @@ public class ConsumerDetailsService {
         return consumerRepository.save(consumer);
     }
 
-    public String bookLand(String email, Land land, String cropName){
+    public String bookLand(String email, String cropName, Land land){
+
         Consumer consumer = getConsumerByEmail(email);
 
         kafkaTemplateConsumer.send(TOPIC2, consumer);
-        kafkaTemplateLand.send(TOPIC3,land );
         kafkaTemplate.send(TOPIC4, cropName);
-
+        kafkaTemplateLand.send(TOPIC3, land);
 
         return "published";
     }

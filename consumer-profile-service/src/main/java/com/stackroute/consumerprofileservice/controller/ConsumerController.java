@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -78,9 +79,15 @@ public class ConsumerController {
         return new ResponseEntity<Consumer>(consumer, HttpStatus.OK);
     }
 
+//    @PostMapping("/booking/{email}/{cropName}")
+//    public void landDetails(@RequestBody Land land)
+//    {
+//
+//    }
+
     @GetMapping("/booking/{email}/{cropName}")
-    public void bookLand(@PathVariable("email") String email, @RequestBody Land land, @PathVariable("cropName") String cropName) {
-        consumerService.bookLand(email, land, cropName);
+    public void bookLand(@PathVariable("email") String email, @PathVariable("cropName") String cropName, @RequestBody Land land) {
+        consumerService.bookLand(email,cropName,land);
     }
 
 }
