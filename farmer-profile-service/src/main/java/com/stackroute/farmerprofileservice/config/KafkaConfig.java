@@ -4,11 +4,7 @@ import com.stackroute.farmerprofileservice.models.CropDTO;
 import com.stackroute.farmerprofileservice.models.Farmer;
 
 
-<<<<<<< HEAD
-import com.stackroute.farmerprofileservice.models.FarmerDTORecommendation;
-=======
 import com.stackroute.farmerprofileservice.models.LandOrder;
->>>>>>> 1f72c3604b0f1dba68d5d94b00b4830c03a51fc9
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -59,14 +55,9 @@ public class KafkaConfig {
         return new KafkaTemplate<>(producerFactoryFarmer());
     }
 
-<<<<<<< HEAD
-    @Bean
-    public ProducerFactory<String, FarmerDTORecommendation> producerFactoryCo(){
-=======
 
     @Bean
     public ProducerFactory<String, CropDTO> producerFactoryCropDTO(){
->>>>>>> 1f72c3604b0f1dba68d5d94b00b4830c03a51fc9
         Map<String, Object> config = new HashMap<>();
 
         config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
@@ -77,12 +68,6 @@ public class KafkaConfig {
     }
 
     @Bean
-<<<<<<< HEAD
-    public KafkaTemplate<String,FarmerDTORecommendation> kafkaTemplate1() {
-        return new KafkaTemplate<>(producerFactoryCo());
-    }
-
-=======
     public KafkaTemplate<String, CropDTO> kafkaTemplateCropDTO() {
         return new KafkaTemplate<>(producerFactoryCropDTO());
     }
@@ -125,5 +110,4 @@ public class KafkaConfig {
         factory.setConsumerFactory(consumerFactory());
         return factory;
     }
->>>>>>> 1f72c3604b0f1dba68d5d94b00b4830c03a51fc9
 }

@@ -1,23 +1,5 @@
 package com.stackroute.booking.controller;
 
-<<<<<<< HEAD
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.stackroute.booking.model.BookingDTORecommendation;
-import com.stackroute.booking.service.BookingDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import static org.springframework.http.ResponseEntity.ok;
-
-@CrossOrigin(origins = "*")
-@RestController
-@RequestMapping("/api/booking")
-=======
 import com.stackroute.booking.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -27,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
 @Service
->>>>>>> 1f72c3604b0f1dba68d5d94b00b4830c03a51fc9
 public class BookingController {
     String cropName;
     Long landId;
@@ -53,18 +34,6 @@ public class BookingController {
     //     this.landId = landId;
     // }
 
-<<<<<<< HEAD
-
-    @Autowired
-    BookingDetailsService bookingDetailsService;
-    @PostMapping("/recommend")
-    public String recommend(@RequestBody BookingDTORecommendation bookingDTORecommendation) throws JsonProcessingException {
-
-        bookingDetailsService.recommend(bookingDTORecommendation);
-        return "Published";
-    }
-
-=======
     @KafkaListener(topics = "crop" , groupId = "group_string", containerFactory = "kafkaListenerContainerFactory")
     public void consumerJsonCrop(String cropName) {
         System.out.println("Consumed crop: " + cropName);
@@ -98,5 +67,4 @@ public class BookingController {
     // }
 
 
->>>>>>> 1f72c3604b0f1dba68d5d94b00b4830c03a51fc9
 }

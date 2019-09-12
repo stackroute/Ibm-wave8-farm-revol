@@ -5,11 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stackroute.consumerprofileservice.exception.UserNotFoundException;
 import com.stackroute.consumerprofileservice.model.Consumer;
 import com.stackroute.consumerprofileservice.model.ConsumerDTO;
-<<<<<<< HEAD
-import com.stackroute.consumerprofileservice.model.ConsumerDTORecommendation;
-=======
 import com.stackroute.consumerprofileservice.model.Land;
->>>>>>> 1f72c3604b0f1dba68d5d94b00b4830c03a51fc9
 import com.stackroute.consumerprofileservice.repository.ConsumerRepository;
 import com.stackroute.consumerprofileservice.service.ConsumerDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,17 +95,14 @@ public class ConsumerController {
         return new ResponseEntity<Consumer>(consumer, HttpStatus.OK);
     }
 
-<<<<<<< HEAD
     @GetMapping("recommend/{email}")
     public void getFarmersRecommend(@PathVariable String email){
         kafkaTemplateConsumer.send(TOPIC11,email);
     }
 
-=======
     @GetMapping("/booking/{email}/{cropName}")
     public void bookLand(@PathVariable("email") String email, @RequestBody Land land, @PathVariable("cropName") String cropName) {
         consumerService.bookLand(email, land, cropName);
     }
->>>>>>> 1f72c3604b0f1dba68d5d94b00b4830c03a51fc9
 
 }

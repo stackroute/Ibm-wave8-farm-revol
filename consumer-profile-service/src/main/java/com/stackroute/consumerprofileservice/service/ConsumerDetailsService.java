@@ -3,14 +3,11 @@ package com.stackroute.consumerprofileservice.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import com.stackroute.consumerprofileservice.exception.UserNotFoundException;
-<<<<<<< HEAD
 import com.stackroute.consumerprofileservice.model.*;
 
-=======
 import com.stackroute.consumerprofileservice.model.Consumer;
 import com.stackroute.consumerprofileservice.model.Land;
 import com.stackroute.consumerprofileservice.model.Order;
->>>>>>> 1f72c3604b0f1dba68d5d94b00b4830c03a51fc9
 import com.stackroute.consumerprofileservice.repository.ConsumerRepository;
 import com.stackroute.consumerprofileservice.repository.RoleRepository;
 
@@ -18,21 +15,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-<<<<<<< HEAD
 
-=======
->>>>>>> 1f72c3604b0f1dba68d5d94b00b4830c03a51fc9
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-<<<<<<< HEAD
 import java.util.List;
 
-=======
 import java.util.ArrayList;
->>>>>>> 1f72c3604b0f1dba68d5d94b00b4830c03a51fc9
 
 @Service
 public class ConsumerDetailsService {
@@ -49,11 +40,9 @@ public class ConsumerDetailsService {
     private MongoTemplate mongoTemplate;
 
     @Autowired
-<<<<<<< HEAD
     private KafkaTemplate<String, ConsumerDTORecommendation> kafkaTemplate1;
 
     private static String TOPIC1="ConsumerRecommend";
-=======
     private KafkaTemplate<String, Consumer> kafkaTemplateConsumer;
 
     @Autowired
@@ -67,7 +56,6 @@ public class ConsumerDetailsService {
     private static String TOPIC3 = "land";
 
     private static String TOPIC4 = "crop";
->>>>>>> 1f72c3604b0f1dba68d5d94b00b4830c03a51fc9
 
     public Consumer findConsumerByEmail(String email) {
         Query query=new Query();
@@ -108,15 +96,11 @@ public class ConsumerDetailsService {
         }
         return consumerRepository.findById(email).get();
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 1f72c3604b0f1dba68d5d94b00b4830c03a51fc9
     public Consumer updateConsumer(Consumer consumer) {
         return consumerRepository.save(consumer);
     }
 
-<<<<<<< HEAD
     public String recommend(Consumer consumer) throws JsonProcessingException {
         ConsumerDTORecommendation consumerDTORecommendation=new ConsumerDTORecommendation();
         consumerDTORecommendation.setFullname(consumer.getFullname());
@@ -131,7 +115,6 @@ public class ConsumerDetailsService {
     public void bookingJson(Farmers farmers) {
         System.out.println("Consumed Farmers who recommended: "+farmers );
     }
-=======
     public String bookLand(String email, Land land, String cropName){
         Consumer consumer = getConsumerByEmail(email);
 
@@ -143,5 +126,4 @@ public class ConsumerDetailsService {
         return "published";
     }
 
->>>>>>> 1f72c3604b0f1dba68d5d94b00b4830c03a51fc9
 }

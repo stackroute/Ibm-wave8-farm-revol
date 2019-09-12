@@ -20,7 +20,16 @@
 		<java.version>11</java.version>
 	</properties>
 
-	<dependencies></dependencies>
+	<dependencies>
+		
+		<dependency>
+		    <groupId>com.h2database</groupId>
+		    <artifactId>h2</artifactId>
+		    <version>1.4.199</version>
+		    <scope>test</scope>
+		</dependency>
+
+	</dependencies>
 	
 	<modules>
 		<module>booking-service</module>
