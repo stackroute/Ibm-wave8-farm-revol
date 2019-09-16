@@ -18,6 +18,7 @@ import java.util.Map;
 @Configuration
 public class KafkaConfiguration {
 
+
     @Bean
     public ProducerFactory<String, Land> producerFactoryLand()
     {
@@ -44,6 +45,7 @@ public class KafkaConfiguration {
         config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
         return new DefaultKafkaProducerFactory<>(config);
     }
+
     @Bean
     public KafkaTemplate<String, BookingDTORecommendation> kafkaTemplateBookingDTORecommendation()
     {
@@ -66,26 +68,6 @@ public class KafkaConfiguration {
     {
         return new KafkaTemplate<>(producerFactoryConsumer());
     }
-
-//    @Bean
-//    public ProducerFactory<String, Farmer> producerFactoryFarmer()
-//    {
-//        Map<String,Object> config = new HashMap<>();
-//        config.put(JsonSerializer.ADD_TYPE_INFO_HEADERS, false);
-//        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"localhost:9092");
-//        config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-//        config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
-//        return new DefaultKafkaProducerFactory<>(config);
-//    }
-//    @Bean
-//    public KafkaTemplate<String, Farmer> kafkaTemplateFarmer()
-//    {
-//        return new KafkaTemplate<>(producerFactoryFarmer());
-//    }
-
-
-
-
 
     @Bean
     public ConsumerFactory<String, Consumer> consumerFactoryConsumer() {

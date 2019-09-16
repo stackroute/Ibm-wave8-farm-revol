@@ -26,9 +26,6 @@ import static org.springframework.http.ResponseEntity.ok;
 @RequestMapping("/api/consumer")
 public class ConsumerController {
 
-   /* @Autowired
-    private AuthenticationManager authenticationManager;
-*/
     @Autowired
     ConsumerRepository consumers;
 
@@ -91,12 +88,6 @@ public class ConsumerController {
         consumerService.updateConsumer(consumer);
         return new ResponseEntity<Consumer>(consumer, HttpStatus.OK);
     }
-
-//    @PostMapping("/booking/{email}/{cropName}")
-//    public void landDetails(@RequestBody Land land)
-//    {
-//
-//    }
 
     @PutMapping("/booking/{email}/{cropName}")
     public void bookLand(@PathVariable("email") String email, @PathVariable("cropName") String cropName, @RequestBody Land land) {

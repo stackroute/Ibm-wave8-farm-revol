@@ -135,7 +135,6 @@ public class FarmerDetailsService {
         return requiredLand[0];
     }
     public ArrayList<LandOrder> getAllLandOrdersOfFarmerByEmail(String email, Long lid) {
-        System.out.println("hiigreeeeeeeeeeerrrrrrfdgdfgvgdfgvr");
         Optional optional = farmerRepository.findById(email);
         Farmer farmer = (Farmer) optional.get();
         System.out.println("farmer is"+farmer);

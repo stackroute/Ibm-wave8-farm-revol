@@ -3,6 +3,8 @@ package com.stackroute.farmerprofileservice.config;
 import com.stackroute.farmerprofileservice.models.*;
 
 
+import com.stackroute.farmerprofileservice.models.Land;
+import com.stackroute.farmerprofileservice.models.LandOrder;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;

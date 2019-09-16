@@ -129,8 +129,8 @@ public class FarmerController {
         return new ResponseEntity<>(farmerService.getSpecificLandOfFarmerByEmail(email,lid),HttpStatus.OK);
     }
     @GetMapping("/land/orders/{email}/{lid}")
-    public  ResponseEntity<?> getAllLandOrdersOfAFarmer(@PathVariable String email,@PathVariable long lid){
-        return new ResponseEntity<>(farmerService.getAllLandOrdersOfFarmerByEmail(email,lid),HttpStatus.OK);
+    public  void getAllLandOrdersOfAFarmer(@PathVariable String email,@PathVariable long lid){
+        farmerService.getAllLandOrdersOfFarmerByEmail(email,lid);
     }
 
     @PutMapping("land/update/{email}/{lid}")
