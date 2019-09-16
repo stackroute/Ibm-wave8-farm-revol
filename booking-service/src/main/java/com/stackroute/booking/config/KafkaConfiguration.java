@@ -18,6 +18,7 @@ import java.util.Map;
 @Configuration
 public class KafkaConfiguration {
 
+<<<<<<< HEAD
 
     @Bean
     public ProducerFactory<String, Land> producerFactoryLand()
@@ -37,6 +38,26 @@ public class KafkaConfiguration {
 
     @Bean
     public ProducerFactory<String, BookingDTORecommendation> producerFactoryBookingDTORecommendation()
+=======
+//    @Bean
+//    public ProducerFactory<String, String> producerFactory()
+//    {
+//        Map<String,Object> config = new HashMap<>();
+//        config.put(JsonSerializer.ADD_TYPE_INFO_HEADERS, false);
+//        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"localhost:9092");
+//        config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+//        config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+//        return new DefaultKafkaProducerFactory<>(config);
+//    }
+//    @Bean
+//    public KafkaTemplate<String, String> kafkaTemplate()
+//    {
+//        return new KafkaTemplate<>(producerFactory());
+//    }
+
+    @Bean
+    public ProducerFactory<String, Land> producerFactoryLand()
+>>>>>>> 92235d3caa524a31788a9b88788eb66ee00e43af
     {
         Map<String,Object> config = new HashMap<>();
         config.put(JsonSerializer.ADD_TYPE_INFO_HEADERS, false);
@@ -50,6 +71,9 @@ public class KafkaConfiguration {
     public KafkaTemplate<String, BookingDTORecommendation> kafkaTemplateBookingDTORecommendation()
     {
         return new KafkaTemplate<>(producerFactoryBookingDTORecommendation());
+    public KafkaTemplate<String, Land> kafkaTemplateLand()
+    {
+        return new KafkaTemplate<>(producerFactoryLand());
     }
 
 
@@ -69,6 +93,29 @@ public class KafkaConfiguration {
         return new KafkaTemplate<>(producerFactoryConsumer());
     }
 
+<<<<<<< HEAD
+=======
+//    @Bean
+//    public ProducerFactory<String, Farmer> producerFactoryFarmer()
+//    {
+//        Map<String,Object> config = new HashMap<>();
+//        config.put(JsonSerializer.ADD_TYPE_INFO_HEADERS, false);
+//        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"localhost:9092");
+//        config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+//        config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+//        return new DefaultKafkaProducerFactory<>(config);
+//    }
+//    @Bean
+//    public KafkaTemplate<String, Farmer> kafkaTemplateFarmer()
+//    {
+//        return new KafkaTemplate<>(producerFactoryFarmer());
+//    }
+
+
+
+
+
+>>>>>>> 92235d3caa524a31788a9b88788eb66ee00e43af
     @Bean
     public ConsumerFactory<String, Consumer> consumerFactoryConsumer() {
         Map<String, Object> config = new HashMap<>();

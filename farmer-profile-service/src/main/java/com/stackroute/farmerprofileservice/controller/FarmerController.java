@@ -93,23 +93,7 @@ public class FarmerController {
 
     @PutMapping("land-details/{email}")
     public ResponseEntity<Farmer> uploadLandDetails(@RequestBody Land land, @PathVariable String email){
-      //  return new ResponseEntity<Farmer>(farmerService.uploadLandDetails(land,email),HttpStatus.OK);
-
-	ResponseEntity responseEntity =  new ResponseEntity<Farmer>(farmerService.uploadLandDetails(land,email),HttpStatus.OK);
-       List<String> listOfCrops = land.getCrops();
-       int i;
-       for(i = 0; i < listOfCrops.size(); i++) {
-           System.out.println("start");
-           System.out.println(listOfCrops.get(i));
-           CropDTO cropDTO = new CropDTO();
-           cropDTO.setCropName(listOfCrops.get(i));
-           cropDTO.setFarms(land);
-           System.out.println(cropDTO );
-           System.out.println("Trying to send");
-           kafkaTemplateCropDTO.send(TOPIC, cropDTO);
-           System.out.println("sent");
-       }
-       return responseEntity;
+        return new ResponseEntity<Farmer>(farmerService.uploadLandDetails(land,email),HttpStatus.OK);
     }
 
     @DeleteMapping("/land/delete/{email}/{lid}")
