@@ -16,6 +16,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.springframework.http.ResponseEntity.ok;
@@ -57,6 +58,7 @@ public class FarmerController {
         farmerDTO.setRole("farmer");
         System.out.println("Farmer DTO=" + farmerDTO);
         kafkaTemplate.send(TOPIC, new ObjectMapper().writeValueAsString(farmerDTO));
+        farmerService.recommend(farmer);
         Map<Object, Object> model = new HashMap<>();
         model.put("message", "Farmer registered successfully");
         return ok(model);
@@ -91,7 +93,23 @@ public class FarmerController {
 
     @PutMapping("land-details/{email}")
     public ResponseEntity<Farmer> uploadLandDetails(@RequestBody Land land, @PathVariable String email){
-        return new ResponseEntity<Farmer>(farmerService.uploadLandDetails(land,email),HttpStatus.OK);
+      //  return new ResponseEntity<Farmer>(farmerService.uploadLandDetails(land,email),HttpStatus.OK);
+
+	ResponseEntity responseEntity =  new ResponseEntity<Farmer>(farmerService.uploadLandDetails(land,email),HttpStatus.OK);
+       List<String> listOfCrops = land.getCrops();
+       int i;
+       for(i = 0; i < listOfCrops.size(); i++) {
+           System.out.println("start");
+           System.out.println(listOfCrops.get(i));
+           CropDTO cropDTO = new CropDTO();
+           cropDTO.setCropName(listOfCrops.get(i));
+           cropDTO.setFarms(land);
+           System.out.println(cropDTO );
+           System.out.println("Trying to send");
+           kafkaTemplateCropDTO.send(TOPIC, cropDTO);
+           System.out.println("sent");
+       }
+       return responseEntity;
     }
 
     @DeleteMapping("/land/delete/{email}/{lid}")
@@ -110,6 +128,10 @@ public class FarmerController {
     public  ResponseEntity<?>  getLandByIdOfLand(@PathVariable String email,@PathVariable long lid){
         return new ResponseEntity<>(farmerService.getSpecificLandOfFarmerByEmail(email,lid),HttpStatus.OK);
     }
+    @GetMapping("/land/orders/{email}/{lid}")
+    public  ResponseEntity<?> getAllLandOrdersOfAFarmer(@PathVariable String email,@PathVariable long lid){
+        return new ResponseEntity<>(farmerService.getAllLandOrdersOfFarmerByEmail(email,lid),HttpStatus.OK);
+    }
 
     @PutMapping("land/update/{email}/{lid}")
     public ResponseEntity<Farmer> updateLandById(@RequestBody Land land, @PathVariable String email, @PathVariable long lid){
@@ -125,4 +147,5 @@ public class FarmerController {
 
         return ("Uncles");
     }
+
 }

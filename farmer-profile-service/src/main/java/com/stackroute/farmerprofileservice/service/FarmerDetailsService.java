@@ -1,7 +1,9 @@
 package com.stackroute.farmerprofileservice.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.stackroute.farmerprofileservice.exception.UserNotFoundException;
 import com.stackroute.farmerprofileservice.models.Farmer;
+import com.stackroute.farmerprofileservice.models.FarmerDTORecommendation;
 import com.stackroute.farmerprofileservice.models.Land;
 import com.stackroute.farmerprofileservice.models.LandOrder;
 import com.stackroute.farmerprofileservice.repository.FarmerRepository;
@@ -12,7 +14,6 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -42,6 +43,10 @@ public class FarmerDetailsService {
     private static String TOPIC2 = "testing";
 
 
+    @Autowired
+    private KafkaTemplate<String,FarmerDTORecommendation>kafkaTemplate1;
+
+    private static String TOPIC1= "FarmerRecommend";
 
     public Farmer findFarmerByEmail(String email) {
         Query query=new Query();
@@ -118,23 +123,35 @@ public class FarmerDetailsService {
         ArrayList<Land> lands = farmer.getLand();
         final Land[] requiredLand = new Land[1];
         int i=0;
-
         lands.forEach(land ->
         {
             System.out.println("Land is " + land.getId());
             System.out.println("Lid is " + lid);
             if (land.getId().equals(lid)) {
                 System.out.println("Lid is " + lid);
-                // System.out.println("Land is " + lands.get(i));
                 requiredLand[0] = land;
-                // return;
             }
-
         });
-
-
         return requiredLand[0];
+    }
+    public ArrayList<LandOrder> getAllLandOrdersOfFarmerByEmail(String email, Long lid) {
+        System.out.println("hiigreeeeeeeeeeerrrrrrfdgdfgvgdfgvr");
+        Optional optional = farmerRepository.findById(email);
+        Farmer farmer = (Farmer) optional.get();
+        System.out.println("farmer is"+farmer);
+        ArrayList<Land> lands = farmer.getLand();
+        System.out.println("land is "+lands);
+                   ArrayList<LandOrder> landOrders = new ArrayList<LandOrder>();
 
+        for (int i=0;i<lands.size();i++)
+        {
+            if(lands.get(i).getId().equals(lid))
+            {
+               landOrders = lands.get(i).getLandOrders();
+            }
+        }
+        System.out.println(landOrders);
+        return landOrders;
     }
 
 
@@ -166,6 +183,9 @@ public class FarmerDetailsService {
         return lands;
     }
 
+
+
+
     public List<Farmer> getAllFarmers() {
         return farmerRepository.findAll();
     }
@@ -184,18 +204,24 @@ public class FarmerDetailsService {
                 lands.set(i, land);
                 break;
             }
-
         }
         farmer.setLand(lands);
         System.out.println(farmer);
         return farmerRepository.save(farmer);
     }
 
-
-
-
     public Farmer updateFarmer(Farmer farmer) {
 
         return farmerRepository.save(farmer);
+    }
+
+
+    public String recommend(Farmer farmer) throws JsonProcessingException {
+        FarmerDTORecommendation farmerDTORecommendation=new FarmerDTORecommendation();
+        farmerDTORecommendation.setFullname(farmer.getFullname());
+        farmerDTORecommendation.setEmail(farmer.getEmail());
+        System.out.println(farmerDTORecommendation);
+        kafkaTemplate1.send(TOPIC1, farmerDTORecommendation);
+        return "published to recommend";
     }
 }

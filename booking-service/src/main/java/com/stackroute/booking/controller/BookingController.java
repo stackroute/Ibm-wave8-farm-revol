@@ -15,6 +15,7 @@ public class BookingController {
     @Autowired
     private SequenceGeneratorService sequenceGenerator;
 
+    BookingDTORecommendation bookingDTORecommendation = new BookingDTORecommendation();
 
     @Autowired
     private KafkaTemplate<String, Consumer> kafkaTemplateConsumer;
@@ -24,6 +25,9 @@ public class BookingController {
     private KafkaTemplate<String , Land> kafkaTemplateLand;
     private static String TOPIC1 = "bookedland";
 
+    @Autowired
+    private KafkaTemplate<String, BookingDTORecommendation> kafkaTemplateBookingDTORecommendation;
+    private static String TOPIC3 = "BookingRecommend";
 
 
 
@@ -49,6 +53,10 @@ public class BookingController {
         System.out.println(consumer);
 
         kafkaTemplateConsumer.send(TOPIC, consumer);
+        bookingDTORecommendation.setConsumerEmail(consumer.getEmail());
+        bookingDTORecommendation.setFarmerEmail(land.getFarmerId());
+        System.out.println(bookingDTORecommendation);
+        kafkaTemplateBookingDTORecommendation.send(TOPIC3, bookingDTORecommendation);
 
 //        LandOrder landOrder1 = new LandOrder();
 //        landOrder1.setOrderId(sequenceGenerator.getNextSequence(LandOrder.SEQUENCE_NAME));

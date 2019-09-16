@@ -1,11 +1,8 @@
 package com.stackroute.farmerprofileservice.config;
 
-import com.stackroute.farmerprofileservice.models.CropDTO;
-import com.stackroute.farmerprofileservice.models.Farmer;
+import com.stackroute.farmerprofileservice.models.*;
 
 
-import com.stackroute.farmerprofileservice.models.Land;
-import com.stackroute.farmerprofileservice.models.LandOrder;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -71,6 +68,24 @@ public class KafkaConfig {
     @Bean
     public KafkaTemplate<String, CropDTO> kafkaTemplateCropDTO() {
         return new KafkaTemplate<>(producerFactoryCropDTO());
+    }
+
+
+
+    @Bean
+    public ProducerFactory<String, FarmerDTORecommendation> producerFactoryCo(){
+        Map<String, Object> config = new HashMap<>();
+
+        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
+        config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+
+        return new DefaultKafkaProducerFactory<>(config);
+    }
+
+    @Bean
+    public KafkaTemplate<String,FarmerDTORecommendation> kafkaTemplate1() {
+        return new KafkaTemplate<>(producerFactoryCo());
     }
 
     @Bean

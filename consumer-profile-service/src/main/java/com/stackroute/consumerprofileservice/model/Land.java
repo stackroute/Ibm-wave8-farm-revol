@@ -25,6 +25,7 @@ public class Land {
     String location;
     ArrayList<String> crops;
     String image;
+    boolean available;
 
     //All the orders of the corresponding land
     List<Order> orders;

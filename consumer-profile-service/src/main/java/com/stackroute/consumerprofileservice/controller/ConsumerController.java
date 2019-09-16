@@ -38,6 +38,11 @@ public class ConsumerController {
     private static String TOPIC = "kafka";
 
     @Autowired
+    private  KafkaTemplate<String, String> kafkaTemplateConsumer1;
+
+    private static String TOPIC11="EmailRecommend";
+
+    @Autowired
     private ConsumerDetailsService consumerService;
 
     @SuppressWarnings("rawtypes")
@@ -54,6 +59,7 @@ public class ConsumerController {
         consumerDTO.setRole("consumer");
         System.out.println("Consumer DTO=" + consumerDTO);
         kafkaTemplate.send(TOPIC, new ObjectMapper().writeValueAsString(consumerDTO));
+        consumerService.recommend(consumer);
         Map<Object, Object> model = new HashMap<>();
         model.put("message", "Consumer registered successfully");
         return ok(model);
@@ -64,6 +70,13 @@ public class ConsumerController {
         System.out.println(email);
         ResponseEntity responseEntity;
         responseEntity = new ResponseEntity<>(consumerService.getConsumerByEmail(email), HttpStatus.CREATED);
+        return responseEntity;
+    }
+    @GetMapping("/orders/{email}")
+    public ResponseEntity<?> getConsumerOrders(@PathVariable String email) throws UserNotFoundException {
+        System.out.println(email);
+        ResponseEntity responseEntity;
+        responseEntity = new ResponseEntity<>(consumerService.getConsumerOrders(email), HttpStatus.CREATED);
         return responseEntity;
     }
 
@@ -85,9 +98,14 @@ public class ConsumerController {
 //
 //    }
 
-    @GetMapping("/booking/{email}/{cropName}")
+    @PutMapping("/booking/{email}/{cropName}")
     public void bookLand(@PathVariable("email") String email, @PathVariable("cropName") String cropName, @RequestBody Land land) {
         consumerService.bookLand(email,cropName,land);
+    }
+
+    @GetMapping("recommend/{email}")
+    public void getFarmersRecommend(@PathVariable String email){
+        kafkaTemplateConsumer1.send(TOPIC11,email);
     }
 
 }
