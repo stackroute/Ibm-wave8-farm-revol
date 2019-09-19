@@ -1,0 +1,7 @@
+<router-outlet></router-outlet>
+
+<app-footer-home 
+    *ngIf="!router.url.includes('login') && !router.url.includes('register-farmer')
+     && !router.url.includes('register-consumer')">
+</app-footer-home>
+<!-- <app-footer-home></app-footer-home> -->

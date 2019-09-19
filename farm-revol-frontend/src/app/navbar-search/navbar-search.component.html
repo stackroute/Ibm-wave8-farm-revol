@@ -1,0 +1,40 @@
+<mat-toolbar color="primary" class="navbar-header">
+  <div class="component-navbar">
+    <mat-toolbar-row>
+        <img src="./assets/logo.png" class="img-rounded" alt="farm-logo" width="80px" height="80px"
+        style="padding-top: 8px" [routerLink]="['/home-page']">
+     
+      <div class="example-button-row">
+          <button mat-raised-button id="faq-button" routerLink = "/faq">FAQ</button>
+        </div>
+        <div class="example-button-row">
+          <button mat-raised-button id="faq-button" routerLink = "/home-page">HOME</button>
+        </div>
+        
+     
+      <form class="example-form" id="form">
+        <mat-form-field class="example-full-width">
+          <input matInput class= "search-input" placeholder="Search for crops" type="search" autocomplete="off" autofill="off" #searchString>
+        </mat-form-field>
+        <button mat-button mat-fab (click)="clickSearch(searchString.value)">
+          <mat-icon aria-hidden="false" aria-label="Example search icon">search</mat-icon>
+        </button>
+      </form>
+      <span class="example-spacer"></span>
+      
+      
+      
+      <div class="example-button-row" routerLinkActive = "hidden">
+         <button mat-raised-button id="upload-button" routerLink = "/login">Login/Reg</button> 
+        
+      </div>
+
+      
+
+    </mat-toolbar-row>
+  </div>
+</mat-toolbar>
+
+
+
+

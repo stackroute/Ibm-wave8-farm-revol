@@ -1,0 +1,58 @@
+
+<div id = "login-page">
+    <div id = "login-comp">
+            
+
+            <div fxLayout="row" fxLayoutAlign="center center">
+                    <mat-card >
+                    <mat-card-header >
+                      <mat-card-title class = "login-text">LOGIN</mat-card-title>
+                    </mat-card-header>
+
+                    <div class = "login-content">
+                    <mat-card-content fxLayout="column">
+
+                        <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit(loginForm.value)" class = "form-all">
+
+                      <mat-form-field>
+                                <input matInput type="email" placeholder="Email" formControlName="email"
+                                [errorStateMatcher]="matcher">
+                         <mat-error>
+                           <span *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched">Please enter your email</span>
+                         </mat-error>
+                      </mat-form-field>
+
+                      <mat-form-field>
+                        
+                                <input matInput type="password" placeholder="Password" formControlName="password"
+                                [errorStateMatcher]="matcher">
+                         <mat-error>
+                           <span *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched">Please enter your password</span>
+                         </mat-error>
+                  
+
+                      </mat-form-field>
+
+                    
+                      <div class = "button-row">
+                                <button type="submit" [disabled]="!loginForm.valid" mat-raised-button color="primary">Login</button>
+                      </div>
+                            
+                    </form>
+                    </mat-card-content>
+                    </div>
+                    
+
+                    <div class = "forgot">
+                        <a class="forgot-text" [routerLink] = "['/forgot-password']">Forgot Password?</a>
+                   </div>
+                    <p class = "register-links">New Farmer? <a class = "register-text" [routerLink] = "['/register-farmer']">Register Here</a></p>
+                    <p class = "register-links">New Consumer? <a class = "register-text" [routerLink] = "['/register-consumer']">Register Here</a></p>
+                    
+                    </mat-card>
+
+                    
+                    </div>
+
+        </div>
+</div>

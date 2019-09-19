@@ -1,0 +1,48 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  .navbar-header {
+      height: 80px;
+      background-color: brown;
+  }
+  .component-navbar {
+      margin-top: 7px;
+  }
+  #upload-button {
+    background-color: #466B43;
+    color: white;
+    font-size: 18px;
+    letter-spacing: 0.2ex;
+  }
+  .icons {
+      padding: 0 14px;
+      
+  }
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    padding-left: 230px;
+  }
+  
+  .example-full-width {
+    width: 70%;
+    
+  }
+
+  .home-icon {
+    cursor: pointer;
+  }
+
+  .search-input:focus {
+    outline: none;
+  }
+
+  #faq-button {
+    background-color: #466B43;
+    color: white;
+    font-size: 18px;
+    letter-spacing: 0.2ex;
+    margin-left: 30px;
+  }
+

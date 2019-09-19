@@ -1,0 +1,87 @@
+.register-consumer-page {
+    background-image: url("../../assets/login-back.jpg");
+    height: 100%;
+ /* Center and scale the image nicely */
+     background-position: center;
+     background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.entire-container {
+  
+    display: inline-block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 400px;
+    height: 400px;
+    margin: auto;
+     
+}
+
+mat-card {
+  width: 35%;
+  margin: 0 auto;
+}
+   
+
+.register-consumer-text {
+    font-size:30px;
+    letter-spacing: 0.1ex;
+    margin-left: 10%;
+    font-weight: 600;
+    color: #37872f;
+    
+}
+
+
+.register-consumer-content {
+    text-align: center;
+    //margin-left: 50px;
+   // padding: 100px;
+   
+}
+
+.form-all {
+    padding-top: 20px;
+    display: flex;
+   flex-direction: column;
+}
+
+.register-links {
+    color: #4a6661;
+    font-family: 'Merienda', cursive;
+    font-size: 19px;
+    font-weight: 800;
+    text-align: center;
+
+}
+
+.forgot {
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 0.1ex;
+}
+
+.forgot-text {
+    color: #9e2313;
+    text-decoration: none;
+    font-family: 'Lobster', cursive;
+}
+
+.forgot-text:hover {
+    color: #f02f16;
+    text-decoration: underline;
+}
+
+.register-text {
+    color: #758059;
+    text-decoration: none;
+}
+
+.register-text:hover {
+    color: #4f5244;
+    text-decoration: underline;
+}

@@ -1,0 +1,174 @@
+<app-navbar-search ></app-navbar-search>
+<div class = "faq-all">
+<div class="faq-header">Frequently Asked Questions</div>
+<div class = "faq-content">
+    <mat-accordion>
+    <mat-expansion-panel>
+    <mat-expansion-panel-header>
+    <mat-panel-title>
+    How do I get started?
+    </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>1)Search for the crop you want</p>
+    <p>2)Book your desired Land</p>
+    <p>3)Start growing your crop</p>
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                    (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+    <mat-panel-title>
+    What happens after I pay and book a minifarm?
+    </mat-panel-title>
+
+    </mat-expansion-panel-header>
+    <p>Once you pay and book your mini-farm, the farmer starts preparing your plot with the vegetables you have chosen. In case you have not made any modifications to the starter plans, you maybe allocated a mini-farm which already has those vegetables growing in various stages of their lifecycle. When your harvest is ready, you can visit the farm to pick it up yourself - or let us deliver your produce right to your doorstep.</p>
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                    (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+    <mat-panel-title>
+    How much does it cost?
+    </mat-panel-title>
+
+    </mat-expansion-panel-header>
+    <p>The cost for a subscription may vary based on the partner farm that you choose and is mentioned in the farm listing in the website</p>
+    </mat-expansion-panel>
+
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                    (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+    <mat-panel-title>
+    What is the size of my farm?
+    </mat-panel-title>
+
+    </mat-expansion-panel-header>
+    <p>The size of the mini-farm may vary based on the partner farm that you choose and is mentioned in the farm listing in the website</p>
+    </mat-expansion-panel>
+
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                    (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+    <mat-panel-title>
+    Is this good for the soil?
+    </mat-panel-title>
+
+    </mat-expansion-panel-header>
+    <p>Yes indeed. Industrial agriculture has been degrading soil quality the world over. Our approach of multi-cropping along with natural farming techniques, are extremely beneficial to preserving and rejuvenating the soil.</p>
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+    <mat-panel-title>
+    When can I expect my first harvest?
+    </mat-panel-title>
+
+    </mat-expansion-panel-header>
+    <p>It depends on the plants that you choose to grow, and the modifications you make to the starter plans. If you do not make any modifications to starter plans - you should be able to see your first harvest within a few weeks.</p>
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+    <mat-panel-title>
+    What’s included in a subscription for a farm ?
+    </mat-panel-title>
+
+    </mat-expansion-panel-header>
+    <p>Everything that you need! It includes use of your ear-marked plot for growing, all seeds, saplings, fertilizers, pest control mechanisms, labour, water, utilities, use of tools and implements needed for farming and support for visiting farms every month</p>
+    </mat-expansion-panel>
+
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+    <mat-panel-title>
+    Is this organic ?
+    </mat-panel-title>
+
+    </mat-expansion-panel-header>
+    <p>All your crops will be grown organically with no chemical inputs. We also follow natural farming techniques like mulching, planting pest repellant plants etc - in order to make sure that the food that you grow is natural and wholesome.</p>
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+    <mat-panel-title>
+    Should I plan on visiting the farm?
+    </mat-panel-title>
+
+    </mat-expansion-panel-header>
+    <p>Absolutely ! We highly encourage you to visit the farm - it’s an essential part of the experience. Just make sure you schedule a farm visit with the farmer.</p>
+    </mat-expansion-panel>
+
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+    <mat-panel-title>
+    Can I book more than one farm ?
+    </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>Yes you can! Many customers end up taking a subscription to more than one mini-farm because they have larger families and want more produce. Note that the billing periods for each mini-farm will be based on the date on which that specific mini-farm was booked.
+    </p>
+    </mat-expansion-panel>
+
+
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+    <mat-panel-title>
+    How many varieties of crops do you support ?
+    </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>The number of crops that are supported vary based on the specific region of India you are in and the season. You should talk to the farmer and specify your choices.
+    </p>
+    </mat-expansion-panel>
+
+
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+    <mat-panel-title>
+    What happens after I choose a new crop to be planted in one of the beds in my farm ?
+    </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>Once you choose a new vegetable to be planted in a bed in your farm, the bed enters into a work-in-progress stage and the farmer will implement your changes in the next 48 hours
+    </p>
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+    <mat-panel-title>
+    What happens if a crop fails ?
+    </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>Unfortunately, the reality of farming, is that crops sometime fail because of factors not under our control - for example, there could be a flood situation, or a terrible pest attack. While the risk of crop failure is reduced in our model because we grow a variety of different crops together and have a team of horticulturists to ensure the right plant care procedure is followed, there is a possibility that some crops fail some time. We cannot remove this risk, but we will try our best to manage this risk for you.
+    </p>
+    </mat-expansion-panel>
+    
+
+    </mat-accordion>
+</div>
+
+</div>
+
