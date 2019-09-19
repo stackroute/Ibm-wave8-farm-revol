@@ -1,0 +1,51 @@
+#consumer-search-page {
+   
+    background-image: url("../../assets/login-back.jpg");
+    min-height: 100vh;
+ /* Center and scale the image nicely */
+    margin: 0;
+     background-position: center;
+     background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: scroll;
+}
+
+  
+
+   .card {
+    width: 23%;
+    margin-bottom: 2%;
+    margin-left: 80px;
+    margin-top: 60px;
+    /* margin-bottom: 18%; */
+   /* position: relative; */
+   }
+   .container {
+    /* min-height: 100%; */
+    /* width: 100%; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+   // margin-top: 50px;
+   }
+
+   #content {
+    position: absolute;
+    width: 700px;
+    height: 200px;
+    z-index: 15;
+    top: 50%;
+    left: 35%;
+    margin: -100px 0 0 -150px;
+    background: #55ABAD;
+
+   }
+
+   .center {
+       text-align: center;
+       font-size: 40px;
+       margin-top: 5%;
+       color: #F1F2F2;
+       font-family: 'Yellowtail', cursive;
+   }

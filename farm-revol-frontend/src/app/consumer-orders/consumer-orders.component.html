@@ -1,0 +1,29 @@
+<app-navbar-consumer></app-navbar-consumer>
+
+<div id = "consumer-landing-page">
+
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%" fxLayoutAlign.xs="center center" fxLayoutWrap>
+      
+        <mat-card class="card" fxFlexOrder.lt-md="4" *ngFor="let order of orderList">
+                <!-- <div fxFlex="20%"> -->
+          <div>
+            <mat-card-header>
+            
+          <mat-card-title>Farmer Email: {{order.farmerId}}</mat-card-title><br>
+          <mat-card-title>Crop: {{order.crop}}</mat-card-title><br>
+          <mat-card-title>Price: {{order.price}}</mat-card-title><br>
+      
+            </mat-card-header>
+          <img mat-card-image class="img" src="../../assets/card4.jpg">
+          <!-- <mat-card-actions class = "buttons">
+              <button mat-button class = "buttons-text" (click)="updateLands(land)"><span>UPDATE  </span> <mat-icon>update</mat-icon> </button>
+              <button mat-button class = "buttons-text" (click)="removeLand(land)" ><span>DELETE  </span>  <mat-icon>delete</mat-icon></button>
+          </mat-card-actions> -->
+        </div>
+      <!-- </div> -->
+      </mat-card>
+    </div>
+
+
+
+</div>

@@ -2,7 +2,6 @@
 <div id = "farmer-landing-page">
 
 
-
     <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%" fxLayoutAlign.xs="center center" fxLayoutWrap>
       
         <mat-card class="card" fxFlexOrder.lt-md="4" *ngFor="let land of lands">
@@ -13,11 +12,13 @@
           <mat-card-title>LOCATION: {{land.location}}</mat-card-title><br>
           <mat-card-title>SIZE: {{land.landSize}}</mat-card-title><br>
           <mat-card-title>RATE: {{land.landPrice}}</mat-card-title><br>
+          <mat-card-title>Crops Grown: {{land.crops}}</mat-card-title><br>
             </mat-card-header>
           <img mat-card-image class="img" src="../../assets/card4.jpg">
           <mat-card-actions class = "buttons">
               <button mat-button class = "buttons-text" (click)="updateLands(land)"><span>UPDATE  </span> <mat-icon>update</mat-icon> </button>
               <button mat-button class = "buttons-text" (click)="removeLand(land)" ><span>DELETE  </span>  <mat-icon>delete</mat-icon></button>
+              <!-- <button mat-button class = "buttons-text" (click)="viewOrders(land)" ><span>  VIEW ORDERS  </span>  <mat-icon>delete</mat-icon></button> -->
           </mat-card-actions>
         </div>
       <!-- </div> -->

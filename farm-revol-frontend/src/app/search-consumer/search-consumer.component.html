@@ -1,0 +1,36 @@
+<app-navbar-consumer></app-navbar-consumer>
+
+<div id = "consumer-search-page">
+
+
+    
+        <div *ngIf="flag; else dontShow" class="container" fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%" fxLayoutAlign.xs="center center" fxLayoutWrap>
+          <mat-card class="card" fxFlexOrder.lt-md="4" *ngFor="let farm of cropList.lands">
+                <!-- <div fxFlex="20%"> -->
+                   <div>
+                  <mat-card-header>
+                    <mat-card-title>Location:{{farm.location}}</mat-card-title><br>
+                    <mat-card-title>Farm Size:{{farm.landSize}}</mat-card-title><br>
+                    <mat-card-title>Price:{{farm.landPrice}}</mat-card-title><br>
+                    <mat-card-title>Farmer Email:{{farm.farmerId}}</mat-card-title><br>
+                    </mat-card-header>
+                    <img mat-card-image class="img" src="assets/card4.jpg">
+                    <mat-card-actions>
+                        <button mat-button (click) = "viewParticularLand(farm)">Book <mat-icon>favorite</mat-icon></button>
+                    </mat-card-actions>
+                  </div>
+                <!-- </div> -->
+                </mat-card>
+              </div>
+
+
+              <ng-template #dontShow>
+                <p>
+                  Show this only if "show" is not true
+                </p>
+              </ng-template>
+              
+</div>
+
+
+

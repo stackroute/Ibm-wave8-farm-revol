@@ -1,10 +1,8 @@
 package com.stackroute.consumerprofileservice.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.stackroute.consumerprofileservice.exception.UserNotFoundException;
-import com.stackroute.consumerprofileservice.model.Consumer;
-import com.stackroute.consumerprofileservice.model.ConsumerOrder;
-import com.stackroute.consumerprofileservice.model.Land;
-import com.stackroute.consumerprofileservice.model.Order;
+import com.stackroute.consumerprofileservice.model.*;
 import com.stackroute.consumerprofileservice.repository.ConsumerRepository;
 import com.stackroute.consumerprofileservice.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,11 +38,16 @@ public class ConsumerDetailsService {
     private KafkaTemplate<String, Land> kafkaTemplateLand;
 
 
-    private static String TOPIC2 = "consumertopic";
+    @Autowired
+    private KafkaTemplate<String, ConsumerDTORecommendation> kafkaTemplate1;
 
-    private static String TOPIC3 = "land";
+    private static String TOPIC1="fr-ConsumerRecommend";
 
-    private static String TOPIC4 = "crop";
+    private static String TOPIC2 = "fr-consumertopic";
+
+    private static String TOPIC3 = "fr-land";
+
+    private static String TOPIC4 = "fr-crop";
 
 
     public Consumer findConsumerByEmail(String email) {
@@ -112,4 +115,16 @@ public class ConsumerDetailsService {
         return "published";
     }
 
+    public String recommend(Consumer consumer) throws JsonProcessingException {
+        ConsumerDTORecommendation consumerDTORecommendation=new ConsumerDTORecommendation();
+        consumerDTORecommendation.setFullname(consumer.getFullname());
+        consumerDTORecommendation.setEmail(consumer.getEmail());
+        System.out.println(consumerDTORecommendation);
+        kafkaTemplate1.send(TOPIC1, consumerDTORecommendation);
+        return "published to recommend";
+    }
+    @KafkaListener(topics = "fr-RecommendedFarmers", groupId = "recommendations", containerFactory = "kafkaListenerContainerFactory1")
+    public void bookingJson(Farmers farmers) {
+        System.out.println("Consumed Farmers who recommended: "+farmers );
+    }
 }

@@ -26,16 +26,18 @@ import static org.springframework.http.ResponseEntity.ok;
 @RequestMapping("/api/consumer")
 public class ConsumerController {
 
-   /* @Autowired
-    private AuthenticationManager authenticationManager;
-*/
     @Autowired
     ConsumerRepository consumers;
 
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
-    private static String TOPIC = "kafka";
+    private static String TOPIC = "fr-kafka";
+
+    @Autowired
+    private  KafkaTemplate<String, String> kafkaTemplateConsumer1;
+
+    private static String TOPIC11="fr-EmailRecommend";
 
     @Autowired
     private ConsumerDetailsService consumerService;
@@ -54,6 +56,7 @@ public class ConsumerController {
         consumerDTO.setRole("consumer");
         System.out.println("Consumer DTO=" + consumerDTO);
         kafkaTemplate.send(TOPIC, new ObjectMapper().writeValueAsString(consumerDTO));
+        consumerService.recommend(consumer);
         Map<Object, Object> model = new HashMap<>();
         model.put("message", "Consumer registered successfully");
         return ok(model);
@@ -86,15 +89,14 @@ public class ConsumerController {
         return new ResponseEntity<Consumer>(consumer, HttpStatus.OK);
     }
 
-//    @PostMapping("/booking/{email}/{cropName}")
-//    public void landDetails(@RequestBody Land land)
-//    {
-//
-//    }
-
-    @GetMapping("/booking/{email}/{cropName}")
+    @PutMapping("/booking/{email}/{cropName}")
     public void bookLand(@PathVariable("email") String email, @PathVariable("cropName") String cropName, @RequestBody Land land) {
         consumerService.bookLand(email,cropName,land);
+    }
+
+    @GetMapping("recommend/{email}")
+    public void getFarmersRecommend(@PathVariable String email){
+        kafkaTemplateConsumer1.send(TOPIC11,email);
     }
 
 }

@@ -14,6 +14,11 @@ import { ConsumerEditProfileComponent } from './consumer-edit-profile/consumer-e
 import { UploadfarmComponent } from './uploadfarm/uploadfarm.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { UpdateLandComponent } from './update-land/update-land.component';
+import { SearchConsumerComponent } from './search-consumer/search-consumer.component';
+import { BookingPageComponent } from './booking-page/booking-page.component';
+import { ConsumerOrdersComponent } from './consumer-orders/consumer-orders.component';
+import { FarmerOrdersComponent } from './farmer-orders/farmer-orders.component';
+import { ViewFarmerOrdersComponent } from './view-farmer-orders/view-farmer-orders.component';
 
 
 const routes: Routes = [
@@ -37,18 +42,34 @@ const routes: Routes = [
     path: ':email/consumer',
     component: ConsumerLandingPageComponent
   },
-  { path: ':email/updateProfile', component: FarmereditprofileComponent },
+  {
+    path: 'land-order/:email/:landId', component: ViewFarmerOrdersComponent
+  },
+  // 'land-order/'+this.farmerId,landOrders])
+  { path: 'updateProfile/:email', component: FarmereditprofileComponent },
   { path: ':email/updateConsumerProfile', component: ConsumerEditProfileComponent},
+  { path: ':email/search/:searchString', component: SearchConsumerComponent},
+  { path: 'ConsumerOrdersPage/:email',component:ConsumerOrdersComponent},
+  //['/ConsumerOrdersPage/'+id]
+
+ // '/'+this.consumerId+'/search/'+searchString
  // {path:'consumer-landing-page',component: ConsumerLandingPageComponent},
  // {path: 'email/updateProfile', component: ConsumerEditProfileComponent},
+ //['/farmer-orders/'+id]
   {path:'upload-farm/:id',component:UploadfarmComponent, data: { title: 'List of uploaded lands' }},
-
+  {
+    path: 'farmer-orders/:id', component: FarmerOrdersComponent
+  },
   {
     path: 'updateLand/:email/:id',
     component: UpdateLandComponent,
     data: { title: 'List of uploaded lands' }
+  },
+  {
+    path: ':email/booked', component: BookingPageComponent
   }
-  
+  //this.router.navigate(['/'+this.consumerId+'/view-land',farm]);
+  //'/'+this.consumerId+'booked'
 ];
 
 @NgModule({

@@ -17,7 +17,7 @@ public class Consumer {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @KafkaListener(topics="kafka",groupId = "group_id")
+    @KafkaListener(topics="fr-kafka",groupId = "group_id")
     public void consume(String daoUser) throws IOException {
         System.out.println("Inside ");
         System.out.println("consumed JSON Message" +daoUser);

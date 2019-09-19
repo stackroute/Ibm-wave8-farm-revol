@@ -28,9 +28,48 @@ export class NavbarFarmerComponent implements OnInit {
     this.getLands()
   }
 
-  viewProfile() {
-    this.router.navigate(['/'+this.farmerId+'/updateProfile']);
+  goToHome() {
+    var id1 = this.route.snapshot.params.id;
+    var id2 = this.route.snapshot.params.email;
+    var id;
+    if(id1 == undefined) {
+      id = id2;
+    }
+    else {
+      id = id1;
+    }
+    this.router.navigate(['/'+id+'/lands']);
   }
+
+  viewFarmerOrders() {
+
+    var id1 = this.route.snapshot.params.id;
+    var id2 = this.route.snapshot.params.email;
+    var id;
+    if(id1 == undefined) {
+      id = id2;
+    }
+    else {
+      id = id1;
+    }
+    this.router.navigate(['/farmer-orders/'+id]);
+
+
+  }
+
+  viewProfile() {
+    var id1 = this.route.snapshot.params.id;
+    var id2 = this.route.snapshot.params.email;
+    var id;
+    if(id1 == undefined) {
+      id = id2;
+    }
+    else {
+      id = id1;
+    }
+    this.router.navigate(['/updateProfile/'+id]);
+  }
+ 
 
   getLands(){
     console.log(this.farmerId);
@@ -42,9 +81,23 @@ export class NavbarFarmerComponent implements OnInit {
   }
 
   uploadLands() {
+
+    var id1 = this.route.snapshot.params.id;
+    var id2 = this.route.snapshot.params.email;
+    var id;
+    if(id1 == undefined) {
+      id = id2;
+    }
+    else {
+      id = id1;
+    }
     console.log(this.farmerId);
-    localStorage.setItem('farmerId',JSON.stringify(this.farmerId));
-    this.router.navigate(['/upload-farm', this.farmerId]);
+    localStorage.setItem('farmerId',JSON.stringify(id));
+    this.router.navigate(['/upload-farm', id]);
+  }
+
+  logOut() {
+    this.router.navigate(['/home-page']);
   }
 
 

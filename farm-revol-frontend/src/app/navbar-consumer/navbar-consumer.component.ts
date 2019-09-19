@@ -17,7 +17,53 @@ export class NavbarConsumerComponent implements OnInit {
     })
   }
 
+  goToHome() {
+    var id1 = this.route.snapshot.params.id;
+    var id2 = this.route.snapshot.params.email;
+    var id;
+    if(id1 == undefined) {
+      id = id2;
+    }
+    else {
+      id = id1;
+    }
+    this.router.navigate(['/'+id+'/lands']);
+  }
+
+
   viewProfile() {
-    this.router.navigate(['/'+this.consumerId+'/updateConsumerProfile']);
+    var id1 = this.route.snapshot.params.id;
+    var id2 = this.route.snapshot.params.email;
+    var id;
+    if(id1 == undefined) {
+      id = id2;
+    }
+    else {
+      id = id1;
+    }
+    this.router.navigate(['/updateProfile/'+id]);
+  }
+ 
+  goToOrders() {
+    var id1 = this.route.snapshot.params.id;
+    var id2 = this.route.snapshot.params.email;
+    var id;
+    if(id1 == undefined) {
+      id = id2;
+    }
+    else {
+      id = id1;
+    }
+    this.router.navigate(['/ConsumerOrdersPage/'+id]);
+  }
+
+  clickSearch(searchString) {
+
+    searchString = searchString.toLowerCase();
+    this.router.navigate(['/'+this.consumerId+'/search/'+searchString]);
+  }
+
+  logOut() {
+    this.router.navigate(['/home-page']);
   }
 }

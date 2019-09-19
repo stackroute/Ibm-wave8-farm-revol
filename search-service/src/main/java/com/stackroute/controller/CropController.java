@@ -27,7 +27,7 @@ public class CropController {
     @Autowired
     private KafkaTemplate<String, Crop> kafkaTemplateCrop;
 
-    private static String TOPIC = "crop";
+    private static String TOPIC = "fr-crop";
 
     @PostMapping("crop")
     public ResponseEntity<?> saveCrop(@RequestBody Crop crop){

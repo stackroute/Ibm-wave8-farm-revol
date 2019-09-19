@@ -37,8 +37,8 @@ export class RegisterConsumerComponent implements OnInit {
       'fullname' : [null, Validators.required],
       'phoneNumber' : [null, Validators.required],
       'email' : [null, Validators.required],
-      'password' : [null, Validators.required],
-      'typeOfUser' : [null, Validators.required]
+      'password' : [null, Validators.required]
+     // 'typeOfUser' : [null, Validators.required]
     });
   }
 
