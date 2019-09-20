@@ -6,11 +6,18 @@
      background-repeat: no-repeat;
     background-size: cover;
 }
-#register-consumer-comp {
-    height: 150px;
-    width: 90%;
-    margin: 0 auto;
-    padding-top: 150px;
+
+.entire-container {
+  
+    display: inline-block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 400px;
+    height: 400px;
+    margin: auto;
      
 }
 
@@ -21,23 +28,26 @@ mat-card {
    
 
 .register-consumer-text {
-    font-size:20px;
+    font-size:30px;
     letter-spacing: 0.1ex;
-    margin-left: 50%;
+    margin-left: 10%;
     font-weight: 600;
     color: #37872f;
     
 }
 
-.check {
-    display: flex;
-    flex-direction: column;
-    
-}
 
 .register-consumer-content {
     text-align: center;
-    
+    //margin-left: 50px;
+   // padding: 100px;
+   
+}
+
+.form-all {
+    padding-top: 20px;
+    display: flex;
+   flex-direction: column;
 }
 
 .register-links {

@@ -14,20 +14,23 @@ export class NavbarSearchComponent implements OnInit {
   ngOnInit() {
   }
 
-  clickSearch(value) {
+  clickSearch(searchString) {
 
-    value = value.toLowerCase();
-    console.log(value);
+    searchString = searchString.toLowerCase();
+  //  console.log(value);
     // this.searchService.getSearch(value).subscribe(data => {
     //   console.log("Location is " + data[0].id);
-    //   console.log("Location first is " + data[0].farms[0].location);
+    //   console.log("Location firs
+  //  t is " + data[0].farms[0].location);
     //   this.cropList = data;
     // }
 
     // )
+    console.log("Searched is "+searchString);
 
-    this.router.navigateByUrl("/result/" + value);
+    this.router.navigateByUrl("/result/" + searchString);
 
   }
+
 
 }

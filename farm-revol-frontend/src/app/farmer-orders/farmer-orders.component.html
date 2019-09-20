@@ -1,0 +1,35 @@
+<app-navbar-farmer></app-navbar-farmer>
+<div id = "farmer-landing-page">
+
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%" fxLayoutAlign.xs="center center" fxLayoutWrap>
+      <div>
+        
+        <div *ngFor="let landDetails of farmerDetails.land">
+        <mat-card class="card" fxFlexOrder.lt-md="4" *ngIf='!landDetails.available' >
+        
+          
+            <mat-card-header>
+            
+          <mat-card-title>LOCATION: {{landDetails.location}}</mat-card-title><br>
+          <mat-card-title>SIZE: {{landDetails.landSize}}</mat-card-title><br>
+          <mat-card-title>RATE: {{landDetails.landPrice}}</mat-card-title><br>
+          <mat-card-title>Crops Grown: {{landDetails.crops}}</mat-card-title><br>
+            </mat-card-header>
+          <img mat-card-image class="img" src="../../assets/card4.jpg">
+          <mat-card-actions class = "buttons">
+              <button mat-button class = "buttons-text" (click)="viewOrdersOfLand(landDetails.id)"><span>VIEW ORDERS  </span> </button>
+             
+          </mat-card-actions>
+        
+      </mat-card>
+      </div>
+      </div>
+      
+    </div>
+
+
+
+
+
+</div>
+

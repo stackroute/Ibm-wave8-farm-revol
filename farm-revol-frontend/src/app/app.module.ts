@@ -36,6 +36,11 @@ import { ConsumerEditProfileComponent } from './consumer-edit-profile/consumer-e
 import {MatRadioModule} from '@angular/material/radio';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import{UpdateLandComponent} from './update-land/update-land.component';
+import { SearchConsumerComponent } from './search-consumer/search-consumer.component';
+import { BookingPageComponent } from './booking-page/booking-page.component';
+import { ConsumerOrdersComponent } from './consumer-orders/consumer-orders.component';
+import { FarmerOrdersComponent } from './farmer-orders/farmer-orders.component';
+import { ViewFarmerOrdersComponent } from './view-farmer-orders/view-farmer-orders.component';
 
 
 
@@ -60,7 +65,13 @@ import{UpdateLandComponent} from './update-land/update-land.component';
     NavbarConsumerComponent,
     ConsumerEditProfileComponent,
     ResetPasswordComponent,
-    UpdateLandComponent
+    UpdateLandComponent,
+    SearchConsumerComponent,
+    BookingPageComponent,
+    ConsumerOrdersComponent,
+    FarmerOrdersComponent,
+    ViewFarmerOrdersComponent,
+  
     
   ],
   imports: [

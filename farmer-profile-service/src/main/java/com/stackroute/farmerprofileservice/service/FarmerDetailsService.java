@@ -2,10 +2,7 @@ package com.stackroute.farmerprofileservice.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.stackroute.farmerprofileservice.exception.UserNotFoundException;
-import com.stackroute.farmerprofileservice.models.Farmer;
-import com.stackroute.farmerprofileservice.models.FarmerDTORecommendation;
-import com.stackroute.farmerprofileservice.models.Land;
-import com.stackroute.farmerprofileservice.models.LandOrder;
+import com.stackroute.farmerprofileservice.models.*;
 import com.stackroute.farmerprofileservice.repository.FarmerRepository;
 import com.stackroute.farmerprofileservice.repository.RoleRepository;
 
@@ -13,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +39,11 @@ public class FarmerDetailsService {
     private KafkaTemplate<String, Farmer> kafkaTemplateFarmer;
 
     private static String TOPIC2 = "testing";
+
+    @Autowired
+    private KafkaTemplate<String, RecommendedLandsDTO> kafkaTemplateRecommendedLandsToConsumer;
+
+    private static String TOPIC3 = "RcommendedLandsToConsumer";
 
 
     @Autowired
@@ -135,6 +138,7 @@ public class FarmerDetailsService {
         return requiredLand[0];
     }
     public ArrayList<LandOrder> getAllLandOrdersOfFarmerByEmail(String email, Long lid) {
+        System.out.println("hiigreeeeeeeeeeerrrrrrfdgdfgvgdfgvr");
         Optional optional = farmerRepository.findById(email);
         Farmer farmer = (Farmer) optional.get();
         System.out.println("farmer is"+farmer);
@@ -222,5 +226,16 @@ public class FarmerDetailsService {
         System.out.println(farmerDTORecommendation);
         kafkaTemplate1.send(TOPIC1, farmerDTORecommendation);
         return "published to recommend";
+    }
+
+
+    @KafkaListener(topics = "LandsOfFarmer", groupId = "Farmer_Land", containerFactory = "kafkaListenerContainerFactoryLandsOfFarmer")
+    public void bookingJson(String email) {
+        System.out.println(email);
+       Optional optional = farmerRepository.findById(email);
+       Farmer farmer = (Farmer) optional.get();
+        RecommendedLandsDTO recommendedLandsDTO=new RecommendedLandsDTO();
+        recommendedLandsDTO.setLand(farmer.getLand());
+       kafkaTemplateRecommendedLandsToConsumer.send(TOPIC3,recommendedLandsDTO);
     }
 }

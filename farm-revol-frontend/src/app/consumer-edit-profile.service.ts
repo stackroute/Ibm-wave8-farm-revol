@@ -20,4 +20,12 @@ export class ConsumerEditProfileService {
 
   }
 
-}
+  bookingLand(consumerId, cropName, land) {
+    return this.http.put(apiUrl + '/booking/'+consumerId + '/'+ cropName, land);
+  }
+
+  getOrders(consumerId) {
+    return this.http.get(apiUrl + '/orders/' + consumerId);
+  }
+
+} 

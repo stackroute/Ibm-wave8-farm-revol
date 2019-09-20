@@ -61,6 +61,7 @@ export class LoginPageComponent implements OnInit {
 
         }
       } ,(err) => {
+        window.alert('invalid');
         console.log(err);
       });
 

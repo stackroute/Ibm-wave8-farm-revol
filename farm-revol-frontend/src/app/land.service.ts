@@ -3,7 +3,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Land } from '../Land';
 import { Observable } from 'rxjs';
 
-const apiUrl = 'http://localhost:8090/api/farmer';
+const apiUrl = 'http://localhost:8095/api/farmer';
 
 
 @Injectable({
@@ -45,6 +45,10 @@ export class LandService {
   updateProfile(details) {
     return this.http.put(apiUrl + '/update', details);
 
+  }
+
+  getFarmerLandOrders(farmerId,landId) {
+    return this.http.get(apiUrl + '/land/orders/'+farmerId+'/'+landId );
   }
   
 }
