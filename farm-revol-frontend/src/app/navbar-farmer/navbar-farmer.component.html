@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" class = "navbar-header">
+<!-- <mat-toolbar color="primary" class = "navbar-header">
      
     <div class = "component-navbar">
     <mat-toolbar-row>
@@ -34,4 +34,45 @@
     </mat-toolbar-row>
     </div>
 </mat-toolbar>
+ -->
 
+
+ <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark brown" [containerInside]="false">
+
+    <!-- Navbar brand -->
+    <mdb-navbar-brand><img src="./assets/logo.png" class="img-rounded" alt="farm-logo" width="65px" height="65px"><a class="navbar-brand" href="#">FarmRevol</a></mdb-navbar-brand>
+  
+    <!-- Collapsible content -->
+    <links>
+  
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect  style="padding-right: 10px">Home<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link waves-light" mdbWavesEffect>FAQ<span class="sr-only">(current)</span></a>
+          </li>
+  
+      </ul>
+      <!-- Links -->
+    <ul class="navbar-nav ml-auto">
+        <button type="button" class="btn btn-warning">Upload Farm</button>
+        <li class="nav-item dropdown" dropdown>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            <mdb-icon fas icon="user"></mdb-icon> Profile<span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" mdbWavesEffect href="#">My Profile</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="#">View Orders</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
+          </div>
+        </li>
+  
+      </ul>
+  
+    </links>
+  
+    <!-- Collapsible content -->
+  
+  </mdb-navbar>
+  <!--/.Navbar-->

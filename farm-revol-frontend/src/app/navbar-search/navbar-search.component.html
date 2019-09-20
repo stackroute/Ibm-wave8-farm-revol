@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" class="navbar-header">
+<!-- <mat-toolbar color="primary" class="navbar-header">
   <div class="component-navbar">
     <mat-toolbar-row>
         <img src="./assets/logo.png" class="img-rounded" alt="farm-logo" width="80px" height="80px"
@@ -34,7 +34,48 @@
     </mat-toolbar-row>
   </div>
 </mat-toolbar>
+ -->
 
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark brown" [containerInside]="false">
 
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><img src="./assets/logo.png" class="img-rounded" alt="farm-logo" width="65px" height="65px"><a
+      class="navbar-brand" href="#">FarmRevol</a></mdb-navbar-brand>
 
+  <!-- Collapsible content -->
+  <links>
 
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect style="padding-right: 10px">Home<span
+            class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect>FAQ<span class="sr-only">(current)</span></a>
+      </li>
+
+    </ul>
+    <!-- Links -->
+
+    <div class="search">
+      <!-- Search form -->
+      <form class="form-inline waves-light" mdbWavesEffect>
+        <div class="md-form my-0 ">
+          <input class="form-control mr-lg" type="text" placeholder="Search for crops">
+          <button type="button" class="btn btn-outline-warning btn-rounded waves-effect">Search</button>
+        </div>
+      </form>
+    </div>
+
+    <ul class="navbar-nav ml-auto">
+        <button type="button" class="btn btn-warning btn-rounded waves-effect" style="width:100px;margin-top: 5px;margin-bottom: 5px">LOGIN</button>
+    </ul>
+
+  </links>
+
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+<!--/.Navbar-->
