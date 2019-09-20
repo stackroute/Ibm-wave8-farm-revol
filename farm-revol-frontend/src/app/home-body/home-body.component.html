@@ -1,65 +1,153 @@
 <app-navbar-search ></app-navbar-search>
 
-<h1 class="header-text">Rent Lands!!!</h1>
 
-<h3 class="header-subtext">Live in the city, but want to grow a mini-farm? Welcome Here</h3>
-
-<img src="../../assets/hero2.jpg" alt="Farm image" class="home-image">
-
-
-<div class="how-block">
-
-    <h1 class="works-text">How it works</h1>
-    <div class="how-it-works">
-        <div class="left">
-            <div class="heading">Search</div>
-
-            <div class="subtext">Search for your desired Crop and get the locations near by you for organic farming
-            </div>
-        </div>
-
-        <div class="middle">
-            <div class="heading">Book your Land</div>
-            <div class="subtext">Book your land for rent and you can monitor your farm</div>
-        </div>
-
-        <div class="right">
-            <div class="heading">Get your produce</div>
-            <div class="subtext">Get your crop after it is produced</div>
-        </div>
-    </div>
-</div>
-
-<div id="images">
-    <div class="li">
-        <img class="body-img" src="../../assets/image1.jpg">
-    </div>
-    <div class="li">
-        <img class="body-img" src="../../assets/image2.jpg">
-    </div>
-    <div class="li">
-        <img class="body-img" src="../../assets/sugarcane2.jpg">
-    </div>
-    <div class="li">
-        <img class="body-img" src="../../assets/Maize-Farming.jpg">
-    </div>
-    <div class="li">
-        <img class="body-img" src="../../assets/potato.jpg">
-    </div>
-
-</div>
-
-<mdb-carousel [animation]="'slide'">
+<mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'">
     <mdb-carousel-item>
-      <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg" alt="First slide">
+      <div class="view w-100">
+        <img class="d-block w-100 img-class" src="../../assets/image.png" alt="First slide">
+        <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
+      </div>
+      <div class="carousel-caption">
+        <h1 class="h3-responsive">Rent lands!!!</h1>
+        <h3>Live in the city and want to rent a farm? Welcome</h3>
+      </div>
     </mdb-carousel-item>
     <mdb-carousel-item>
-      <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(129).jpg" alt="Second slide">
+      <div class="view w-100">
+        <img class="d-block w-100 img-class" src="../../assets/image (1).png" alt="Second slide">
+        <div class="mask rgba-black-strong waves-light" mdbWavesEffect></div>
+      </div>
+      <div class="carousel-caption">
+        <h1 class="h3-responsive">Rent lands!!!</h1>
+        <h3>Live in the city and want to rent a farm? Welcome</h3>
+      </div>
     </mdb-carousel-item>
     <mdb-carousel-item>
-      <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg" alt="Third slide">
+      <div class="view w-100">
+        <img class="d-block w-100 img-class" src="../../assets/image (3).png" alt="Third slide">
+        <div class="mask rgba-black-slight waves-light" mdbWavesEffect></div>
+      </div>
+      <div class="carousel-caption">
+        <h1 class="h3-responsive">Rent lands!!!</h1>
+        <h3>Live in the city and want to rent a farm? Welcome</h3>
+      </div>
     </mdb-carousel-item>
+    <mdb-carousel-item>
+        <div class="view w-100">
+          <img class="d-block w-100 img-class" src="../../assets/image (4).png" alt="Third slide">
+          <div class="mask rgba-black-slight waves-light" mdbWavesEffect></div>
+        </div>
+        <div class="carousel-caption">
+          <h1 class="h3-responsive">Rent lands!!!</h1>
+          <h3>Live in the city and want to rent a farm? Welcome</h3>
+        </div>
+      </mdb-carousel-item>
+
+      <mdb-carousel-item>
+        <div class="view w-100">
+          <img class="d-block w-100 img-class" src="../../assets/image (5).png" alt="Third slide">
+          <div class="mask rgba-black-slight waves-light" mdbWavesEffect></div>
+        </div>
+        <div class="carousel-caption">
+          <h1 class="h3-responsive">Rent lands!!!</h1>
+          <h3>Live in the city and want to rent a farm? Welcome</h3>
+        </div>
+      </mdb-carousel-item>
+
   </mdb-carousel>
+
+  <h1 class="works-text">How it works?</h1>
+
+
+  <div class="card-group cards-home">
+    <!-- Card -->
+    <mdb-card class = "view overlay zoom hoverable">
+      <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+        <!-- Card img -->
+        <mdb-card-img src = "../../assets/image (6).png" alt="Card image cap"></mdb-card-img>
+        <a>
+          <div class="mask"></div>
+        </a>
+      </div>
+      <!--Card content-->
+      <mdb-card-body>
+        <!--Title-->
+        <mdb-card-title>
+          <h2 class = "title-stext">Search</h2>
+        </mdb-card-title>
+  
+        <!--Text-->
+        <mdb-card-text  id="card-text" class ="content-stext"> 
+              <h4>Search for your desired Crop and get the lands where your crop is grown</h4>  
+        </mdb-card-text>
+  
+      </mdb-card-body>
+    </mdb-card>
+  
+    <!-- Card -->
+    <mdb-card class = "view overlay zoom hoverable">
+      <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+        <!-- Card img -->
+        <mdb-card-img src="../../assets/image (7).png" alt="Card image cap"></mdb-card-img>
+        <a>
+          <div class="mask"></div>
+        </a>
+      </div>
+      <!--Card content-->
+      <mdb-card-body>
+        <!--Title-->
+        <mdb-card-title>
+                <h2 class = "title-stext">Book your Land</h2>
+        </mdb-card-title>
+  
+        <!--Text-->
+        <mdb-card-text> 
+            <h4>Book your land for rent and you can monitor your farm</h4>
+        </mdb-card-text>
+  
+      </mdb-card-body>
+    </mdb-card>
+  
+    <!-- Card -->
+    <mdb-card class = "view overlay zoom hoverable">
+      <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+        <!-- Card img -->
+        <mdb-card-img src="../../assets/fruit2.png" alt="Card image cap" class = "card-image-next"></mdb-card-img>
+        <a>
+          <div class="mask"></div>
+        </a>
+      </div>
+      <!--Card content-->
+      <mdb-card-body>
+        <!--Title-->
+        <mdb-card-title>
+                <h2 class = "title-stext">Get your crops</h2>
+        </mdb-card-title>
+  
+        <!--Text-->
+        <mdb-card-text> 
+            <h4>Get your crop after it is produced</h4>
+        </mdb-card-text>
+
+      </mdb-card-body>
+    </mdb-card>
+  </div>
+
+<!-- Jumbotron -->
+<mdb-card class = "jumbo-img" >
+    <div class="text-white  rgba-stylish-strong py-5 px-4 ">
+      <!-- <div class="py-5 jumbo-position"> -->
+  
+          
+            <h1 class=" my-4 py-2 jumbo-txt">You can't buy happiness But you can buy local and that's kinda the same thing</h1>
+         
+           
+          
+      
+      <!-- </div> -->
+    </div>
+  </mdb-card>
+  <!-- Jumbotron -->
 
 
 
