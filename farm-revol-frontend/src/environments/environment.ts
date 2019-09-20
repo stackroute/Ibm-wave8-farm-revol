@@ -3,8 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  consumerUrl: 'http://172.23.238.201:8092/api/consumer',
+  searchUrl: 'http://172.23.238.208:7070/api/v1/cropname/',
+  farmerUrl: 'http://172.23.238.164:8095/api/farmer',
+  loginUrl: 'http://172.23.238.215:8091/authenticate',
+  recommendationUrl: 'http://172.23.238.237:8090/rest/neo4j'
+
+
 };
+
+//'http://localhost:8095/api/farmer'
 
 /*
  * For easier debugging in development mode, you can import the following file

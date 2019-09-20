@@ -2,12 +2,13 @@
      
         <div class = "component-navbar">
         <mat-toolbar-row>
-          <span>Farm Revol</span>
+          <img src="./assets/logo.png" class="img-rounded" alt="farm-logo" width="80px" height="80px"
+        style="padding-top: 8px">
           
           
           <form class="example-form" id="form">
                 <mat-form-field class="example-full-width">
-                  <input matInput class= "search-input" value="Search for crops" type="search" autocomplete="off" autofill="off" #searchString>
+                  <input matInput class= "search-input" placeholder="Search for crops" type="search" autocomplete="off" autofill="off" #searchString>
                 </mat-form-field>
                 <button mat-button mat-fab (click)=clickSearch(searchString.value)>
                   <mat-icon aria-hidden="false" aria-label="Example search icon">search</mat-icon>

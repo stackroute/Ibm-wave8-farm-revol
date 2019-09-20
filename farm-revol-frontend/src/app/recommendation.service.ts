@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LandRecommend } from 'src/Recommend';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
-const apiUrl = 'http://localhost:8090/rest/neo4j';
+const apiUrl = environment.recommendationUrl;
 
 @Injectable({
   providedIn: 'root'

@@ -12,8 +12,9 @@ export class SearchComponent implements OnInit {
   cropList: any;
   cropName: any;
   flag: boolean = false;
+  searchString: any;
   listOfCrops: string[] = ['Paddy', 'Rice', 'Wheat', 'Mirchi', 'Potato', 'Cotton', 'tomato', 'Maize', 'SugarCane'];
-  constructor(private homeService: HomeserviceService, private route: ActivatedRoute, private location: Location) { }
+  constructor(private homeService: HomeserviceService, private router: Router, private route: ActivatedRoute, private location: Location) { }
 
   // ngOnInit() {
 
@@ -68,6 +69,4 @@ export class SearchComponent implements OnInit {
     );
   }
 
-
-
-}
+} 

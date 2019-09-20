@@ -2,9 +2,11 @@
 <div id = "farmer-landing-page">
 
     <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%" fxLayoutAlign.xs="center center" fxLayoutWrap>
-      <div>
+    
+      <p class = "land-text">Lands where order has been placed</p>
+    
         
-        <div *ngFor="let landDetails of farmerDetails.land">
+        <ng-container *ngFor="let landDetails of farmerDetails.land">
         <mat-card class="card" fxFlexOrder.lt-md="4" *ngIf='!landDetails.available' >
         
           
@@ -22,8 +24,8 @@
           </mat-card-actions>
         
       </mat-card>
-      </div>
-      </div>
+        </ng-container>
+      
       
     </div>
 

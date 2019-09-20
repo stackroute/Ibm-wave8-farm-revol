@@ -27,7 +27,7 @@ export class NavbarConsumerComponent implements OnInit {
     else {
       id = id1;
     }
-    this.router.navigate(['/'+id+'/lands']);
+    this.router.navigate(['/'+id+'/consumer']);
   }
 
 
@@ -41,7 +41,7 @@ export class NavbarConsumerComponent implements OnInit {
     else {
       id = id1;
     }
-    this.router.navigate(['/updateProfile/'+id]);
+    this.router.navigate(['/'+id+'/updateConsumerProfile']);
   }
  
   goToOrders() {

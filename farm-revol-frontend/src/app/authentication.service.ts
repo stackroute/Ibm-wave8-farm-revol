@@ -5,11 +5,15 @@ import { catchError, tap } from 'rxjs/operators';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { DAOUser } from 'src/DAOUser';
 import { LoginUser } from 'src/Login';
+import { environment } from 'src/environments/environment';
 
 
-const apiUrl = 'http://localhost:8095/api/farmer/';
-const apiUrl1 = 'http://localhost:8092/api/consumer/';
-const apiurl2='http://localhost:8091/authenticate';
+//const apiUrl = 'http://localhost:8095/api/farmer/';
+//const apiUrl1 = 'http://localhost:8092/api/consumer/';
+//const apiurl2='http://localhost:8091/authenticate';
+const apiurl2=  environment.loginUrl;
+const apiUrl1 = environment.consumerUrl;
+const apiUrl = environment.farmerUrl;
 
 
 @Injectable({
@@ -40,7 +44,7 @@ export class AuthenticationService {
    }
 
   register(data: any): Observable<any> {
-    return this.http.post<any>(apiUrl + 'register', data)
+    return this.http.post<any>(apiUrl + '/register', data)
       .pipe(
         tap(_ => this.log('login')),
         catchError(this.handleError('login', []))
@@ -48,7 +52,7 @@ export class AuthenticationService {
   }
 
   registerConsumer(data: any): Observable<any> {
-    return this.http.post<any>(apiUrl1 + 'register', data)
+    return this.http.post<any>(apiUrl1 + '/register', data)
       .pipe(
         tap(_ => this.log('login')),
         catchError(this.handleError('login', []))

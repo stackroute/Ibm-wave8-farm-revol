@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class HomeserviceService {
 
   getSearch(val:String)
   {
-    this.url = "http://localhost:7070/api/v1/cropname/"+val ;
+    this.url = environment.searchUrl+val ;
     return this.httpclient.get(this.url);
   }
 }
