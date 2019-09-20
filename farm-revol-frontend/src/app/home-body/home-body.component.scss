@@ -1,8 +1,16 @@
+#body {
+    height: 100vh;
+    background-color: #DAB1A8;
+}
+
+
+
+
 .header-text {
     font-size: 70px;
     letter-spacing: 0.2px;
     text-align: center;
-    margin-top: 100px;
+    margin-top: 70px;
     color: #0e6a3d;
 }
 
@@ -53,11 +61,14 @@
 }
 
 .works-text {
-    font-size: 50px;
+    font-size: 80px;
     text-align: center;
-    padding-top: 20px;
+    padding-top: 30px;
     padding-bottom: 20px;
     letter-spacing: 0.1ex;
+    font-weight: 600;
+    color: #a69444;
+    font-family: 'Playball', cursive;
 }
 
 .heading {
@@ -92,6 +103,43 @@
    width: 100%; 
 }
 
+.img-class {
+    height: 700px;
+}
 
+.cards-home {
+    margin-top: 20px;
+}
+
+
+.title-stext {
+    font-size: 40px;
+}
+
+.card-image-next {
+    height: 214px;
+}
+
+.jumbo-img {
+    margin-top: 50px;
+    background-image: url('../../assets/hero2.jpg');
+    height: 600px;
+
+    margin-bottom: 50px;
+}
+
+.jumbo-text {
+    height: 600px;
+}
+
+.jumbo-position {
+   padding-top: 70%;
+}
+
+.text-white{
+    margin-top: auto;
+    text-align: center;
+    display: inline-block;
+}
 
 
