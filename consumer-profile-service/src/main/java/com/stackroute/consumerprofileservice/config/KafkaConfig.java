@@ -24,7 +24,7 @@ public class KafkaConfig {
     public ProducerFactory<String, Consumer> producerFactoryConsumer(){
         Map<String, Object> config = new HashMap<>();
 
-        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
+        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "172.23.238.238:9092");
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
 
@@ -40,7 +40,7 @@ public class KafkaConfig {
     public ProducerFactory<String, ConsumerDTORecommendation> producerFactoryCo(){
         Map<String, Object> config = new HashMap<>();
 
-        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
+        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "172.23.238.238:9092");
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
 
@@ -56,7 +56,7 @@ public class KafkaConfig {
     public ProducerFactory<String, String> producerFactoryConsumer1(){
         Map<String, Object> config = new HashMap<>();
 
-        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
+        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "172.23.238.238:9092");
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
 
@@ -72,7 +72,7 @@ public class KafkaConfig {
     public ProducerFactory<String, Land> producerFactoryLand(){
         Map<String, Object> config = new HashMap<>();
 
-        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
+        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "172.23.238.238:9092");
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
 
@@ -105,7 +105,7 @@ public class KafkaConfig {
     public ProducerFactory<String, String> producerFactory(){
         Map<String, Object> config = new HashMap<>();
 
-        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
+        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "172.23.238.238:9092");
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
 
@@ -125,7 +125,7 @@ public class KafkaConfig {
         deserializer.addTrustedPackages("*");
         deserializer.setUseTypeMapperForKey(true);
 
-        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "172.23.238.238:9092");
         config.put(ConsumerConfig.GROUP_ID_CONFIG, "group_crop");
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, deserializer);
@@ -145,7 +145,7 @@ public class KafkaConfig {
         deserializer.addTrustedPackages("*");
         deserializer.setUseTypeMapperForKey(true);
 
-        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "172.23.238.238:9092");
         config.put(ConsumerConfig.GROUP_ID_CONFIG, "group_consumer_booking");
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, deserializer);
@@ -168,7 +168,7 @@ public class KafkaConfig {
         deserializer.addTrustedPackages("*");
         deserializer.setUseTypeMapperForKey(true);
 
-        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "172.23.238.238:9092");
         config.put(ConsumerConfig.GROUP_ID_CONFIG, "recommendations");
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, deserializer);

@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -76,6 +78,7 @@ import { ViewFarmerOrdersComponent } from './view-farmer-orders/view-farmer-orde
     
   ],
   imports: [
+    MDBBootstrapModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     MatInputModule,
