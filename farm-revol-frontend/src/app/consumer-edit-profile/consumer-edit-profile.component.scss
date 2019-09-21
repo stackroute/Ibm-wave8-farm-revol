@@ -1,12 +1,25 @@
 .profile-con {
     margin: auto;
-    width: 35%;
+   // width: 35%;
     //border: 1px dashed #eaf5d0;
     padding: 10px;
-    background-color:#F6F3F9;
-    height: 450px;
+    background-color:whitesmoke;
+   // height: 450px;
+   padding: 10px;
+   background-color:whitesmoke;
+   max-width: 320px;
+   border: 3px solid black;
+   border-radius: 4px;
+   @media screen and (max-width : 320px ){
+     max-width: 250px;
+ }
     
-    
+}
+
+.profile-con:hover {
+
+   background: rgb(230, 225, 225);
+   box-shadow: 10px 10px 10px whitesmoke;
 }
 
 //    .input-items {
@@ -29,14 +42,20 @@ flex-direction: column;
 .edit-button {
    background-color: cornflowerblue;
    color: white;
-   width: 150px;
-   margin-left: 30px;
-   margin-top: 25px;
+   // width: 150px;
+   // margin-left: 30px;
+   // margin-top: 25px;
+   margin-right: 10px;
+    margin-top: 10px;
 }
 
-.submit-button {
-   margin-left: 170px;
+.example-button-row {
+   text-align: center;
 }
+
+// .submit-button {
+//    margin-left: 170px;
+// }
 
 
 
