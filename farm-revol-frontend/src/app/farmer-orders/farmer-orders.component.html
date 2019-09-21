@@ -3,28 +3,46 @@
 
     <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%" fxLayoutAlign.xs="center center" fxLayoutWrap>
     
-      <p class = "land-text">Lands where order has been placed</p>
-    
+        <p class = "land-text">Lands where order has been placed</p>
+       
+
+      <ng-container *ngFor="let landDetails of farmerDetails.land">
+      
+      <div class="card card-farmer" *ngIf='!landDetails.available'>
+
+          <!-- Card image -->
+          <div class="view overlay">
+            <img class="card-img-top" src="../../assets/farm-land.png" alt="Card image cap">
+            <a href="#!">
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
         
-        <ng-container *ngFor="let landDetails of farmerDetails.land">
-        <mat-card class="card" fxFlexOrder.lt-md="4" *ngIf='!landDetails.available' >
+          <!-- Card content -->
+          <div class="card-body">
         
-          
-            <mat-card-header>
-            
-          <mat-card-title>LOCATION: {{landDetails.location}}</mat-card-title><br>
-          <mat-card-title>SIZE: {{landDetails.landSize}}</mat-card-title><br>
-          <mat-card-title>RATE: {{landDetails.landPrice}}</mat-card-title><br>
-          <mat-card-title>Crops Grown: {{landDetails.crops}}</mat-card-title><br>
-            </mat-card-header>
-          <img mat-card-image class="img" src="../../assets/card4.jpg">
-          <mat-card-actions class = "buttons">
-              <button mat-button class = "buttons-text" (click)="viewOrdersOfLand(landDetails.id)"><span>VIEW ORDERS  </span> </button>
-             
-          </mat-card-actions>
+            <!-- Title -->
+            <h4 class="card-title">Uploaded lands</h4>
+            <!-- Text -->
+      
+            <p>Location : {{land.location}}</p>
+            <p>Size (in sq ft) : {{land.landSize}}</p>   
+             <p>Rate (in INR) : {{land.landPrice}}</p>  
+            <p>Crops grown : {{land.crops}}</p>
+      
+      
+            <a class="btn btn-primary but-chng" (click)="updateLands(land)">Update</a>
+           
+            <a class="btn btn-primary but-chng" (click)="removeLand(land)">Delete</a>
+      
+           
+            <!-- Button -->
+       
+          </div>
         
-      </mat-card>
-        </ng-container>
+        </div>
+        <!-- Card -->
+      </ng-container>
       
       
     </div>

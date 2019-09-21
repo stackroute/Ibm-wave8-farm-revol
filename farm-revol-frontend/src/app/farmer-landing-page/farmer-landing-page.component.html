@@ -7,7 +7,7 @@
 
     <!-- Card image -->
     <div class="view overlay">
-      <img class="card-img-top" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg" alt="Card image cap">
+      <img class="card-img-top" src="../../assets/farm-land.png" alt="Card image cap">
       <a href="#!">
         <div class="mask rgba-white-slight"></div>
       </a>
@@ -17,12 +17,22 @@
     <div class="card-body">
   
       <!-- Title -->
-      <h4 class="card-title">Card title</h4>
+      <h4 class="card-title">Uploaded lands</h4>
       <!-- Text -->
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+      <p>Location : {{land.location}}</p>
+      <p>Size (in sq ft) : {{land.landSize}}</p>   
+       <p>Rate (in INR) : {{land.landPrice}}</p>  
+      <p>Crops grown : {{land.crops}}</p>
+
+
+      <a class="btn btn-primary but-chng" (click)="updateLands(land)">Update</a>
+     
+      <a class="btn btn-primary but-chng" (click)="removeLand(land)">Delete</a>
+
+     
       <!-- Button -->
-      <a href="#" class="btn btn-primary">Button</a>
-  
+ 
     </div>
   
   </div>
