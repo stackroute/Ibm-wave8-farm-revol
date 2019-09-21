@@ -1,31 +1,33 @@
 <app-navbar-farmer></app-navbar-farmer>
 <div id = "farmer-landing-page">
-
-
+   
     <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%" fxLayoutAlign.xs="center center" fxLayoutWrap>
-      
-        <mat-card class="card" fxFlexOrder.lt-md="4" *ngFor="let land of lands">
-                <!-- <div fxFlex="20%"> -->
-          <div>
-            <mat-card-header>
-            
-          <mat-card-title>LOCATION: {{land.location}}</mat-card-title><br>
-          <mat-card-title>SIZE: {{land.landSize}}</mat-card-title><br>
-          <mat-card-title>RATE: {{land.landPrice}}</mat-card-title><br>
-          <mat-card-title>Crops Grown: {{land.crops}}</mat-card-title><br>
-            </mat-card-header>
-          <img mat-card-image class="img" src="../../assets/card4.jpg">
-          <mat-card-actions class = "buttons">
-              <button mat-button class = "buttons-text" (click)="updateLands(land)"><span>UPDATE  </span> <mat-icon>update</mat-icon> </button>
-              <button mat-button class = "buttons-text" (click)="removeLand(land)" ><span>DELETE  </span>  <mat-icon>delete</mat-icon></button>
-              <!-- <button mat-button class = "buttons-text" (click)="viewOrders(land)" ><span>  VIEW ORDERS  </span>  <mat-icon>delete</mat-icon></button> -->
-          </mat-card-actions>
-        </div>
-      <!-- </div> -->
-      </mat-card>
+  <!-- Card -->
+<div class="card card-farmer" *ngFor="let land of lands">
+
+    <!-- Card image -->
+    <div class="view overlay">
+      <img class="card-img-top" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg" alt="Card image cap">
+      <a href="#!">
+        <div class="mask rgba-white-slight"></div>
+      </a>
     </div>
+  
+    <!-- Card content -->
+    <div class="card-body">
+  
+      <!-- Title -->
+      <h4 class="card-title">Card title</h4>
+      <!-- Text -->
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <!-- Button -->
+      <a href="#" class="btn btn-primary">Button</a>
+  
+    </div>
+  
+  </div>
+  <!-- Card -->
 
-
-
+</div>
 
 </div>

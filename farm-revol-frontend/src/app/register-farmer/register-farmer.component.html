@@ -27,14 +27,10 @@
       
       </mdb-navbar>
 
-  <div fxLayout="row" fxLayoutAlign="center center">
-    <mat-card class="entire-container">
-
-
-      <mat-card-header>
-          <mat-card-title class="register-farmer-text">FarmerRegistration</mat-card-title>
-      </mat-card-header>
-
+  <div fxLayout="row" fxLayoutAlign="center center" class = "login-compr">
+    <mat-card >
+      
+        <mat-card-title class="login-txt">Farmer Registration</mat-card-title>
       <div class="register-farmer-content">
         <mat-card-content fxLayout="column">
           <form [formGroup]="registerForm" (ngSubmit)="onFormSubmit(registerForm.value)" class="form-all">

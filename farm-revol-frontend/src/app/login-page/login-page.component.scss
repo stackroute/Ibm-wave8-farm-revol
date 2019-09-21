@@ -1,6 +1,6 @@
 #login-page {
-    background-image: url("../../assets/login-back.jpg");
-    height: 100%;
+    background-image: url("../../assets/fbg.jpg");
+    min-height: 100vh;
  /* Center and scale the image nicely */
      background-position: center;
      background-repeat: no-repeat;
@@ -8,26 +8,57 @@
 }
 
 
-#login-comp {
-    height: 400px;
-    width: 70%;
-    margin: 0 auto;
-    padding-top: 200px;
+// #login-comp {
+
+//     width: 70%;
+//     margin: auto;
+//     padding-top: 200px;
  
+// }
+
+.login-txt {
+    text-align: center;
+    font-size: 40px;
+    word-wrap: break-word;
+    color: #30215a;
 }
 
+
 mat-card {
-  width: 35%;
+  //  margin-top: 50%;
+//   width: 30%;
+max-width: 320px;
   margin: 0 auto;
+  border: 5px solid #4b4b49;
+
+
+  @media screen and (max-width : 320px ){
+    max-width: 275px;
+    margin-top: -90px;
 }
+}
+  
+.login-compr {
+  //  margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
+    
    
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+
+}
 
 .login-text {
     font-size: 40px;
     letter-spacing: 0.1ex;
-    margin-left: 80%;
+  //  margin-left: auto;
     font-weight: 600;
     color: #37872f;
+  //  margin-right: auto;
+  text-align: center;
     
 }
 

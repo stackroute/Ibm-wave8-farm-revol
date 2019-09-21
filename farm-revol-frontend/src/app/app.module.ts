@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from "@angular/flex-layout";
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 
@@ -81,6 +80,8 @@ import { ViewFarmerOrdersComponent } from './view-farmer-orders/view-farmer-orde
     MDBBootstrapModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
+    MDBBootstrapModule,
+
     MatInputModule,
     MatButtonModule,
     FormsModule,
@@ -93,8 +94,7 @@ import { ViewFarmerOrdersComponent } from './view-farmer-orders/view-farmer-orde
     MatMenuModule,
     MatSelectModule,
     MatExpansionModule,
-    MatRadioModule,
-    FlexLayoutModule
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]
