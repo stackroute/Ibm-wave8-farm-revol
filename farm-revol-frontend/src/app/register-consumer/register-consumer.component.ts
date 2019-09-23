@@ -34,12 +34,26 @@ export class RegisterConsumerComponent implements OnInit {
   
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      'fullname' : [null, Validators.required],
-      'phoneNumber' : [null, Validators.required],
-      'email' : [null, Validators.required],
-      'password' : [null, Validators.required]
+      // 'fullname' : [null, Validators.required],
+      'fullname': new FormControl('', [Validators.required, Validators.maxLength(60)]),
+      'phoneNumber': new FormControl('', [Validators.required,  Validators.pattern('[0-9]{10}')]),
+      'password': new FormControl('', [Validators.required,Validators.minLength(8), Validators.maxLength(60)]),
+
+
+
+      // 'phoneNumber' : [null, Validators.required],
+      // 'email' : [null, Validators.required],
+      email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]],
+
+      // 'password' : [null, Validators.required]
      // 'typeOfUser' : [null, Validators.required]
     });
+    //   'fullname' : [null, Validators.required],
+    //   'phoneNumber' : [null, Validators.required],
+    //   'email' : [null, Validators.required],
+    //   'password' : [null, Validators.required]
+    //  // 'typeOfUser' : [null, Validators.required]
+    // });
   }
 
   onFormSubmit(form: NgForm) {
@@ -53,6 +67,10 @@ export class RegisterConsumerComponent implements OnInit {
       });
 
       this.router.navigate(["/login"]);
+  }
+
+  public hasError = (controlName: string, errorName: string) =>{
+    return this.registerForm.controls[controlName].hasError(errorName);
   }
 
 
