@@ -1,5 +1,5 @@
 #farmer-landing-page {
-  background-image: url("../../assets/farmer.jpg");
+  background-image: url("../../assets/fbg.jpg");
   min-height: 100vh;
 /* Center and scale the image nicely */
   margin: 0;
@@ -15,7 +15,7 @@
 .card-farmer {
   max-width: 350px;
   margin-bottom: 2%;
-  margin-left: 80px;
+  //margin-left: 40px;
   margin-top: 60px;
 }
 
@@ -50,7 +50,7 @@
 
  .land-text {
   // justify-content: center;
-  margin-left: auto;
+ margin-left: auto;
   margin-right: auto;
   //width: 8em;
   font-size: 60px;
