@@ -5,10 +5,10 @@
 export const environment = {
   production: false,
   consumerUrl: 'http://172.23.238.201:8092/api/consumer',
-  searchUrl: 'http://172.23.238.208:7070/api/v1/cropname/',
-  farmerUrl: 'http://172.23.239.92:8095/api/farmer',
-  loginUrl: 'http://172.23.239.107:8091/authenticate',
-  recommendationUrl: 'http://172.23.238.237:8090/rest/neo4j'
+ searchUrl: 'http://172.23.238.208:7070/api/v1/cropname/',
+ farmerUrl: 'http://172.23.238.164:8095/api/farmer',
+ loginUrl: 'http://172.23.238.215:8091/authenticate',
+ recommendationUrl: 'http://172.23.238.237:8090/rest/neo4j'
 
 
 };

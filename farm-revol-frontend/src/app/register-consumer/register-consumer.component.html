@@ -41,11 +41,16 @@
                     <mat-form-field>
                         <input matInput type="fullname" placeholder="Full Name" formControlName="fullname"
                             [errorStateMatcher]="matcher">
-                        <mat-error>
+
+                            <mat-hint align="end">Not more then 60 characters long.</mat-hint>
+                        
+                            <mat-error *ngIf="hasError('fullname', 'maxlength')">You have more than 60 characters</mat-error>
+                           
+                            <!-- <mat-error>
                             <span
                                 *ngIf="!registerForm.get('fullname').valid && registerForm.get('fullname').touched">Please
                                 enter your Full Name</span>
-                        </mat-error>
+                        </mat-error> -->
                     </mat-form-field>
 
 
@@ -53,20 +58,28 @@
                     <mat-form-field>
                         <input matInput type="phoneNumber" placeholder="Phone Number" formControlName="phoneNumber"
                             [errorStateMatcher]="matcher">
-                        <mat-error>
+
+                            <mat-error *ngIf="this.registerForm.controls['phoneNumber'].hasError('pattern')">Please enter
+                                valid
+                                phone number</mat-error>
+                        <!-- <mat-error>
                             <span
                                 *ngIf="!registerForm.get('phoneNumber').valid && registerForm.get('phoneNumber').touched">Please
                                 enter your Phone Number</span>
-                        </mat-error>
+                        </mat-error> -->
                     </mat-form-field>
 
                     <mat-form-field>
                         <input matInput type="email" placeholder="Email" formControlName="email"
                             [errorStateMatcher]="matcher">
-                        <mat-error>
+
+                            <mat-error *ngIf="this.registerForm.controls['email'].hasError('pattern')">Please enter
+                                valid
+                                email</mat-error>
+                        <!-- <mat-error>
                             <span *ngIf="!registerForm.get('email').valid && registerForm.get('email').touched">Please
                                 enter your email</span>
-                        </mat-error>
+                        </mat-error> -->
                     </mat-form-field>
 
 
@@ -74,11 +87,16 @@
                     <mat-form-field>
                         <input matInput type="password" placeholder="Password" formControlName="password"
                             [errorStateMatcher]="matcher">
-                        <mat-error>
+
+                            <mat-error  *ngIf="hasError('password','minlength', 'maxlength')">Password
+                                should be between 8-16
+                                characters
+                            </mat-error>
+                        <!-- <mat-error>
                             <span
                                 *ngIf="!registerForm.get('password').valid && registerForm.get('password').touched">Please
                                 enter your password</span>
-                        </mat-error>
+                        </mat-error> -->
                     </mat-form-field>
 
                     <p></p>
