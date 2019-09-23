@@ -16,6 +16,8 @@ export class SearchConsumerComponent implements OnInit {
   flag: boolean = false;
   consumerId: string;
   searchString: string;
+  str: string;
+  str1: string;
   listOfCrops: string[] = ['Paddy', 'Rice', 'Wheat', 'Mirchi', 'Potato', 'Cotton', 'tomato', 'Maize', 'SugarCane'];
   constructor(private homeService: HomeserviceService, private consumerService: ConsumerEditProfileService, private route: ActivatedRoute, private router: Router, private location: Location) { }
 
@@ -39,7 +41,7 @@ export class SearchConsumerComponent implements OnInit {
       
       
        this.searchString = params.get('searchString');
-
+    //  str = this.searchString.toLocale;
 
 
      

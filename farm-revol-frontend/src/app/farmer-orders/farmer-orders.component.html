@@ -3,7 +3,7 @@
 
     <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%" fxLayoutAlign.xs="center center" fxLayoutWrap>
     
-        <p class = "land-text">Lands where order has been placed</p>
+        <!-- <p class = "land-text">Lands where order has been placed</p> -->
        
 
       <ng-container *ngFor="let landDetails of farmerDetails.land">
@@ -22,19 +22,18 @@
           <div class="card-body">
         
             <!-- Title -->
-            <h4 class="card-title">Uploaded lands</h4>
+     
             <!-- Text -->
       
-            <p>Location : {{land.location}}</p>
-            <p>Size (in sq ft) : {{land.landSize}}</p>   
-             <p>Rate (in INR) : {{land.landPrice}}</p>  
-            <p>Crops grown : {{land.crops}}</p>
+            <p>Location : {{landDetails.location}}</p>
+            <p>Size (in sq ft) : {{landDetails.landSize}}</p>   
+             <p>Rate (in INR) : {{landDetails.landPrice}}</p>  
+            <p>Crops grown : {{landDetails.crops}}</p>
       
       
-            <a class="btn btn-primary but-chng" (click)="updateLands(land)">Update</a>
+            <a class="btn btn-primary but-chng" (click)="viewOrdersOfLand(landDetails.id)">View</a>
            
-            <a class="btn btn-primary but-chng" (click)="removeLand(land)">Delete</a>
-      
+           
            
             <!-- Button -->
        

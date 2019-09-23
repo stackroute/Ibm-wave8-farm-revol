@@ -25,11 +25,14 @@
        <p>Rate (in INR) : {{land.landPrice}}</p>  
       <p>Crops grown : {{land.crops}}</p>
 
-
-      <a class="btn btn-primary but-chng" (click)="updateLands(land)">Update</a>
+      <div class = "flex-row">
+          <a class="btn btn-primary but-chng" (click)="updateLands(land)">Update</a>
      
-      <a class="btn btn-primary but-chng" (click)="removeLand(land)">Delete</a>
+          <a class="btn btn-primary but-chng" (click)="removeLand(land)">Delete</a>
+    
 
+      </div>
+      
      
       <!-- Button -->
  

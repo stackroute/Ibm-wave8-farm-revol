@@ -49,7 +49,7 @@
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark brown" [containerInside]="false">
 
   <!-- Navbar brand -->
-  <mdb-navbar-brand><img src="./assets/logo.png" class="img-rounded" alt="farm-logo" width="65px" height="65px"><a class="navbar-brand" href="#">FarmRevol</a></mdb-navbar-brand>
+  <mdb-navbar-brand><img src="./assets/logo.png" class="img-rounded" alt="farm-logo" width="65px" height="65px"><a class="navbar-brand logo-name" style="color:white" >FarmRevol</a></mdb-navbar-brand>
 
   <!-- Collapsible content -->
   <links>
@@ -59,9 +59,6 @@
       <li class="nav-item">
         <a class="nav-link waves-light" mdbWavesEffect  style="padding-right: 10px" (click) = "goToHome()">Home<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect routerLink = "/faq">FAQ<span class="sr-only">(current)</span></a>
-        </li>
 
     </ul>
     <!-- Links -->
@@ -70,8 +67,8 @@
     <!-- Search form -->
     <form class="form-inline waves-light" mdbWavesEffect>
       <div class="md-form my-0 ">
-        <input class="form-control mr-lg" type="text" placeholder="Search for crops">
-        <button type="button" class="btn btn-outline-warning btn-rounded waves-effect">Search</button>
+        <input class="form-control mr-lg" type="text" placeholder="Search for crops" #searchString>
+        <button type="button" class="btn btn-outline-warning btn-rounded waves-effect" (click)=clickSearch(searchString.value)>Search</button>
       </div>
     </form>
   </div>

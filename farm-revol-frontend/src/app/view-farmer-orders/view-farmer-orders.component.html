@@ -4,24 +4,24 @@
     <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%" fxLayoutAlign.xs="center center" fxLayoutWrap>
      
      
-        <p class = "order-text">Your orders</p>
+        <!-- <p class = "order-text">Your orders</p> -->
     
       
-        <mat-card class="card" fxFlexOrder.lt-md="4" *ngFor="let order of landOrderDetails">
-                <!-- <div fxFlex="20%"> -->
-          <div>
-            <mat-card-header>   
+        <mdb-card  *ngFor="let order of landOrderDetails">
+          <mdb-card-body >
+            <mdb-card-title>
+              <h4>Consumer Details</h4>
+            </mdb-card-title>
+            <mdb-card-text>
+              
+                Consumer email : {{order.consumerId}} <br>
+                Crop Name: {{order.crop}} <br>
+                Price: Rs {{order.price}} <br>
             
-          <mat-card-title>Consumer email : {{order.consumerId}}</mat-card-title><br>
-          <mat-card-title>Crop: {{order.crop}}</mat-card-title><br>
-          <mat-card-title>Price: {{order.price}}</mat-card-title><br>
-         
-            </mat-card-header>
-          <img mat-card-image class="img" src="../../assets/card4.jpg">
-          
-        </div>
-      <!-- </div> -->
-      </mat-card>
+            </mdb-card-text>
+            
+          </mdb-card-body>
+        </mdb-card>
     </div>
 
 

@@ -3,33 +3,48 @@
 <div id = "consumer-search-page">
 
 
-    
-        <div *ngIf="flag; else dontShow" class="container" fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%" fxLayoutAlign.xs="center center" fxLayoutWrap>
-          <mat-card class="card" fxFlexOrder.lt-md="4" *ngFor="let farm of cropList.lands">
-                <!-- <div fxFlex="20%"> -->
-                   <div>
-                  <mat-card-header>
-                    <mat-card-title>Location:{{farm.location}}</mat-card-title><br>
-                    <mat-card-title>Farm Size:{{farm.landSize}}</mat-card-title><br>
-                    <mat-card-title>Price:{{farm.landPrice}}</mat-card-title><br>
-                    <mat-card-title>Farmer Email:{{farm.farmerId}}</mat-card-title><br>
-                    </mat-card-header>
-                    <img mat-card-image class="img" src="assets/card4.jpg">
-                    <mat-card-actions>
-                        <button mat-button (click) = "viewParticularLand(farm)">Book <mat-icon>favorite</mat-icon></button>
-                    </mat-card-actions>
-                  </div>
-                <!-- </div> -->
-                </mat-card>
-              </div>
+    <div *ngIf="flag; else dontShow" class="container" fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%" fxLayoutAlign.xs="center center" fxLayoutWrap> 
+       <!-- Card Dark -->
+<div class="card card-search" *ngFor="let farm of cropList.lands">
 
+    <!-- Card image -->
+    <div class="view overlay">
+      <img class="card-img-top" src="../../assets/search-bg.png" alt="Card image cap">
+      <a>
+        <div class="mask rgba-white-slight"></div>
+      </a>
+    </div>
+  
+    <!-- Card content -->
+    <div class="card-body elegant-color white-text rounded-bottom ">
+  
+      <!-- Social shares button -->
+      <!-- <a class="activator waves-effect mr-4"><i class="fas fa-share-alt white-text"></i></a> -->
+      <!-- Title -->
+      <h4 class="card-title">{{searchString}}</h4>
+      <hr class="hr-light">
+      <!-- Text -->
+
+      <p>Location : {{farm.location}}</p> 
+                    <p>Farm Size (in sq ft) : {{farm.landSize}}</p>
+                    <p>Price (in INR) : {{farm.landPrice}}</p>
+                    <p>Farmer Email : {{farm.farmerId}}</p>
+      <!-- <p class="card-text white-text mb-4">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+      <!-- Link -->
+      <!-- <a href="#!" class="white-text d-flex justify-content-end"><h5>Read more <i class="fas fa-angle-double-right"></i></h5></a> -->
+     <a  type="button" class="btn btn-unique button-chng" (click) = "viewParticularLand(farm)">Book</a>
+    </div>
+  
+  </div>
+  <!-- Card Dark -->
 
               <ng-template #dontShow>
                 <p>
-                  Show this only if "show" is not true
+                  No matching farms found
                 </p>
               </ng-template>
               
+</div>
 </div>
 
 

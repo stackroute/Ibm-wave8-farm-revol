@@ -10,22 +10,29 @@
     background-attachment: scroll;
 }
 
+.card-search {
+   
+   max-width: 350px;
+   margin-bottom: 2%;
+   margin-left: 80px;
+   margin-top: 60px;
+    
+}
   
 
-   .card {
-    width: 23%;
-    margin-bottom: 2%;
-    margin-left: 80px;
-    margin-top: 60px;
-    /* margin-bottom: 18%; */
-   /* position: relative; */
-   }
+   
    .container {
     /* min-height: 100%; */
     /* width: 100%; */
+    max-width: 95%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
    // margin-top: 50px;
+   }
+
+   .button-chng {
+      background-color: #96746c;
+      color: black;
    }
